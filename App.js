@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, FlatList, Pressable } from 'react-native';
 import { useState } from 'react';
 
 
@@ -15,38 +15,71 @@ export default function App() {
   const [nameProd, setNameProd] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-console.log(products)
 
 
   const handleAddProduct = () => {
 
-    setProducts((product) => [...product, { id: Date.now(), nameProd, price: parseFloat(price), quantity: parseInt(quantity), }]);
+    setProducts((product) => [...product, { id: Date.now(), nameProd, price: parseFloat(price), quantity: parseInt(quantity) }]);
     setNameProd('');
     setPrice('');
     setQuantity('');
+
+    
   };
 
 
   const totalGral = () => {
-    return products.reduce((total, product) => {
-      return total + prodTotal(product);
-  
+    return products.reduce((acc, product) => {
+      return acc + prodTotal(product);
+
     }, 0);
   };
 
   const prodTotal = (item) => {
     return item.price * item.quantity;
-   }
+  }
+
+  const totalProd = () => {
+
+    return products.length;
+  }
+
+  const removeProd = (productId) => {
+    const updatedProducts = products.filter((product) => product.id !== productId);
+    setProducts(updatedProducts);
+  };
+
+/*   const replaceProd = (prodMod) => {
+console.log(prodMod)
+    const replaceProd = products.filter((product) => product.id !== prodMod.id)
+    
+
+    prodMod ? setProducts([...replaceProd, prodMod]) : handleAddProduct();
+   
+} */
+
+
+  const editProd = (productId) => {
+
+const updatedProducts = products.find((product) => product.id === productId);
+    setNameProd(updatedProducts.nameProd);
+    setPrice(updatedProducts.price.toString());
+    setQuantity(updatedProducts.quantity.toString());
+  };
+
+
 
   const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
 
-  const headTable = ({item}) => {
+  const headTable = ({ item }) => {
     return (
       <View style={styles.productTable}>
-        <Text style={styles.headTableItem}>{item[0]}</Text>
-        <Text style={styles.headTableItem}>{item[1]}</Text>
-        <Text style={styles.headTableItem}>{item[2]}</Text>
-        <Text style={styles.headTableItem}>{item[3]}</Text>
+        <Text style={styles.productName}>{item[0]}</Text>
+        <Text style={styles.productPrice}>{item[1]}</Text>
+        <Text style={styles.productQuantity}>{item[2]}</Text>
+        <Text style={styles.productTotal}>{item[3]}</Text>
+        <View style={styles.editDelProd}>
+        </View>
       </View>
     );
   };
@@ -61,6 +94,15 @@ console.log(products)
         <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
         <Text style={styles.productQuantity}>{item.quantity}</Text>
         <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
+
+        <View style={styles.editDelProd}>
+          <Pressable style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
+            <Text>Edit</Text>
+          </Pressable>
+          <Pressable style={styles.delButtonProd} onPress={() => { removeProd(item.id) }}>
+            <Text>Del</Text>
+          </Pressable>
+        </View>
       </View>
     );
   };
@@ -76,7 +118,10 @@ console.log(products)
 
       <View style={styles.statusBar}>
         <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
-        <Text style={styles.statusBarText}>TOTAL: ${totalGral().toFixed(2)}</Text>
+        <Text style={styles.statusBarTextTotal}>TOTAL: ${totalGral().toFixed(2)}</Text>
+      </View>
+      <View style={styles.qntyTotal}>
+        <Text style={styles.qntyTotalTExt}>Cantidad: {totalProd()} </Text>
       </View>
 
       <View >
@@ -137,8 +182,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#4B8A08',
     height: 30,
-    margin: 6,
-    marginTop: 10,
+    marginTop: 6,
+    marginHorizontal: 6,
     borderRadius: 10,
   },
   statusBarText: {
@@ -147,41 +192,41 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
-  table: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: 'flex-start',
-    backgroundColor: "grey",
+  statusBarTextTotal: {
+    color: "#fff",
+    marginTop: 6,
+    marginLeft: 10,
+    marginRight: 10,
+    fontWeight: "bold",
   },
-
-  headEditTable: {
-    paddingRight: 6,
-    paddingBottom: 4,
-    borderBottomColor: 'red',
-    borderBottomWidth: 1,
+  qntyTotal: {
+    backgroundColor: "#69a30a",
+    width: "23%",
+    marginLeft: 20,
+    marginBottom: 6,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+  },
+  qntyTotalTExt: {
+    color: "white",
+    alignSelf: "center",
+    marginHorizontal: 2,
   },
   tableList: {
-
     backgroundColor: "orange",
     height: "65%",
   },
   productTable: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    textAalignItemsign: "flex-start",
     backgroundColor: "green",
     marginStart: 5,
     paddingVertical: 6,
     borderBottomWidth: 1,
     borderBottomColor: '#fff',
   },
-  headTableItem: {
-    flex: 1,
-    textAlign: "left",
-    color:"white",
-  },
+
   productName: {
-    flex: 1,
+    flex: 1.8,
     textAlign: "left",
   },
   productPrice: {
@@ -189,12 +234,26 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   productQuantity: {
-    flex: 1,
-    textAlign: "left",
+    flex: 1.2,
+    textAlign: "center",
   },
   productTotal: {
     flex: 1,
-    textAlign: "left",
+    textAlign: "right",
+  },
+  editDelProd: {
+    flex: 1.2,
+    flexDirection: 'row',
+    justifyContent: "space-around",
+    marginLeft: 4,
+  },
+  editButtonProd: {
+    borderColor: "red",
+    borderWidth: 1,
+  },
+  delButtonProd: {
+    borderColor: "red",
+    borderWidth: 1,
   },
   separator: {
     borderBottomColor: 'red',
