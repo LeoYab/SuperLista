@@ -1,27 +1,68 @@
 import { StyleSheet, Text, View, Button, TextInput, FlatList } from 'react-native';
 import { useState } from 'react';
 
-const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
 
-const Separator = () => <View style={styles.separator} />;
 
 
 
 export default function App() {
 
-  const [itemInputText, setItemInputText] = useState("");
-  const [items, setItems] = useState([]);
 
-  const prodIngr = (input) => {
 
-    setItemInputText(input);
+  const Separator = () => <View style={styles.separator} />;
 
+  const [products, setProducts] = useState([]);
+  const [nameProd, setNameProd] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
+console.log(products)
+
+
+  const handleAddProduct = () => {
+
+    setProducts((product) => [...product, { id: Date.now(), nameProd, price: parseFloat(price), quantity: parseInt(quantity), }]);
+    setNameProd('');
+    setPrice('');
+    setQuantity('');
   };
 
-  const addItem = () => {
 
-setItems((itemArray) => [...itemArray, {id: Date.now(), value: itemInputText }]);
+  const totalGral = () => {
+    return products.reduce((total, product) => {
+      return total + prodTotal(product);
+  
+    }, 0);
+  };
 
+  const prodTotal = (item) => {
+    return item.price * item.quantity;
+   }
+
+  const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
+
+  const headTable = ({item}) => {
+    return (
+      <View style={styles.productTable}>
+        <Text style={styles.headTableItem}>{item[0]}</Text>
+        <Text style={styles.headTableItem}>{item[1]}</Text>
+        <Text style={styles.headTableItem}>{item[2]}</Text>
+        <Text style={styles.headTableItem}>{item[3]}</Text>
+      </View>
+    );
+  };
+
+
+
+
+  const renderProduct = ({ item }) => {
+    return (
+      <View style={styles.productTable}>
+        <Text style={styles.productName}>{item.nameProd}</Text>
+        <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
+        <Text style={styles.productQuantity}>{item.quantity}</Text>
+        <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
+      </View>
+    );
   };
 
   return (
@@ -35,35 +76,42 @@ setItems((itemArray) => [...itemArray, {id: Date.now(), value: itemInputText }])
 
       <View style={styles.statusBar}>
         <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
+        <Text style={styles.statusBarText}>TOTAL: ${totalGral().toFixed(2)}</Text>
       </View>
 
-      <View>
+      <View >
         <FlatList
-          horizontal
-          data={DATA}
-          renderItem={({ item }) => <Text style={styles.headTable}>{item}</Text>}
+          data={[DATA]}
+          renderItem={headTable}
         />
       </View>
 
       <View style={styles.tableList}>
-      <FlatList
-        data={items}
-        renderItem={(itemData) => (
-          <Text>{itemData.item.value}</Text>
-        )}
-        keyExtractor={(item) => item.id.toString()}
-         
-      />
-  
-  </View>
-
-
-      <View>
-        <TextInput onChangeText={prodIngr} value={itemInputText} placeholder="Producto" />
+        <FlatList
+          data={products}
+          renderItem={renderProduct}
+          keyExtractor={(item) => item.id.toString()}
+        />
       </View>
 
-      <View>
-        <Button style={styles.buttonAdd} color="#0B610B" title="+" onPress={addItem}/>
+      <View style={styles.addItemButton}>
+
+        <View style={styles.inputStyle}>
+          <TextInput onChangeText={setNameProd} value={nameProd} placeholder="Producto" />
+        </View>
+
+        <View style={styles.inputStyle}>
+          <TextInput onChangeText={setPrice} value={price} placeholder="Precio" />
+        </View>
+
+        <View style={styles.inputStyle}>
+          <TextInput onChangeText={setQuantity} value={quantity} placeholder="Cantidad" />
+        </View>
+
+        <View style={styles.inputStyle}>
+          <Button style={styles.buttonAdd} color="#0B610B" title="+" onPress={handleAddProduct} />
+        </View>
+
       </View>
     </View>
   );
@@ -85,6 +133,8 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   statusBar: {
+    flexDirection: "row",
+    justifyContent: 'space-between',
     backgroundColor: '#4B8A08',
     height: 30,
     margin: 6,
@@ -95,22 +145,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginTop: 6,
     marginLeft: 10,
+    marginRight: 10,
   },
   table: {
     flex: 1,
     flexDirection: "row",
     alignItems: 'flex-start',
-backgroundColor:"grey",
+    backgroundColor: "grey",
   },
 
-  headTable: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingBottom: 4,
-    borderBottomColor: 'red',
-    borderBottomWidth: 1.4,
-
-  },
   headEditTable: {
     paddingRight: 6,
     paddingBottom: 4,
@@ -119,7 +162,39 @@ backgroundColor:"grey",
   },
   tableList: {
 
-    backgroundColor:"orange",
+    backgroundColor: "orange",
+    height: "65%",
+  },
+  productTable: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    textAalignItemsign: "flex-start",
+    backgroundColor: "green",
+    marginStart: 5,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: '#fff',
+  },
+  headTableItem: {
+    flex: 1,
+    textAlign: "left",
+    color:"white",
+  },
+  productName: {
+    flex: 1,
+    textAlign: "left",
+  },
+  productPrice: {
+    flex: 1,
+    textAlign: "left",
+  },
+  productQuantity: {
+    flex: 1,
+    textAlign: "left",
+  },
+  productTotal: {
+    flex: 1,
+    textAlign: "left",
   },
   separator: {
     borderBottomColor: 'red',
@@ -135,7 +210,19 @@ backgroundColor:"grey",
   },
 
   buttonAdd: {
-flex: 1,
-alignSelf: "flex-end",
+    flex: 1,
+    alignSelf: "flex-end",
   },
+  addItemButton: {
+    flexDirection: 'row',
+    position: "absolute",
+    bottom: 0,
+    alignSelf: "center",
+    margin: 6,
+  },
+  inputStyle: {
+    flex: 1,
+  },
+
+
 });
