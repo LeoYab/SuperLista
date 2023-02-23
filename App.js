@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Button, TextInput, FlatList, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
 import { useState } from 'react';
-
+import Buttons from './scr/components/Button';
 
 
 
@@ -15,8 +15,9 @@ export default function App() {
   const [nameProd, setNameProd] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [buttonViewEdit, setButtonViewEdit] = useState(true);
   const [editProduct, setEditProduct] = useState(false);
-  const [productSelect, setProductSelect] = useState({})
+  const [productSelect, setProductSelect] = useState({});
 
 
 
@@ -26,7 +27,7 @@ export default function App() {
     setNameProd('');
     setPrice('');
     setQuantity('');
-    
+
   };
 
 
@@ -56,14 +57,14 @@ export default function App() {
 
     const replaceProds = products.filter((product) => product.id !== productSelect.id)
 
-setProducts([...replaceProds, {id: productSelect.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity)}].sort((a, b) => a.id - b.id));  
+    setProducts([...replaceProds, { id: productSelect.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity) }].sort((a, b) => a.id - b.id));
 
 
 
-setEditProduct(false);
-setNameProd('');
-setPrice('');
-setQuantity('');
+    setEditProduct(false);
+    setNameProd('');
+    setPrice('');
+    setQuantity('');
 
   }
 
@@ -120,6 +121,12 @@ setQuantity('');
     );
   };
 
+  const renderInputs = () => {
+
+    setButtonViewEdit(false)
+
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -152,26 +159,37 @@ setQuantity('');
         />
       </View>
 
+
+
       <View style={styles.addItemButton}>
 
-        <View style={styles.inputStyle}>
-          <TextInput onChangeText={setNameProd} value={nameProd} placeholder="Producto" />
-        </View>
+        {!buttonViewEdit && (
+          <>
+            <View style={styles.inputStyle}>
+              <TextInput onChangeText={setNameProd} value={nameProd} placeholder="Producto" />
+            </View>
 
-        <View style={styles.inputStyle}>
-          <TextInput onChangeText={setPrice} value={price} placeholder="Precio" />
-        </View>
+            <View style={styles.inputStyle}>
+              <TextInput onChangeText={setPrice} value={price} placeholder="Precio" />
+            </View>
 
-        <View style={styles.inputStyle}>
-          <TextInput onChangeText={setQuantity} value={quantity} placeholder="Cantidad" />
-        </View>
+            <View style={styles.inputStyle}>
+              <TextInput onChangeText={setQuantity} value={quantity} placeholder="Cantidad" />
+            </View>
 
-        <View style={styles.inputStyle}>
-          <Button style={styles.buttonAdd} color="#0B610B" title="+" onPress={editProduct ? replaceProd : handleAddProduct} />
-        </View>
+            <Buttons onPress={editProduct ? replaceProd : handleAddProduct}>+</Buttons>
+          </>
+          )}
+          
+{buttonViewEdit && (
+
+<Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
+
+  )}
+      </View>
 
       </View>
-    </View>
+
   );
 }
 
@@ -282,8 +300,13 @@ const styles = StyleSheet.create({
   },
 
   buttonAdd: {
-    flex: 1,
-    alignSelf: "flex-end",
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: "#6ca115ef",
+    alignSelf: "center",
+    alignItems: 'center',
+    justifyContent: "center",
   },
   addItemButton: {
     flexDirection: 'row',
