@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
 import { useState } from 'react';
-import Buttons from './scr/components/Button';
-
+import Buttons from './scr/components/Button/Button';
+import Header from './scr/components/Header/Header';
 
 
 
@@ -129,7 +129,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+{/*       <View style={styles.header}>
         <Text style={styles.logo}>SUPERLISTA</Text>
         <TextInput style={styles.search} placeholder="Buscar" />
       </View>
@@ -149,7 +149,9 @@ export default function App() {
           data={[DATA]}
           renderItem={headTable}
         />
-      </View>
+      </View> */}
+
+<Header />
 
       <View style={styles.tableList}>
         <FlatList
@@ -194,7 +196,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  /* container: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
@@ -207,8 +209,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: 'center',
     paddingTop: 15,
-  },
-  statusBar: {
+  }, */
+  /* statusBar: {
     flexDirection: "row",
     justifyContent: 'space-between',
     backgroundColor: '#4B8A08',
@@ -229,7 +231,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontWeight: "bold",
-  },
+  }, 
   qntyTotal: {
     backgroundColor: "#69a30a",
     width: "23%",
@@ -242,7 +244,7 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center",
     marginHorizontal: 2,
-  },
+  },*/
   tableList: {
     backgroundColor: "orange",
     height: "65%",
@@ -290,14 +292,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'red',
     borderBottomWidth: 3,
   },
-  search: {
+  /* search: {
     color: "grey",
     backgroundColor: "#fff",
     width: 400,
     alignSelf: "center",
     borderRadius: 2,
     margin: 15,
-  },
+  }, */
 
   buttonAdd: {
     width: 50,
