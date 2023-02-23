@@ -15,6 +15,9 @@ export default function App() {
   const [nameProd, setNameProd] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [editProduct, setEditProduct] = useState(false);
+  const [idEditProduct, setIdEditProduct] = useState({})
+
 
 
   const handleAddProduct = () => {
@@ -23,7 +26,6 @@ export default function App() {
     setNameProd('');
     setPrice('');
     setQuantity('');
-
     
   };
 
@@ -45,26 +47,37 @@ export default function App() {
   }
 
   const removeProd = (productId) => {
+
     const updatedProducts = products.filter((product) => product.id !== productId);
     setProducts(updatedProducts);
   };
 
-/*   const replaceProd = (prodMod) => {
-console.log(prodMod)
-    const replaceProd = products.filter((product) => product.id !== prodMod.id)
-    
+  const replaceProd = () => {
 
-    prodMod ? setProducts([...replaceProd, prodMod]) : handleAddProduct();
-   
-} */
+    const replaceProds = products.filter((product) => product.id !== idEditProduct.id)
+
+setProducts([...replaceProds, {id: idEditProduct.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity)}].sort((a, b) => a.id - b.id));  
+
+
+
+setEditProduct(false);
+setNameProd('');
+setPrice('');
+setQuantity('');
+
+  }
 
 
   const editProd = (productId) => {
 
-const updatedProducts = products.find((product) => product.id === productId);
+    const updatedProducts = products.find((product) => product.id === productId);
     setNameProd(updatedProducts.nameProd);
     setPrice(updatedProducts.price.toString());
     setQuantity(updatedProducts.quantity.toString());
+    setIdEditProduct(updatedProducts);//este no va aca. Hay que ponerlo en otro lado para que tome el valor actual
+    setEditProduct(true);
+
+
   };
 
 
@@ -154,7 +167,7 @@ const updatedProducts = products.find((product) => product.id === productId);
         </View>
 
         <View style={styles.inputStyle}>
-          <Button style={styles.buttonAdd} color="#0B610B" title="+" onPress={handleAddProduct} />
+          <Button style={styles.buttonAdd} color="#0B610B" title="+" onPress={editProduct ? replaceProd : handleAddProduct} />
         </View>
 
       </View>
