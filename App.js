@@ -16,7 +16,7 @@ export default function App() {
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
   const [editProduct, setEditProduct] = useState(false);
-  const [idEditProduct, setIdEditProduct] = useState({})
+  const [productSelect, setProductSelect] = useState({})
 
 
 
@@ -54,9 +54,9 @@ export default function App() {
 
   const replaceProd = () => {
 
-    const replaceProds = products.filter((product) => product.id !== idEditProduct.id)
+    const replaceProds = products.filter((product) => product.id !== productSelect.id)
 
-setProducts([...replaceProds, {id: idEditProduct.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity)}].sort((a, b) => a.id - b.id));  
+setProducts([...replaceProds, {id: productSelect.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity)}].sort((a, b) => a.id - b.id));  
 
 
 
@@ -74,7 +74,7 @@ setQuantity('');
     setNameProd(updatedProducts.nameProd);
     setPrice(updatedProducts.price.toString());
     setQuantity(updatedProducts.quantity.toString());
-    setIdEditProduct(updatedProducts);//este no va aca. Hay que ponerlo en otro lado para que tome el valor actual
+    setProductSelect(updatedProducts);
     setEditProduct(true);
 
 
