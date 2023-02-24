@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
+
+import { Input, ProductList,  Buttons } from './scr/components/Index';
 import { useState } from 'react';
-import Buttons from './scr/components/Button/Button';
-import Header from './scr/components/Header/Header';
-
-
 
 export default function App() {
 
@@ -22,7 +20,7 @@ export default function App() {
 
 
   const handleAddProduct = () => {
-
+  
     setProducts((product) => [...product, { id: Date.now(), nameProd, price: parseFloat(price), quantity: parseInt(quantity) }]);
     setNameProd('');
     setPrice('');
@@ -42,7 +40,7 @@ export default function App() {
     return item.price * item.quantity;
   }
 
-  const totalProd = () => {
+  const qntyProds = () => {
 
     return products.length;
   }
@@ -101,25 +99,26 @@ export default function App() {
 
 
 
-  const renderProduct = ({ item }) => {
+  /* const renderProduct = ({ item }) => {
     return (
-      <View style={styles.productTable}>
-        <Text style={styles.productName}>{item.nameProd}</Text>
-        <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
-        <Text style={styles.productQuantity}>{item.quantity}</Text>
-        <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
-
-        <View style={styles.editDelProd}>
-          <Pressable style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
-            <Text>Edit</Text>
-          </Pressable>
-          <Pressable style={styles.delButtonProd} onPress={() => { removeProd(item.id) }}>
-            <Text>Del</Text>
-          </Pressable>
-        </View>
-      </View>
-    );
-  };
+      
+        <View style={styles.productTable}>
+          <Text style={styles.productName}>{item.nameProd}</Text>
+          <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
+          <Text style={styles.productQuantity}>{item.quantity}</Text>
+          <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
+  
+          <View style={styles.editDelProd}>
+            <Pressable style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
+              <Text>Edit</Text>
+            </Pressable>
+            <Pressable style={styles.delButtonProd} onPress={() => { removeProd(item.id) }}>
+              <Text>Del</Text>
+            </Pressable>
+          </View>
+        </View> 
+     );
+  }; */
 
   const renderInputs = () => {
 
@@ -129,7 +128,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-{/*       <View style={styles.header}>
+      <Input />
+
+      <View style={styles.header}>
         <Text style={styles.logo}>SUPERLISTA</Text>
         <TextInput style={styles.search} placeholder="Buscar" />
       </View>
@@ -141,7 +142,7 @@ export default function App() {
         <Text style={styles.statusBarTextTotal}>TOTAL: ${totalGral().toFixed(2)}</Text>
       </View>
       <View style={styles.qntyTotal}>
-        <Text style={styles.qntyTotalTExt}>Cantidad: {totalProd()} </Text>
+        <Text style={styles.qntyTotalTExt}>Cantidad: {qntyProds()} </Text>
       </View>
 
       <View >
@@ -149,25 +150,24 @@ export default function App() {
           data={[DATA]}
           renderItem={headTable}
         />
-      </View> */}
+      </View>
 
-<Header />
-
-      <View style={styles.tableList}>
+      <ProductList products={products} prodTotal={prodTotal} />
+      {/* <View style={styles.tableList}>
         <FlatList
           data={products}
           renderItem={renderProduct}
           keyExtractor={(item) => item.id.toString()}
         />
-      </View>
+      </View> */}
 
 
 
       <View style={styles.addItemButton}>
 
         {!buttonViewEdit && (
-          <>
-            <View style={styles.inputStyle}>
+          <>{/* 
+             <View style={styles.inputStyle}>
               <TextInput onChangeText={setNameProd} value={nameProd} placeholder="Producto" />
             </View>
 
@@ -177,26 +177,38 @@ export default function App() {
 
             <View style={styles.inputStyle}>
               <TextInput onChangeText={setQuantity} value={quantity} placeholder="Cantidad" />
-            </View>
+            </View> */}
+            <Input
+              value={nameProd}
+              placeholder={"Producto"}
+              onChangeText={setNameProd} />
+            <Input
+              value={price}
+              placeholder={"Precio"}
+              onChangeText={setPrice} />
+            <Input
+              value={quantity}
+              placeholder={"Cantidad"}
+              onChangeText={setQuantity} />
 
             <Buttons onPress={editProduct ? replaceProd : handleAddProduct}>+</Buttons>
           </>
-          )}
-          
-{buttonViewEdit && (
+        )}
 
-<Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
+        {buttonViewEdit && (
 
-  )}
+          <Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
+
+        )}
       </View>
 
-      </View>
+    </View>
 
   );
 }
 
 const styles = StyleSheet.create({
-  /* container: {
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
@@ -209,8 +221,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: 'center',
     paddingTop: 15,
-  }, */
-  /* statusBar: {
+  },
+  statusBar: {
     flexDirection: "row",
     justifyContent: 'space-between',
     backgroundColor: '#4B8A08',
@@ -231,7 +243,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     fontWeight: "bold",
-  }, 
+  },
   qntyTotal: {
     backgroundColor: "#69a30a",
     width: "23%",
@@ -244,7 +256,7 @@ const styles = StyleSheet.create({
     color: "white",
     alignSelf: "center",
     marginHorizontal: 2,
-  },*/
+  },
   tableList: {
     backgroundColor: "orange",
     height: "65%",
@@ -292,14 +304,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'red',
     borderBottomWidth: 3,
   },
-  /* search: {
+  search: {
     color: "grey",
     backgroundColor: "#fff",
     width: 400,
     alignSelf: "center",
     borderRadius: 2,
     margin: 15,
-  }, */
+  },
 
   buttonAdd: {
     width: 50,
