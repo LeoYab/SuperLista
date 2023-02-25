@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
 
-import { Input, ProductList,  Buttons } from './scr/components/Index';
+import { Header, Input, ProductList, Buttons } from './scr/components/Index';
 import { useState } from 'react';
 
 export default function App() {
@@ -27,23 +27,23 @@ export default function App() {
     setQuantity('');
 
   };
+ 
 
-
-  const totalGral = () => {
+/*   const totalGral = () => {
     return products.reduce((acc, product) => {
       return acc + prodTotal(product);
 
     }, 0);
-  };
+  }; */
 
   const prodTotal = (item) => {
     return item.price * item.quantity;
   }
 
-  const qntyProds = () => {
+/*   const qntyProds = () => {
 
     return products.length;
-  }
+  } */
 
   const removeProd = (productId) => {
 
@@ -79,7 +79,7 @@ export default function App() {
 
   };
 
-
+/* 
 
   const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
 
@@ -94,7 +94,7 @@ export default function App() {
         </View>
       </View>
     );
-  };
+  }; */
 
 
 
@@ -128,31 +128,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Input />
+  
+      
+      <Header products={products} /> 
 
-      <View style={styles.header}>
-        <Text style={styles.logo}>SUPERLISTA</Text>
-        <TextInput style={styles.search} placeholder="Buscar" />
-      </View>
-
-      <Separator />
-
-      <View style={styles.statusBar}>
-        <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
-        <Text style={styles.statusBarTextTotal}>TOTAL: ${totalGral().toFixed(2)}</Text>
-      </View>
-      <View style={styles.qntyTotal}>
-        <Text style={styles.qntyTotalTExt}>Cantidad: {qntyProds()} </Text>
-      </View>
-
-      <View >
-        <FlatList
-          data={[DATA]}
-          renderItem={headTable}
-        />
-      </View>
-
-      <ProductList products={products} prodTotal={prodTotal} />
+      <ProductList products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
       {/* <View style={styles.tableList}>
         <FlatList
           data={products}
@@ -185,11 +165,13 @@ export default function App() {
             <Input
               value={price}
               placeholder={"Precio"}
-              onChangeText={setPrice} />
+              onChangeText={setPrice}
+              keyboardType='numeric' />
             <Input
               value={quantity}
               placeholder={"Cantidad"}
-              onChangeText={setQuantity} />
+              onChangeText={setQuantity}
+              keyboardType='numeric' />
 
             <Buttons onPress={editProduct ? replaceProd : handleAddProduct}>+</Buttons>
           </>
@@ -214,7 +196,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 40,
   },
-  header: {
+ /*  header: {
     backgroundColor: '#4B8A08',
   },
   logo: {
@@ -311,7 +293,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 2,
     margin: 15,
-  },
+  }, */
 
   buttonAdd: {
     width: 50,

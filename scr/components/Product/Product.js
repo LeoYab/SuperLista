@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 
 
 const Product = ({ item, editProd, removeProd, prodTotal }) => {
-console.log(prodTotal)
 
     return (
         <View style={styles.productTable}>
