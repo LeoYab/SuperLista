@@ -3,6 +3,8 @@ import Product from '../Product/Product';
 
 const ProductList = ({products, removeProd, editProd, prodTotal}) => {
 
+
+    
     const renderProduct = ({ item }) => {
 
        return <Product 
@@ -33,8 +35,8 @@ const ProductList = ({products, removeProd, editProd, prodTotal}) => {
 const styles = StyleSheet.create({
 
     tableList: {
-        backgroundColor: "orange",
         height: "65%",
     },
 })
+
 export default ProductList

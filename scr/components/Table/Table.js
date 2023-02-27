@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import TotalGral from '../TotalGral/TotalGral';
 
+const Separator = () => <View style={styles.separator} />;
 
 const Table = ({ products }) => {
 
@@ -36,6 +37,7 @@ const Table = ({ products }) => {
           renderItem={headTable}
         />
       </View>
+      <Separator />
     </>
   )
 }
@@ -71,7 +73,6 @@ const styles = StyleSheet.create({
   },
   productTable: {
     flexDirection: 'row',
-    backgroundColor: "green",
     marginStart: 5,
     paddingVertical: 6,
     borderBottomWidth: 1,
@@ -98,6 +99,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "space-around",
     marginLeft: 4,
+  },
+  separator: {
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
   },
 });
 

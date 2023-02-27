@@ -4,18 +4,19 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 
 const Product = ({ item, editProd, removeProd, prodTotal }) => {
 
+
     return (
         <View style={styles.productTable}>
             <Text style={styles.productName}>{item.nameProd}</Text>
             <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
             <Text style={styles.productQuantity}>{item.quantity}</Text>
-            <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text> 
+            <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
 
             <View style={styles.editDelProd}>
                 <Pressable style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
                     <Text>Edit</Text>
                 </Pressable>
-                <Pressable style={styles.delButtonProd} onPress={() => { removeProd(item.id) }}>
+                <Pressable style={styles.delButtonProd} onPress={() => { removeProd(item) }}>
                     <Text>Del</Text>
                 </Pressable>
             </View>
@@ -28,7 +29,7 @@ const Product = ({ item, editProd, removeProd, prodTotal }) => {
 const styles = StyleSheet.create({
     productTable: {
         flexDirection: 'row',
-        backgroundColor: "green",
+        backgroundColor: "green", 
         marginStart: 5,
         paddingVertical: 6,
         borderBottomWidth: 1,
