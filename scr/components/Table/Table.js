@@ -75,24 +75,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginStart: 5,
     paddingVertical: 6,
-    borderBottomWidth: 1,
-    borderBottomColor: '#fff',
   },
   productName: {
     flex: 1.8,
     textAlign: "left",
+    fontWeight:"bold"
   },
   productPrice: {
     flex: 1,
     textAlign: "left",
+    fontWeight:"bold"
   },
   productQuantity: {
     flex: 1.2,
     textAlign: "center",
+    fontWeight:"bold"
   },
   productTotal: {
     flex: 1,
-    textAlign: "right",
+    textAlign: "left",
+    fontWeight:"bold"
   },
   editDelProd: {
     flex: 1.2,
@@ -101,8 +103,9 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   separator: {
-    borderBottomColor: 'grey',
     borderBottomWidth: 1,
+    borderBottomColor: '#dee2e6',
+   
   },
 });
 

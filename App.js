@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
 
-import { Header, Input, ProductList, Buttons, ModalDel } from './scr/components/Index';
+import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput } from './scr/components/Index';
 import { useState } from 'react';
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
   const [editProduct, setEditProduct] = useState(false);
   const [productSelect, setProductSelect] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
 
 
 
@@ -59,8 +59,10 @@ export default function App() {
   };
 
 
+
   const onCancelModal = () => {
     setModalVisible(!modalVisible);
+   
   };
 
   const onDeleteModal = (productId) => {
@@ -105,6 +107,21 @@ export default function App() {
 
   };
 
+  const checkEmptyInput = () => {
+
+    !nameProd.trim() || !price.trim() || !quantity.trim() ? modalEmptyView() : editProduct ? replaceProd() : handleAddProduct()
+
+  }
+
+  const modalEmptyView = () => {
+    setModalEmptyVisible(true);
+  }
+
+  const onCancelModalCheck= () => {
+
+    setModalEmptyVisible(false);
+  }
+  
   /* 
   
     const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
@@ -166,7 +183,10 @@ export default function App() {
           keyExtractor={(item) => item.id.toString()}
         />
       </View> */}
-
+  <ModalEmptyImput
+        modalEmptyVisible={modalEmptyVisible}
+        onCancelModalCheck={onCancelModalCheck}
+      />
       <ModalDel
         modalVisible={modalVisible}
         productSelect={productSelect}
@@ -174,6 +194,7 @@ export default function App() {
         onDeleteModal={onDeleteModal}
       />
 
+    
 
       <View style={styles.addItemButton}>
 
@@ -193,8 +214,7 @@ export default function App() {
             <Input
               value={nameProd}
               placeholder={"Producto"}
-              onChangeText={setNameProd}
-            />
+              onChangeText={setNameProd} />
             <Input
               value={price}
               placeholder={"Precio"}
@@ -206,8 +226,7 @@ export default function App() {
               onChangeText={setQuantity}
               keyboardType='numeric' />
 
-            <Buttons onPress={editProduct ? replaceProd : handleAddProduct}
-            >+</Buttons>
+            <Buttons onPress={/* editProduct ? replaceProd : handleAddProduct */ checkEmptyInput}>+</Buttons>
           </>
         )}
 
@@ -230,6 +249,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginTop: 40,
   },
+
   /*  header: {
      backgroundColor: '#4B8A08',
    },

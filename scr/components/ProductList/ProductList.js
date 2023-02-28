@@ -1,22 +1,19 @@
 import { StyleSheet, FlatList, View } from 'react-native'
 import Product from '../Product/Product';
 
-const ProductList = ({products, removeProd, editProd, prodTotal}) => {
+const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
 
 
-    
-    const renderProduct = ({ item }) => {
+    const renderProduct = ({ item, index }) => {
 
-       return <Product 
-            item={item} 
-            removeProd={removeProd} 
-            editProd={editProd} 
+        return <Product
+            style={{ backgroundColor: index % 2 ? '#fff' : '#14e71021' }}
+            item={item}
+            removeProd={removeProd}
+            editProd={editProd}
             prodTotal={prodTotal}
-            />;
-           
-
+        />;
     }
-
 
 
     return (

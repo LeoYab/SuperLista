@@ -1,18 +1,16 @@
-import { StyleSheet, Text, View, Modal, TouchableOpacity, Button} from 'react-native'
+import { StyleSheet, Text, View, Modal, Button } from 'react-native'
 import React from 'react'
 
-const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteModal}) => {
-/* console.log(productSelect.id) */
-  return (
-    <Modal  animationType="slide" transparent={true} visible={modalVisible} >
+const ModalEmptyImput = ({modalEmptyVisible=false, onCancelModalCheck}) => {
 
-    <View style={styles.modalContainer}>
+  return (
+    <Modal animationType="slide" transparent={true} visible={modalEmptyVisible}>
+      <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Desea eliminar el producto {productSelect.nameProd}?</Text>
+          <Text style={styles.modalText}>Completar los campos</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.deleteButton}  onPress={() => {
-                onDeleteModal(productSelect.id)}}><Text style={styles.buttonText}>Sí</Text>
-            </TouchableOpacity>
+            <Button style={styles.deleteButton}  title="OK"  onPress={onCancelModalCheck} >
+            </Button>
           {/*    <TouchableOpacity style={styles.cancelButton} onPress={onCancelModal}>
               <Text style={styles.buttonText}>No</Text>
             </TouchableOpacity>  */}
@@ -23,10 +21,9 @@ const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteMod
   )
 }
 
-export default ModalDel
+export default ModalEmptyImput
 
 const styles = StyleSheet.create({
-
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -50,7 +47,7 @@ const styles = StyleSheet.create({
         width: '100%',
       },
       deleteButton: {
-        backgroundColor: '#FF4933',
+        backgroundColor: 'red',
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
       },
       buttonText: {
-        color: 'white',
+        color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
       },
