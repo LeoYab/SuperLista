@@ -3,22 +3,25 @@ import { StyleSheet, TextInput, View } from 'react-native';
 const Input = ({ value, placeholder, onChangeText, keyboardType }) => {
 
   return (
+
     <View style={styles.inputContainer}>
-    <TextInput
-      style={[styles.input, !value && styles.invalidInput]}
-      value={value}
-      placeholder={placeholder}
-      onChangeText={onChangeText}
-      keyboardType={keyboardType}
-    />
+
+      <TextInput
+        style={[styles.input, !value && styles.invalidInput]}
+        value={value}
+        placeholder={placeholder}
+        onChangeText={onChangeText}
+        keyboardType={keyboardType}
+      />
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  inputContainer:{
-marginHorizontal:1,
 
+  inputContainer: {
+    marginHorizontal: 1,
   },
   input: {
     borderWidth: 2,
@@ -29,7 +32,7 @@ marginHorizontal:1,
     backgroundColor: "white",
   },
   invalidInput: {
-    borderColor: '#FF4933',
+    borderColor: 'grey',
   },
 });
 

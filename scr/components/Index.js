@@ -5,9 +5,6 @@ import Header from "./Header/Header";
 import ModalDel from "./Modal/ModalDel";
 import ModalEmptyImput from "./Modal/ModalEmptyImput";
 
-
-
-
 export {
     Header,
     ProductList,
@@ -15,8 +12,6 @@ export {
     Buttons,
     ModalDel,
     ModalEmptyImput,
- 
-
 }
 
    

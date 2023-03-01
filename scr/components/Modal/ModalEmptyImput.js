@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Modal, Button } from 'react-native'
-import React from 'react'
+import Buttons  from '../Button/Button'
 
 const ModalEmptyImput = ({modalEmptyVisible=false, onCancelModalCheck}) => {
 
@@ -7,13 +7,9 @@ const ModalEmptyImput = ({modalEmptyVisible=false, onCancelModalCheck}) => {
     <Modal animationType="fade" transparent={true} visible={modalEmptyVisible}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalText}>Completar los campos</Text>
+          <Text style={styles.modalText}>Completa los campos faltantes</Text>
           <View style={styles.buttonContainer}>
-            <Button style={styles.deleteButton}  title="OK"  onPress={onCancelModalCheck} >
-            </Button>
-          {/*    <TouchableOpacity style={styles.cancelButton} onPress={onCancelModal}>
-              <Text style={styles.buttonText}>No</Text>
-            </TouchableOpacity>  */}
+            <Buttons style={styles.deleteButton} onPress={onCancelModalCheck}>OK</Buttons>
           </View>
         </View>
       </View>   
@@ -47,17 +43,11 @@ const styles = StyleSheet.create({
         width: '100%',
       },
       deleteButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#6ca115ef',
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
         marginRight: 10,
-      },
-      cancelButton: {
-        backgroundColor: 'grey',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderRadius: 5,
       },
       buttonText: {
         color: '#fff',

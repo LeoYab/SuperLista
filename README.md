@@ -13,6 +13,6 @@ $ git clone https://github.com/LeoYab/SuperLista.git
 $ cd superlista
 $ npm install
 $ npm install -g expo-cli
-$ npx epxpo start
+$ npx expo start
 ```
 

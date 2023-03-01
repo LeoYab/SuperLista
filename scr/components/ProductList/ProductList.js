@@ -3,7 +3,6 @@ import Product from '../Product/Product';
 
 const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
 
-
     const renderProduct = ({ item, index }) => {
 
         return <Product
@@ -15,7 +14,6 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
         />;
     }
 
-
     return (
         <View style={styles.tableList}>
             <FlatList
@@ -26,7 +24,6 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
         </View>
     )
 }
-
 
 
 const styles = StyleSheet.create({

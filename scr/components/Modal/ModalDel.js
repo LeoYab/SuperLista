@@ -1,27 +1,28 @@
-import { StyleSheet, Text, View, Modal, TouchableOpacity, Button} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Modal } from 'react-native'
+import  Buttons  from '../Button/Button'
 
 const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteModal}) => {
-/* console.log(productSelect.id) */
+
   return (
+
     <Modal  animationType="fade" transparent={true} visible={modalVisible} >
 
     <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.modalText}>¿Desea eliminar el producto {productSelect.nameProd}?</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.deleteButton}  onPress={() => {
+            <Buttons style={styles.deleteButton}  onPress={() => {
                 onDeleteModal(productSelect.id)}}><Text style={styles.buttonText}>Sí</Text>
-            </TouchableOpacity>
-          {/*    <TouchableOpacity style={styles.cancelButton} onPress={onCancelModal}>
+            </Buttons>
+          <Buttons style={styles.cancelButton} onPress={onCancelModal}>
               <Text style={styles.buttonText}>No</Text>
-            </TouchableOpacity>  */}
+            </Buttons>
           </View>
         </View>
       </View>   
     </Modal>
-  )
-}
+  );
+};
 
 export default ModalDel
 
@@ -47,10 +48,10 @@ const styles = StyleSheet.create({
       buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '100%',
+        width: '30%',
       },
       deleteButton: {
-        backgroundColor: '#FF4933',
+        backgroundColor: '#6ca115ef',
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,

@@ -79,22 +79,22 @@ const styles = StyleSheet.create({
   productName: {
     flex: 1.8,
     textAlign: "left",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   productPrice: {
     flex: 1,
     textAlign: "left",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   productQuantity: {
     flex: 1.2,
     textAlign: "center",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   productTotal: {
     flex: 1,
     textAlign: "left",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   editDelProd: {
     flex: 1.2,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   separator: {
     borderBottomWidth: 1,
     borderBottomColor: '#dee2e6',
-   
+
   },
 });
 

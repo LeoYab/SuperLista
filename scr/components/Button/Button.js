@@ -1,14 +1,13 @@
-import { StyleSheet, Text, Pressable } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 const Buttons = ({children="Boton", style, onPress  }) => {
 
     return (
 
-        <Pressable  style={style ? style : styles.defaultButton} onPress={onPress}>
+        <TouchableOpacity  style={style ? style : styles.defaultButton} onPress={onPress}>
            <Text style={styles.colorText}>{children}</Text>  
-        </Pressable>
+        </TouchableOpacity>
     )
-}
-
+};
 
 const styles = StyleSheet.create({
 
@@ -25,8 +24,6 @@ colorText: {
     color: "white",
 },
 
-})
-
-
+});
 
 export default Buttons;

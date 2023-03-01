@@ -1,24 +1,21 @@
-import { StyleSheet, Text, View, TextInput, FlatList, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Table from "../Table/Table";
 
 const Header = ({ products }) => {
 
   return (
     <>
+
       <View style={styles.header}>
         <Text style={styles.logo}>SUPERLISTA</Text>
         <TextInput style={styles.search} placeholder="Buscar" />
       </View>
 
-      {/*      <Separator /> */}
-
       <Table products={products} />
 
     </>
-
   );
-}
-
+};
 
 const styles = StyleSheet.create({
   container: {
