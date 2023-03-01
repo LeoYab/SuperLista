@@ -4,7 +4,7 @@ import React from 'react'
 const ModalEmptyImput = ({modalEmptyVisible=false, onCancelModalCheck}) => {
 
   return (
-    <Modal animationType="slide" transparent={true} visible={modalEmptyVisible}>
+    <Modal animationType="fade" transparent={true} visible={modalEmptyVisible}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.modalText}>Completar los campos</Text>

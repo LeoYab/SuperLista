@@ -4,7 +4,7 @@ import React from 'react'
 const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteModal}) => {
 /* console.log(productSelect.id) */
   return (
-    <Modal  animationType="slide" transparent={true} visible={modalVisible} >
+    <Modal  animationType="fade" transparent={true} visible={modalVisible} >
 
     <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
