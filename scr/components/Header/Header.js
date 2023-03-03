@@ -1,14 +1,25 @@
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import Table from "../Table/Table";
+import Input from "../Input/Input"
 
-const Header = ({ products }) => {
+const Header = ({ products, searchProduct, onChangeText }) => {
+
+
 
   return (
     <>
 
       <View style={styles.header}>
+
         <Text style={styles.logo}>SUPERLISTA</Text>
-        <TextInput style={styles.search} placeholder="Buscar" />
+
+        <Input
+        value={searchProduct}
+        onChangeText={onChangeText}
+        placeholder={"Búsqueda"}
+        
+ />
+        {/* <TextInput style={styles.search} placeholder="Buscar" /> */}
       </View>
 
       <Table products={products} />
@@ -18,12 +29,7 @@ const Header = ({ products }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    marginTop: 40,
-  },
+  
   header: {
     backgroundColor: '#4B8A08',
   },

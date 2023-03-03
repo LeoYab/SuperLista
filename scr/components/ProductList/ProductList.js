@@ -29,7 +29,8 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
 const styles = StyleSheet.create({
 
     tableList: {
-        height: "65%",
+        height: "70%",
+        backgroundColor:"grey"
     },
 })
 

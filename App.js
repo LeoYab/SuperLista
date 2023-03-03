@@ -13,6 +13,8 @@ export default function App() {
   const [productSelect, setProductSelect] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
+  const [searchProduct, setSearchProduct] = useState("");
+  const [viewSearchProducts, setViewSearchProducts] = useState([]);
 
   const handleAddProduct = () => {
 
@@ -22,6 +24,14 @@ export default function App() {
     setQuantity('');
 
   };
+
+  const handleSearchProduct = () => {
+
+    const searchProducts =  products.filter((product) => product.nameProd.includes(searchProduct))
+
+   console.log(searchProducts)
+
+  }
 
   const prodTotal = (item) => {
 
@@ -62,11 +72,11 @@ export default function App() {
 
   const checkEmptyInput = () => {
 
-    !nameProd.trim() || !price.trim() || !quantity.trim() 
-    ? 
-    modalEmptyView() 
-    : 
-    editProduct ? replaceProd() : handleAddProduct()
+    !nameProd.trim() || !price.trim() || !quantity.trim()
+      ?
+      modalEmptyView()
+      :
+      editProduct ? replaceProd() : handleAddProduct()
 
   };
 
@@ -79,7 +89,7 @@ export default function App() {
   const onCancelModal = () => {
 
     setModalVisible(!modalVisible);
-   
+
   };
 
   const onDeleteModal = (productId) => {
@@ -96,20 +106,20 @@ export default function App() {
 
   };
 
-  const onCancelModalCheck= () => {
+  const onCancelModalCheck = () => {
 
     setModalEmptyVisible(false);
   };
-  
+
   return (
 
     <View style={styles.container}>
 
-      <Header products={products} />
+      <Header products={products} searchProduct={searchProduct} onChangeText={setSearchProduct} handleSearchProduct={searchProduct && handleSearchProduct()} />
 
       <ProductList products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
-     
-  <ModalEmptyImput
+
+      <ModalEmptyImput
         modalEmptyVisible={modalEmptyVisible}
         onCancelModalCheck={onCancelModalCheck}
       />
@@ -160,12 +170,11 @@ export default function App() {
 };
 
 const styles = StyleSheet.create({
-  
+
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    marginTop: 40,
+    marginTop: 35,
   },
   buttonAdd: {
     width: 50,
