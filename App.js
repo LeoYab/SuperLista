@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput } from './scr/components/Index';
+import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput, ModalEdit} from './scr/components/Index';
+import About from "./scr/screens/About";
 
 
 import { useFonts } from 'expo-font';
@@ -35,18 +36,26 @@ export default function App() {
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
+  const [modalEditVisible, setModalEditVisible] = useState(false);
+  const [aboutView, setAboutView] = useState(false);
 
 
+  const changeScreen = () => {
+     setAboutView(!aboutView)
+    console.log(aboutView)
+  }
 
   const numberInputPriceHandler = inputText => {
 
-    if (/^(?:\d+(?:\.\d*)?|\.\d+)?$/ .test(inputText)) {
+
+    if (/^(?:\d+(?:\.\d*)?|\.\d+)?$/.test(inputText)) {
+
       setPrice(inputText);
-    }
-      
+
     }
 
-  
+  }
+
 
   const numberInputQuantityHandler = inputText => {
 
@@ -68,7 +77,7 @@ export default function App() {
 
     const searchProducts = products.filter((product) => product.nameProd.includes(searchProduct))
 
-    console.log(searchProducts)
+   
 
   }
 
@@ -90,13 +99,19 @@ export default function App() {
     const replaceProds = products.filter((product) => product.id !== productSelect.id)
 
     setProducts([...replaceProds, { id: productSelect.id, nameProd, price: parseFloat(price), quantity: parseInt(quantity) }].sort((a, b) => a.id - b.id));
-
+    setModalEditVisible(false);
     setEditProduct(false);
     setNameProd('');
     setPrice('');
     setQuantity('');
 
   };
+
+
+
+
+
+
 
   const editProd = (productId) => {
 
@@ -106,12 +121,22 @@ export default function App() {
     setQuantity(updatedProducts.quantity.toString());
     setProductSelect(updatedProducts);
     setEditProduct(true);
+    setModalEditVisible(true);
+
+
 
   };
 
+
+
+
+
+
+
+
   const checkEmptyInput = () => {
 
-    !nameProd.trim() || !price.trim() /* || price === "." */ || !quantity.trim()
+    !nameProd.trim() || !price.trim() || !quantity.trim()
       ?
       modalEmptyView()
       :
@@ -122,6 +147,8 @@ export default function App() {
   const renderInputs = () => {
 
     setButtonViewEdit(false)
+
+
 
   };
 
@@ -143,6 +170,7 @@ export default function App() {
 
     setModalEmptyVisible(true);
 
+
   };
 
   const onCancelModalCheck = () => {
@@ -152,60 +180,86 @@ export default function App() {
 
   return (
 
+
+
     <View style={styles.container}>
+      {!aboutView && (
+        <>
+          <Header changeScreen={changeScreen} products={products} searchProduct={searchProduct} onChangeText={setSearchProduct} handleSearchProduct={searchProduct && handleSearchProduct()} />
 
-      <Header products={products} searchProduct={searchProduct} onChangeText={setSearchProduct} handleSearchProduct={searchProduct && handleSearchProduct()} />
+          <ProductList products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
 
-      <ProductList products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
+          <ModalEmptyImput
+            modalEmptyVisible={modalEmptyVisible}
+            onCancelModalCheck={onCancelModalCheck}
+          />
 
-      <ModalEmptyImput
-        modalEmptyVisible={modalEmptyVisible}
-        onCancelModalCheck={onCancelModalCheck}
-      />
+          <ModalDel
+            modalVisible={modalVisible}
+            productSelect={productSelect}
+            onCancelModal={onCancelModal}
+            onDeleteModal={onDeleteModal}
+          />
 
-      <ModalDel
-        modalVisible={modalVisible}
-        productSelect={productSelect}
-        onCancelModal={onCancelModal}
-        onDeleteModal={onDeleteModal}
-      />
 
-      <View style={styles.addItemButton}>
+          {modalEditVisible && (
 
-        {!buttonViewEdit && (
+            <ModalEdit
+              nameProd={nameProd}
+              price={price}
+              quantity={quantity}
+              setNameProd={setNameProd}
+              numberInputPriceHandler={numberInputPriceHandler}
+              numberInputQuantityHandler={numberInputQuantityHandler}
+              editProduct={editProduct}
+              checkEmptyInput={checkEmptyInput}
+            />
 
-          <>
-            <Input
-              value={nameProd}
-              placeholder={"Producto"}
-              onChangeText={setNameProd} />
-            <Input
-              value={price}
-              placeholder={"Precio"}
-              onChangeText={numberInputPriceHandler}
-              keyboardType="numeric" />
-            <Input
-              value={quantity}
-              placeholder={"Cantidad"}
-              onChangeText={numberInputQuantityHandler}
-              keyboardType="numeric" />
+          )}
 
-            <Buttons onPress={checkEmptyInput}>+</Buttons>
-          </>
+          <View style={styles.addItemButton}>
 
-        )}
+            {!buttonViewEdit && (
 
-        {buttonViewEdit && (
+              <>
+                <Input
+                  value={nameProd}
+                  placeholder={"Producto"}
+                  onChangeText={setNameProd} />
+                <Input
+                  value={price}
+                  placeholder={"Precio"}
+                  onChangeText={numberInputPriceHandler}
+                  keyboardType="numeric" />
+                <Input
+                  value={quantity}
+                  placeholder={"Cantidad"}
+                  onChangeText={numberInputQuantityHandler}
+                  keyboardType="numeric" />
 
-          <Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
+                <Buttons onPress={checkEmptyInput}>+</Buttons>
+              </>
 
-        )}
+            )}
 
-      </View>
+            {buttonViewEdit && (
+
+              <Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
+
+            )}
+
+          </View>
+        </>
+      )}
+
+      {aboutView && (
+      <>
+      <About changeScreen={changeScreen} />
+      </>)
+      }
 
     </View>
-
-  );
+  )
 };
 
 const styles = StyleSheet.create({

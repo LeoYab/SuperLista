@@ -3,7 +3,7 @@ const Buttons = ({children="Boton", style, onPress  }) => {
 
     return (
 
-        <TouchableOpacity  style={style ? style : styles.defaultButton} onPress={onPress}>
+        <TouchableOpacity  style={[styles.defaultButton, style]} onPress={onPress}>
            <Text style={styles.colorText}>{children}</Text>  
         </TouchableOpacity>
     )

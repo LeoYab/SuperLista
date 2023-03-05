@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import Buttons  from '../Button/Button'
+import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
 
 const Product = ({ style, item, editProd, removeProd, prodTotal }) => {
@@ -30,32 +30,30 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         borderBottomWidth: 1,
         borderBottomColor: '#dee2e6',
-        Children: {
-            fontFamily:"OpenSans-Bold",}
     },
     productName: {
         flex: 1.8,
         textAlign: "left",
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular",
+        alignSelf: "center",
+        fontFamily: "OpenSans-Regular",
     },
     productPrice: {
         flex: 1,
         textAlign: "left",
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular",
+        alignSelf: "center",
+        fontFamily: "OpenSans-Regular",
     },
     productQuantity: {
         flex: 1.2,
         textAlign: "center",
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular",
+        alignSelf: "center",
+        fontFamily: "OpenSans-Regular",
     },
     productTotal: {
         flex: 1,
         textAlign: "left",
-        alignSelf:"center",
-        fontFamily:"OpenSans-Regular",
+        alignSelf: "center",
+        fontFamily: "OpenSans-Regular",
     },
     editDelProd: {
         flex: 1.2,
@@ -65,15 +63,19 @@ const styles = StyleSheet.create({
     },
     editButtonProd: {
         backgroundColor: Colors.btnPrimary,
-        borderRadius:5,
-        padding:4,
-        alignSelf:"center",
+        borderRadius: 5,
+        padding: 4,
+        alignSelf: "center",
+        width: 30,
+        height: 30,
     },
     delButtonProd: {
         backgroundColor: Colors.btnSecondary,
-        borderRadius:5,
-        padding:4,
-        alignSelf:"center",
+        borderRadius: 5,
+        padding: 4,
+        alignSelf: "center",
+        width: 30,
+        height: 30,
     },
 
 })
