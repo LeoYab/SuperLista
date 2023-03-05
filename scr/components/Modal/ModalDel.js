@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, Modal } from 'react-native'
 import  Buttons  from '../Button/Button'
+import Colors from '../../constants/Colors';
+import ModalShadow from '../../constants/ModalShadow'
 
 const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteModal}) => {
 
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 10,
         alignItems: 'center',
+        ...ModalShadow,
       },
       modalText: {
         fontSize: 18,
@@ -51,14 +54,14 @@ const styles = StyleSheet.create({
         width: '30%',
       },
       deleteButton: {
-        backgroundColor: '#6ca115ef',
+        backgroundColor: Colors.btnPrimary,
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,
         marginRight: 10,
       },
       cancelButton: {
-        backgroundColor: 'grey',
+        backgroundColor: Colors.btnSecondary,
         paddingHorizontal: 20,
         paddingVertical: 10,
         borderRadius: 5,

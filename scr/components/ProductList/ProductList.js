@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 
     tableList: {
         height: "70%",
-        backgroundColor:"grey"
+        backgroundColor:"white"
     },
 })
 

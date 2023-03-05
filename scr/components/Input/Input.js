@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderRadius: 5,
     backgroundColor: "white",
+    fontFamily:"OpenSans-Regular",
   },
   invalidInput: {
     borderColor: 'grey',

@@ -1,8 +1,28 @@
+import { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput } from './scr/components/Index';
-import { useState } from 'react';
+
+
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    'Qicksand-Bold': require('./assets/fonts/Quicksand-Bold.ttf'),
+    'QickSand-Medium': require('./assets/fonts/Quicksand-Medium.ttf'),
+    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+
+  }, [fontsLoaded])
 
   const [products, setProducts] = useState([]);
   const [nameProd, setNameProd] = useState('');
@@ -16,6 +36,25 @@ export default function App() {
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
 
+
+
+  const numberInputPriceHandler = inputText => {
+
+    if (/^(?:\d+(?:\.\d*)?|\.\d+)?$/ .test(inputText)) {
+      setPrice(inputText);
+    }
+      
+    }
+
+  
+
+  const numberInputQuantityHandler = inputText => {
+
+    setQuantity(inputText.replace(/[^0-9]/g, ''))
+
+  }
+
+
   const handleAddProduct = () => {
 
     setProducts((product) => [...product, { id: Date.now(), nameProd, price: parseFloat(price), quantity: parseInt(quantity) }]);
@@ -27,9 +66,9 @@ export default function App() {
 
   const handleSearchProduct = () => {
 
-    const searchProducts =  products.filter((product) => product.nameProd.includes(searchProduct))
+    const searchProducts = products.filter((product) => product.nameProd.includes(searchProduct))
 
-   console.log(searchProducts)
+    console.log(searchProducts)
 
   }
 
@@ -72,7 +111,7 @@ export default function App() {
 
   const checkEmptyInput = () => {
 
-    !nameProd.trim() || !price.trim() || !quantity.trim()
+    !nameProd.trim() || !price.trim() /* || price === "." */ || !quantity.trim()
       ?
       modalEmptyView()
       :
@@ -143,13 +182,13 @@ export default function App() {
             <Input
               value={price}
               placeholder={"Precio"}
-              onChangeText={setPrice}
-              keyboardType='numeric' />
+              onChangeText={numberInputPriceHandler}
+              keyboardType="numeric" />
             <Input
               value={quantity}
               placeholder={"Cantidad"}
-              onChangeText={setQuantity}
-              keyboardType='numeric' />
+              onChangeText={numberInputQuantityHandler}
+              keyboardType="numeric" />
 
             <Buttons onPress={checkEmptyInput}>+</Buttons>
           </>
