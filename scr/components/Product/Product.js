@@ -35,25 +35,25 @@ const styles = StyleSheet.create({
         flex: 1.8,
         textAlign: "left",
         alignSelf: "center",
-        fontFamily: "OpenSans-Regular",
+        fontFamily: "OpenSansRegular",
     },
     productPrice: {
         flex: 1,
         textAlign: "left",
         alignSelf: "center",
-        fontFamily: "OpenSans-Regular",
+        fontFamily: "OpenSansRegular",
     },
     productQuantity: {
         flex: 1.2,
         textAlign: "center",
         alignSelf: "center",
-        fontFamily: "OpenSans-Regular",
+        fontFamily: "OpenSansRegular",
     },
     productTotal: {
         flex: 1,
         textAlign: "left",
         alignSelf: "center",
-        fontFamily: "OpenSans-Regular",
+        fontFamily: "OpenSansRegular",
     },
     editDelProd: {
         flex: 1.2,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 4,
         alignSelf: "center",
-        width: 30,
+        width: 35,
         height: 30,
     },
     delButtonProd: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 4,
         alignSelf: "center",
-        width: 30,
+        width: 35,
         height: 30,
     },
 

@@ -1,48 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput, ModalEdit} from './scr/components/Index';
+
+import { useFonts } from 'expo-font'; 
+import * as SplashScreen from 'expo-splash-screen';
+
+import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput, ModalEdit } from './scr/components/Index';
 import About from "./scr/screens/About";
 
 
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 
-SplashScreen.preventAutoHideAsync();
+
+ SplashScreen.preventAutoHideAsync(); 
 
 export default function App() {
-
+ 
   const [fontsLoaded] = useFonts({
-    'Qicksand-Bold': require('./assets/fonts/Quicksand-Bold.ttf'),
-    'QickSand-Medium': require('./assets/fonts/Quicksand-Medium.ttf'),
-    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'OpenSansRegular': require("./assets/fonts/OpenSansRegular.ttf"),
+    'QicksandBold': require("./assets/fonts/OpenSansBold.ttf"),
+    'QickSandMedium': require('./assets/fonts/QuicksandMedium.ttf'),
+    'OpenSansBold': require('./assets/fonts/OpenSansBold.ttf'),
+
   });
 
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
 
-  }, [fontsLoaded])
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+ 
 
   const [products, setProducts] = useState([]);
   const [nameProd, setNameProd] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [buttonViewEdit, setButtonViewEdit] = useState(true);
+  const [buttonViewAdd, setButtonViewAdd] = useState(true);
   const [editProduct, setEditProduct] = useState(false);
   const [productSelect, setProductSelect] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
-  const [viewSearchProducts, setViewSearchProducts] = useState([]);
+  /*   const [viewSearchProducts, setViewSearchProducts] = useState([]); */
   const [modalEditVisible, setModalEditVisible] = useState(false);
   const [aboutView, setAboutView] = useState(false);
 
 
   const changeScreen = () => {
-     setAboutView(!aboutView)
-    console.log(aboutView)
+    setAboutView(!aboutView)
   }
 
   const numberInputPriceHandler = inputText => {
@@ -77,7 +81,7 @@ export default function App() {
 
     const searchProducts = products.filter((product) => product.nameProd.includes(searchProduct))
 
-   
+
 
   }
 
@@ -146,7 +150,7 @@ export default function App() {
 
   const renderInputs = () => {
 
-    setButtonViewEdit(false)
+    setButtonViewAdd(false)
 
 
 
@@ -178,11 +182,14 @@ export default function App() {
     setModalEmptyVisible(false);
   };
 
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
+    <View style={styles.container} onLayout={onLayoutRootView}>
 
-
-
-    <View style={styles.container}>
       {!aboutView && (
         <>
           <Header changeScreen={changeScreen} products={products} searchProduct={searchProduct} onChangeText={setSearchProduct} handleSearchProduct={searchProduct && handleSearchProduct()} />
@@ -219,7 +226,7 @@ export default function App() {
 
           <View style={styles.addItemButton}>
 
-            {!buttonViewEdit && (
+            {!buttonViewAdd && (
 
               <>
                 <Input
@@ -242,7 +249,7 @@ export default function App() {
 
             )}
 
-            {buttonViewEdit && (
+            {buttonViewAdd && (
 
               <Buttons style={styles.buttonAdd} onPress={renderInputs}>+</Buttons>
 
@@ -253,9 +260,9 @@ export default function App() {
       )}
 
       {aboutView && (
-      <>
-      <About changeScreen={changeScreen} />
-      </>)
+        <>
+          <About changeScreen={changeScreen} />
+        </>)
       }
 
     </View>

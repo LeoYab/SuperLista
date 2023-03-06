@@ -5,7 +5,7 @@ import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
 
-const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, editProduct = false, setbuttonViewEdit }) => {
+const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, editProduct = false }) => {
 
 
   return (

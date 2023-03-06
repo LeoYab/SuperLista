@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
       deleteButton: {
         backgroundColor: Colors.btnPrimary,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 5,
         borderRadius: 5,
         marginRight: 10,
       },
       cancelButton: {
         backgroundColor: Colors.btnSecondary,
         paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingVertical: 5,
         borderRadius: 5,
       },
       buttonText: {

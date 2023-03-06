@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: 'center',
     paddingTop: 15,
-    fontFamily: "Qicksand-Bold",
+    fontFamily: "QicksandBold",
   },
   search: {
     color: "grey",
