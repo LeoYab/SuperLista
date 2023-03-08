@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font'; 
 import * as SplashScreen from 'expo-splash-screen';
 
-import { Header, Input, ProductList, Buttons, ModalDel, ModalEmptyImput, ModalEdit } from './scr/components/Index';
+import { Header, Input, Buttons, ModalDel, ModalEmptyImput, ModalEdit } from './scr/components/Index';
 import About from "./scr/screens/About";
 
 
@@ -37,14 +37,21 @@ export default function App() {
   const [buttonViewAdd, setButtonViewAdd] = useState(true);
   const [editProduct, setEditProduct] = useState(false);
   const [productSelect, setProductSelect] = useState({});
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
-  const [searchProduct, setSearchProduct] = useState("");
-  /*   const [viewSearchProducts, setViewSearchProducts] = useState([]); */
+  /* const [searchProduct, setSearchProduct] = useState(""); */
+/* const [viewSearchProducts, setViewSearchProducts] = useState([]); */
   const [modalEditVisible, setModalEditVisible] = useState(false);
   const [aboutView, setAboutView] = useState(false);
+/* 
+useEffect(() => {
+  first
 
-
+  return () => {
+    second
+  }
+}, [third])
+ */
   const changeScreen = () => {
     setAboutView(!aboutView)
   }
@@ -77,13 +84,13 @@ export default function App() {
 
   };
 
-  const handleSearchProduct = () => {
+/*   const handleSearchProduct = () => {
 
-    const searchProducts = products.filter((product) => product.nameProd.includes(searchProduct))
+    setViewSearchProducts(products.filter((product) => product.nameProd.includes(searchProduct)))
 
 
 
-  }
+  } */
 
   const prodTotal = (item) => {
 
@@ -94,7 +101,7 @@ export default function App() {
   const removeProd = (productSelect) => {
 
     setProductSelect(productSelect);
-    setModalVisible(true);
+    setModalDelVisible(true);
 
   };
 
@@ -127,8 +134,6 @@ export default function App() {
     setEditProduct(true);
     setModalEditVisible(true);
 
-
-
   };
 
 
@@ -158,13 +163,13 @@ export default function App() {
 
   const onCancelModal = () => {
 
-    setModalVisible(!modalVisible);
+    setModalDelVisible(!modalDelVisible);
 
   };
 
   const onDeleteModal = (productId) => {
 
-    setModalVisible(false);
+    setModalDelVisible(false);
     const updatedProducts = products.filter((product) => product.id !== productId);
     setProducts(updatedProducts);
 
@@ -192,9 +197,9 @@ export default function App() {
 
       {!aboutView && (
         <>
-          <Header changeScreen={changeScreen} products={products} searchProduct={searchProduct} onChangeText={setSearchProduct} handleSearchProduct={searchProduct && handleSearchProduct()} />
+          <Header changeScreen={changeScreen} products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} modalEditVisible={modalEditVisible} modalDelVisible={modalDelVisible} /* searchProduct={searchProduct} onChangeText={setSearchProduct} *//*  handleSearchProduct={searchProduct && handleSearchProduct()} */ />
 
-          <ProductList products={products} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
+        
 
           <ModalEmptyImput
             modalEmptyVisible={modalEmptyVisible}
@@ -202,7 +207,7 @@ export default function App() {
           />
 
           <ModalDel
-            modalVisible={modalVisible}
+            modalDelVisible={modalDelVisible}
             productSelect={productSelect}
             onCancelModal={onCancelModal}
             onDeleteModal={onDeleteModal}

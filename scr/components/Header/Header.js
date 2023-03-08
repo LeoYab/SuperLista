@@ -1,9 +1,30 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { useState, useEffect } from 'react';
 import Buttons from '../Button/Button';
 import Table from "../Table/Table";
 import Input from "../Input/Input"
+import ProductList from "../ProductList/ProductList"
 
-const Header = ({ changeScreen, products, searchProduct, onChangeText }) => {
+const Header = ({ changeScreen,  products , removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
+  /* 
+  products && handleSearchProduct() */
+
+  const [searchProduct, setSearchProduct] = useState("");
+  const [viewSearchProducts, setViewSearchProducts] = useState([]);
+
+useEffect(() => {
+
+  setViewSearchProducts(products.filter((product) => product.nameProd.includes(searchProduct)) )
+
+  modalEditVisible || modalDelVisible ? setSearchProduct("") : searchProduct
+
+}, [searchProduct , editProd, removeProd ])
+
+ 
+
+/*     
+    console.log(searchProduct)
+    console.log(viewSearchProducts)  */
 
 
 
@@ -16,15 +37,15 @@ const Header = ({ changeScreen, products, searchProduct, onChangeText }) => {
 
         <Input
           value={searchProduct}
-          onChangeText={onChangeText}
+          onChangeText={setSearchProduct}
           placeholder={"Búsqueda"}
-
         />
         {/* <TextInput style={styles.search} placeholder="Buscar" /> */}
       </View>
 
       <Table products={products} />
 
+      <ProductList products={!searchProduct ? products : viewSearchProducts } removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
     </>
   );
 };
@@ -42,6 +63,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingTop: 15,
     fontFamily: "QicksandBold",
+    fontSize:20,
   },
   search: {
     color: "grey",

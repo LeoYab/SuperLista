@@ -1,5 +1,5 @@
-import { StyleSheet, View, Modal, Text } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback } from 'react-native'
+import React, { useState } from 'react'
 import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
@@ -9,7 +9,8 @@ const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHan
 
 
   return (
-    <Modal animationType="fade" transparent={true} visible={editProduct}>
+    <Modal animationType="fade" transparent={true} visible={ editProduct }>
+      <TouchableWithoutFeedback onPress={checkEmptyInput}>
       <View style={styles.modalContainer}>
         <Text style={styles.titleModalEdit}>EDITAR PRODUCTO</Text>
         <View style={styles.modalContent}>
@@ -29,10 +30,10 @@ const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHan
             onChangeText={numberInputQuantityHandler}
             keyboardType="numeric" />
 
-          <Buttons onPress={checkEmptyInput}>+</Buttons>
+          <Buttons onPress={checkEmptyInput}>Editar</Buttons>
         </View>
       </View>
-
+      </TouchableWithoutFeedback>
     </Modal>
   )
 }
@@ -42,7 +43,7 @@ export default ModalEdit
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "flex-end",
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },

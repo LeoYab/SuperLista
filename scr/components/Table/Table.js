@@ -5,6 +5,7 @@ const Separator = () => <View style={styles.separator} />;
 
 const Table = ({ products }) => {
 
+
   const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
 
   const headTable = ({ item }) => {

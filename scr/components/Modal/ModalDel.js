@@ -3,11 +3,11 @@ import  Buttons  from '../Button/Button'
 import Colors from '../../constants/Colors';
 import ModalShadow from '../../constants/ModalShadow'
 
-const ModalDel = ({productSelect, modalVisible=false, onCancelModal, onDeleteModal}) => {
+const ModalDel = ({productSelect, modalDelVisible=false, onCancelModal, onDeleteModal}) => {
 
   return (
 
-    <Modal  animationType="fade" transparent={true} visible={modalVisible} >
+    <Modal  animationType="fade" transparent={true} visible={modalDelVisible} >
 
     <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
