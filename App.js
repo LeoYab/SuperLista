@@ -1,5 +1,5 @@
+import { StyleSheet, View, Dimensions, SafeAreaView } from 'react-native';
 import { useEffect, useState, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
 
 import { useFonts } from 'expo-font'; 
 import * as SplashScreen from 'expo-splash-screen';
@@ -192,8 +192,9 @@ useEffect(() => {
     return null;
   }
 
+  console.log(changeScreen)
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <SafeAreaView  style={styles.container} onLayout={onLayoutRootView}>
 
       {!aboutView && (
         <>
@@ -270,32 +271,35 @@ useEffect(() => {
         </>)
       }
 
-    </View>
+    </SafeAreaView>
   )
 };
+const {height, width} = Dimensions.get("window");
 
 const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 35,
+    backgroundColor: '#4B8A08',
+   
   },
   buttonAdd: {
     width: 50,
     height: 50,
     borderRadius: 50,
-    backgroundColor: "#6ca115ef",
+  
     alignSelf: "center",
     alignItems: 'center',
     justifyContent: "center",
+    marginBottom: height * 0.05,
   },
   addItemButton: {
     flexDirection: 'row',
     position: "absolute",
-    bottom: 0,
-    alignSelf: "center",
-    margin: 6,
+    bottom: height * 0.01,
+    alignSelf: "center", 
+
+ 
   },
   inputStyle: {
     flex: 1,

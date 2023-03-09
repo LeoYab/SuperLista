@@ -1,30 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { useState, useEffect } from 'react';
 import Buttons from '../Button/Button';
 import Table from "../Table/Table";
 import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
 
-const Header = ({ changeScreen,  products , removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
+const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
   /* 
   products && handleSearchProduct() */
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
 
-  setViewSearchProducts(products.filter((product) => product.nameProd.includes(searchProduct)) )
+    setViewSearchProducts(products.filter((product) => product.nameProd.includes(searchProduct)))
 
-  modalEditVisible || modalDelVisible ? setSearchProduct("") : searchProduct
+    modalEditVisible || modalDelVisible ? setSearchProduct("") : searchProduct
 
-}, [searchProduct , editProd, removeProd ])
+  }, [searchProduct, editProd, removeProd])
 
- 
 
-/*     
-    console.log(searchProduct)
-    console.log(viewSearchProducts)  */
+
+  /*     
+      console.log(searchProduct)
+      console.log(viewSearchProducts)  */
 
 
 
@@ -32,10 +32,12 @@ useEffect(() => {
     <>
 
       <View style={styles.header}>
-        <Buttons style={styles.about} onPress={changeScreen}>About</Buttons>
-        <Text style={styles.logo}>SUPERLISTA</Text>
+<View  style={styles.about}>
+          <Buttons onPress={changeScreen}>About</Buttons>
+          </View>
+          <Text style={styles.logo}>SUPERLISTA</Text>
 
-        <Input
+        <Input style={styles.search}
           value={searchProduct}
           onChangeText={setSearchProduct}
           placeholder={"Búsqueda"}
@@ -45,33 +47,39 @@ useEffect(() => {
 
       <Table products={products} />
 
-      <ProductList products={!searchProduct ? products : viewSearchProducts } removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
+      <ProductList products={!searchProduct ? products : viewSearchProducts} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
     </>
   );
+
 };
+
+const { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
+    marginTop:height * 0.05,
   },
   about: {
-    alignSelf: "flex-start"
+alignSelf:"flex-start",
+
   },
   logo: {
     color: "#fff",
     textAlign: 'center',
-    paddingTop: 15,
     fontFamily: "QicksandBold",
-    fontSize:20,
+    fontSize: width * 0.05,
   },
   search: {
-    color: "grey",
     backgroundColor: "#fff",
-    width: 400,
+    width: width * 0.95,
+    height: height * 0.04,
     alignSelf: "center",
-    borderRadius: 2,
-    margin: 15,
+    borderRadius: 4,
+    marginVertical: 15,
+    paddingLeft: 4,
+
   },
 });
 

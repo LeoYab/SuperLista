@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
 import TotalGral from '../TotalGral/TotalGral';
 
 const Separator = () => <View style={styles.separator} />;
@@ -23,79 +23,96 @@ const Table = ({ products }) => {
 
 
   return (
-    <>
+    <View style={styles.statusBarContainer}>
       <View style={styles.statusBar}>
         <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
-        <TotalGral products={products} />
+        <TotalGral style={styles.totalGral} products={products} />
       </View>
       <View style={styles.qntyTotal}>
         <Text style={styles.qntyTotalTExt}>Cantidad: {products.length} </Text>
       </View>
 
-      <View >
+      <View>
         <FlatList
           data={[DATA]}
           renderItem={headTable}
         />
       </View>
       <Separator />
-    </>
+    </View>
   )
 }
 
+const { height, width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
+  statusBarContainer: {
+    backgroundColor: "#fff"
+  },
   statusBar: {
     flexDirection: "row",
     justifyContent: 'space-between',
+    alignItems: "center",
     backgroundColor: '#4B8A08',
-    height: 30,
+    height: height * 0.041,
     marginTop: 6,
     marginHorizontal: 6,
     borderRadius: 10,
+
   },
   statusBarText: {
+    alignSelf: "center",
     color: "#fff",
-    marginTop: 6,
-    marginLeft: 10,
-    marginRight: 10,
+    marginHorizontal: 10,
+    fontSize: width * 0.035,
   },
   qntyTotal: {
     backgroundColor: "#69a30a",
-    width: "23%",
-    marginLeft: 20,
+    width: width * 0.25,
+    marginLeft: width * 0.05,
     marginBottom: 6,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
+    paddingBottom:2,
   },
   qntyTotalTExt: {
     color: "white",
     alignSelf: "center",
     marginHorizontal: 2,
+    alignSelf: "center",
+  },
+  totalGral: {
+    alignSelf: "center",
   },
   productTable: {
     flexDirection: 'row',
-    marginStart: 5,
     paddingVertical: 6,
+    backgroundColor: "#fff",
   },
   productName: {
+    marginStart: width * 0.03,
     flex: 1.8,
     textAlign: "left",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: width * 0.035,
   },
   productPrice: {
     flex: 1,
     textAlign: "left",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: width * 0.035,
   },
   productQuantity: {
-    flex: 1.2,
+    flex: 1.3,
     textAlign: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: width * 0.035,
   },
   productTotal: {
     flex: 1,
     textAlign: "left",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    fontSize: width * 0.035,
   },
   editDelProd: {
     flex: 1.2,

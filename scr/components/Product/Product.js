@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
 
@@ -22,17 +22,17 @@ const Product = ({ style, item, editProd, removeProd, prodTotal }) => {
         </View>
     )
 }
-
+const {height, width} = Dimensions.get("window");
 const styles = StyleSheet.create({
     productTable: {
         flexDirection: 'row',
-        marginStart: 5,
         paddingVertical: 6,
         borderBottomWidth: 1,
         borderBottomColor: '#dee2e6',
     },
     productName: {
         flex: 1.8,
+        marginStart: width * 0.03,
         textAlign: "left",
         alignSelf: "center",
         fontFamily: "OpenSansRegular",
@@ -66,16 +66,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 4,
         alignSelf: "center",
-        width: 35,
-        height: 30,
+        width: width * 0.09,
+        height: "100%",
     },
     delButtonProd: {
         backgroundColor: Colors.btnSecondary,
         borderRadius: 5,
         padding: 4,
         alignSelf: "center",
-        width: 35,
-        height: 30,
+        width: width * 0.09,
+        height: "100%",
     },
 
 })

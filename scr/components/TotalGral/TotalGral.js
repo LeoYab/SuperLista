@@ -25,9 +25,7 @@ export default TotalGral
 const styles = StyleSheet.create({
   statusBarTextTotal: {
     color: "#fff",
-    marginTop: 6,
-    marginLeft: 10,
-    marginRight: 10,
+    marginHorizontal:10,
     fontWeight: "bold",
   },
 })

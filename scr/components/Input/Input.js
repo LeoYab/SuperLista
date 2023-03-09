@@ -1,13 +1,13 @@
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, Dimensions } from 'react-native';
 
-const Input = ({ value, placeholder, onChangeText, keyboardType }) => {
+const Input = ({ style, value, placeholder, onChangeText, keyboardType }) => {
 
   return (
 
     <View style={styles.inputContainer}>
 
       <TextInput
-        style={[styles.input, !value && styles.invalidInput]}
+        style={[style ? style : styles.input, !value && styles.invalidInput]}
         value={value}
         placeholder={placeholder}
         onChangeText={onChangeText}
@@ -17,20 +17,23 @@ const Input = ({ value, placeholder, onChangeText, keyboardType }) => {
     </View>
   );
 };
-
+const {height, width} = Dimensions.get("window");
 const styles = StyleSheet.create({
 
   inputContainer: {
     marginHorizontal: 1,
   },
   input: {
+    width:width,
     borderWidth: 2,
     borderColor: 'green',
-    paddingHorizontal: 25,
-    marginVertical: 10,
+    paddingHorizontal: width * 0.02,
+    marginVertical: 2,
     borderRadius: 5,
     backgroundColor: "white",
     fontFamily:"OpenSansRegular",
+    maxWidth:width * 0.245,
+    
   },
   invalidInput: {
     borderColor: 'grey',

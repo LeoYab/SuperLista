@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View } from 'react-native'
+import { StyleSheet, FlatList, View, Dimensions } from 'react-native'
 import Product from '../Product/Product';
 
 
@@ -27,12 +27,14 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
     )
 }
 
-
+const {height, width} = Dimensions.get("window");
 const styles = StyleSheet.create({
 
     tableList: {
-        height: "70%",
-        backgroundColor:"white"
+        height: height,
+        backgroundColor:"#fff",
+        borderBottomColor:"#fff",
+  
     },
 })
 
