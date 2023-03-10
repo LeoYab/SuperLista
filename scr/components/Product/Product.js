@@ -22,11 +22,11 @@ const Product = ({ style, item, editProd, removeProd, prodTotal }) => {
         </View>
     )
 }
-const {height, width} = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
     productTable: {
         flexDirection: 'row',
-        paddingVertical: 6,
+        paddingVertical: 5,
         borderBottomWidth: 1,
         borderBottomColor: '#dee2e6',
     },
@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansRegular",
     },
     productPrice: {
-        flex: 1,
+        flex: 1.4,
         textAlign: "left",
         alignSelf: "center",
         fontFamily: "OpenSansRegular",
     },
     productQuantity: {
-        flex: 1.2,
-        textAlign: "center",
+        flex: 0.9,
+        textAlign: "left",
         alignSelf: "center",
         fontFamily: "OpenSansRegular",
     },
@@ -56,26 +56,26 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansRegular",
     },
     editDelProd: {
-        flex: 1.2,
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: "space-around",
-        marginLeft: 4,
+        justifyContent: "space-between",
+        marginEnd: width * 0.03,
     },
     editButtonProd: {
         backgroundColor: Colors.btnPrimary,
         borderRadius: 5,
-        padding: 4,
+        marginRight: 1,
         alignSelf: "center",
-        width: width * 0.09,
-        height: "100%",
+        width: 30,
+        height: 30,
     },
     delButtonProd: {
         backgroundColor: Colors.btnSecondary,
         borderRadius: 5,
-        padding: 4,
+        marginLeft: 1,
         alignSelf: "center",
-        width: width * 0.09,
-        height: "100%",
+        width: 30,
+        height: 30,
     },
 
 })

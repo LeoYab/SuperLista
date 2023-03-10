@@ -11,7 +11,7 @@ const Table = ({ products }) => {
   const headTable = ({ item }) => {
     return (
       <View style={styles.productTable}>
-        <Text style={styles.productName}>{item[0]}</Text>
+        <Text style={ styles.productName}>{item[0]}</Text>
         <Text style={styles.productPrice}>{item[1]}</Text>
         <Text style={styles.productQuantity}>{item[2]}</Text>
         <Text style={styles.productTotal}>{item[3]}</Text>
@@ -96,6 +96,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: width * 0.035,
   },
+  productNameLndsp:{
+    marginStart: width * 0.03,
+    flex: 1.8,
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: width * 0.035,
+  },
   productPrice: {
     flex: 1,
     textAlign: "left",
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
   },
   productQuantity: {
     flex: 1.3,
-    textAlign: "center",
+    textAlign: "left",
     fontWeight: "bold",
     fontSize: width * 0.035,
   },

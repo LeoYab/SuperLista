@@ -4,6 +4,7 @@ import Buttons from '../Button/Button';
 import Table from "../Table/Table";
 import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
+import Footer from '../Footer/Footer';
 
 const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
   /* 
@@ -22,32 +23,52 @@ const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modal
 
 
 
-  /*     
-      console.log(searchProduct)
-      console.log(viewSearchProducts)  */
+
+
+  const [isPortrait, setIsPortrait] = useState(true);
+  const onPortrait = () => {
+
+    const dim = Dimensions.get("screen");
+    return dim.height >= dim.width;
+  };
+
+  const statePortrait = () => setIsPortrait(onPortrait())
+
+  useEffect(() => {
+
+    Dimensions.addEventListener("change", statePortrait)
+
+    return () => {
+
+      Dimensions.addEventListener("change", statePortrait)
+    }
+  })
+
 
 
 
   return (
     <>
 
-      <View style={styles.header}>
-<View  style={styles.about}>
-          <Buttons onPress={changeScreen}>About</Buttons>
-          </View>
-          <Text style={styles.logo}>SUPERLISTA</Text>
+      <View style={isPortrait ? styles.header : styles.headerLandscape}>
 
+        <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text>
+
+        {isPortrait &&
+          <View style={styles.about}>
+            <Buttons onPress={changeScreen}>About</Buttons>
+          </View>
+        }
         <Input style={styles.search}
           value={searchProduct}
           onChangeText={setSearchProduct}
           placeholder={"Búsqueda"}
         />
-        {/* <TextInput style={styles.search} placeholder="Buscar" /> */}
       </View>
 
-      <Table products={products} />
-
+      <Table products={products} isPortrait={isPortrait} />
       <ProductList products={!searchProduct ? products : viewSearchProducts} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
+      <Footer />
     </>
   );
 
@@ -59,17 +80,26 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-    marginTop:height * 0.05,
+    marginTop: height * 0.05,
+  },
+  headerLandscape: {
+    marginTop: height * 0.02,
   },
   about: {
-alignSelf:"flex-start",
+    alignSelf: "flex-start",
 
   },
   logo: {
     color: "#fff",
     textAlign: 'center',
     fontFamily: "QicksandBold",
-    fontSize: width * 0.05,
+    fontSize: 20,
+  },
+  logoLdscp: {
+    color: "#fff",
+    textAlign: 'center',
+    fontFamily: "QicksandBold",
+    fontSize: 30,
   },
   search: {
     backgroundColor: "#fff",
@@ -79,8 +109,8 @@ alignSelf:"flex-start",
     borderRadius: 4,
     marginVertical: 15,
     paddingLeft: 4,
-
   },
+
 });
 
 export default Header;

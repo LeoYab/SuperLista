@@ -1,9 +1,9 @@
-import { StyleSheet, FlatList, View, Dimensions } from 'react-native'
+import { StyleSheet, FlatList, View, Text, Dimensions } from 'react-native'
+
 import Product from '../Product/Product';
 
 
 const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
-
 
     const renderProduct = ({ item, index }) => {
 
@@ -18,23 +18,29 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
 
     return (
         <View style={styles.tableList}>
-            <FlatList
-                data={products}
-                renderItem={renderProduct}
-                keyExtractor={(item) => item.id.toString()}
-            />
+            {!products.length ? <Text style={styles.textTable}>LISTO PARA CARGAR PRODUCTOS</Text> : null}
+                <FlatList
+                    data={products}
+                    renderItem={renderProduct}
+                    keyExtractor={(item) => item.id.toString()}
+                />
+          
         </View>
     )
 }
 
-const {height, width} = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
 
     tableList: {
-        height: height,
-        backgroundColor:"#fff",
-        borderBottomColor:"#fff",
-  
+        flex: 1,
+        backgroundColor: "#fff",
+
+    },
+    textTable: {
+        top: height * 0.3,
+        alignSelf: "center",
     },
 })
 

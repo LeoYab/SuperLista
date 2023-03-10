@@ -1,10 +1,10 @@
-import { StyleSheet, TextInput, View, Dimensions } from 'react-native';
+import { StyleSheet, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
 
 const Input = ({ style, value, placeholder, onChangeText, keyboardType }) => {
 
   return (
 
-    <View style={styles.inputContainer}>
+    <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={30} style={styles.inputContainer}>
 
       <TextInput
         style={[style ? style : styles.input, !value && styles.invalidInput]}
@@ -14,7 +14,7 @@ const Input = ({ style, value, placeholder, onChangeText, keyboardType }) => {
         keyboardType={keyboardType}
       />
 
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 const {height, width} = Dimensions.get("window");

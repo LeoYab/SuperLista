@@ -30,6 +30,25 @@ export default function App() {
   }, [fontsLoaded]);
  
 
+  const [isPortrait, setIsPortrait] = useState(true);
+  const onPortrait = () =>{
+
+    const dim = Dimensions.get("screen");
+    return dim.height >= dim.width;
+  };
+
+  const statePortrait = () => setIsPortrait(onPortrait())
+
+    useEffect(() =>{
+
+      Dimensions.addEventListener("change", statePortrait)
+
+      return () =>{
+
+        Dimensions.addEventListener("change", statePortrait)
+      }
+    });
+  
   const [products, setProducts] = useState([]);
   const [nameProd, setNameProd] = useState('');
   const [price, setPrice] = useState('');
@@ -192,7 +211,6 @@ useEffect(() => {
     return null;
   }
 
-  console.log(changeScreen)
   return (
     <SafeAreaView  style={styles.container} onLayout={onLayoutRootView}>
 
@@ -265,10 +283,10 @@ useEffect(() => {
         </>
       )}
 
-      {aboutView && (
+      {aboutView && 
         <>
           <About changeScreen={changeScreen} />
-        </>)
+        </>
       }
 
     </SafeAreaView>
