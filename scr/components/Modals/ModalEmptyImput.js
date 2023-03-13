@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, Modal, Button } from 'react-native'
+import { useState } from 'react'
 import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
 import { ModalShadow } from '../../constants/ModalShadow'
 
-const ModalEmptyImput = ({ modalEmptyVisible = false, onCancelModalCheck }) => {
+const ModalEmptyImput = ({ modalEmptyVisible, onCancelModalCheck }) => {
+
 
   return (
     <Modal animationType="fade" transparent={true} visible={modalEmptyVisible}>

@@ -7,8 +7,6 @@ import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
 
 const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
-  /* 
-  products && handleSearchProduct() */
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
@@ -20,9 +18,6 @@ const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modal
     modalEditVisible || modalDelVisible ? setSearchProduct("") : searchProduct
 
   }, [searchProduct, editProd, removeProd])
-
-
-
 
 
   const [isPortrait, setIsPortrait] = useState(true);
@@ -45,8 +40,6 @@ const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modal
   })
 
 
-
-
   return (
     <>
 
@@ -67,7 +60,17 @@ const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modal
       </View>
 
       <Table products={products} isPortrait={isPortrait} />
-      <ProductList products={!searchProduct ? products : viewSearchProducts} removeProd={removeProd} editProd={editProd} prodTotal={prodTotal} />
+
+      <ProductList products={!searchProduct
+        ?
+        products
+        :
+        viewSearchProducts}
+        removeProd={removeProd}
+        editProd={editProd}
+        prodTotal={prodTotal}
+      />
+
       <Footer />
     </>
   );
@@ -87,7 +90,6 @@ const styles = StyleSheet.create({
   },
   about: {
     alignSelf: "flex-start",
-
   },
   logo: {
     color: "#fff",

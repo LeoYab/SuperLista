@@ -17,7 +17,9 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
     }
 
     return (
+        
         <View style={styles.tableList}>
+
             {!products.length ? <Text style={styles.textTable}>LISTO PARA CARGAR PRODUCTOS</Text> : null}
                 <FlatList
                     data={products}
@@ -26,10 +28,13 @@ const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
                 />
           
         </View>
+                 
+                 
+            
     )
 }
 
-const { height, width } = Dimensions.get("window");
+const { height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
 
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
 
     },
     textTable: {
+        color:"grey",
         top: height * 0.3,
         alignSelf: "center",
     },

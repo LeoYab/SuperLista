@@ -1,38 +1,37 @@
 import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback } from 'react-native'
-import React, { useState } from 'react'
+
 import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
 
-const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, editProduct = false }) => {
-
+const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
 
   return (
-    <Modal animationType="fade" transparent={true} visible={ editProduct }>
+    <Modal animationType="fade" transparent={true} visible={modalEditVisible}>
       <TouchableWithoutFeedback onPress={checkEmptyInput}>
-      <View style={styles.modalContainer}>
-        <Text style={styles.titleModalEdit}>EDITAR PRODUCTO</Text>
-        <View style={styles.modalContent}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.titleModalEdit}>EDITAR PRODUCTO</Text>
+          <View style={styles.modalContent}>
 
-          <Input
-            value={nameProd}
-            placeholder={"Producto"}
-            onChangeText={setNameProd} />
-          <Input
-            value={price}
-            placeholder={"Precio"}
-            onChangeText={numberInputPriceHandler}
-            keyboardType="numeric" />
-          <Input
-            value={quantity}
-            placeholder={"Cantidad"}
-            onChangeText={numberInputQuantityHandler}
-            keyboardType="numeric" />
+            <Input
+              value={nameProd}
+              placeholder={"Producto"}
+              onChangeText={setNameProd} />
+            <Input
+              value={price ? price.toString() : ""}
+              placeholder={"Precio"}
+              onChangeText={numberInputPriceHandler}
+              keyboardType="numeric" />
+            <Input
+              value={quantity ? quantity.toString() : ""}
+              placeholder={"Cantidad"}
+              onChangeText={numberInputQuantityHandler}
+              keyboardType="numeric" />
 
-          <Buttons onPress={checkEmptyInput}>Editar</Buttons>
+            <Buttons onPress={checkEmptyInput}>Editar</Buttons>
+          </View>
         </View>
-      </View>
       </TouchableWithoutFeedback>
     </Modal>
   )
@@ -52,14 +51,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#7ec07a',
     padding: 5,
     borderRadius: 10,
-    borderWidth:5,
-    borderColor:"#fff",
+    borderWidth: 5,
+    borderColor: "#fff",
     alignItems: 'center',
     ...ModalShadow,
   },
   titleModalEdit: {
     fontWeight: "bold",
-    color:"white",
+    color: "white",
     backgroundColor: "#7ec07a",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,

@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
+
 import TotalGral from '../TotalGral/TotalGral';
 
 const Separator = () => <View style={styles.separator} />;
@@ -11,7 +12,7 @@ const Table = ({ products }) => {
   const headTable = ({ item }) => {
     return (
       <View style={styles.productTable}>
-        <Text style={ styles.productName}>{item[0]}</Text>
+        <Text style={styles.productName}>{item[0]}</Text>
         <Text style={styles.productPrice}>{item[1]}</Text>
         <Text style={styles.productQuantity}>{item[2]}</Text>
         <Text style={styles.productTotal}>{item[3]}</Text>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
-    paddingBottom:2,
+    paddingBottom: 2,
   },
   qntyTotalTExt: {
     color: "white",
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: width * 0.035,
   },
-  productNameLndsp:{
+  productNameLndsp: {
     marginStart: width * 0.03,
     flex: 1.8,
     textAlign: "left",

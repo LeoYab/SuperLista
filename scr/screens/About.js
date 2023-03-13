@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+
 import Buttons from "../components/Button/Button"
 
 const about = ({ changeScreen }) => {
@@ -16,19 +17,19 @@ export default about
 
 const styles = StyleSheet.create({
   aboutContainer: {
-    flex:1,
-    justifyContent:"space-between",
+    flex: 1,
+    justifyContent: "space-between",
     backgroundColor: "grey",
     height: "100%",
   },
   aboutText: {
-    width:"100%",
+    width: "100%",
     color: "#fff",
-    textAlign:"center",
-   fontSize:15,
-    backgroundColor:"green",
+    textAlign: "center",
+    fontSize: 15,
+    backgroundColor: "green",
   },
-  AboutButton:{
-    marginBottom:20,
+  AboutButton: {
+    marginBottom: 20,
   }
 })
