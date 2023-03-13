@@ -6,7 +6,7 @@ import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
 
-const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible }) => {
+const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
@@ -49,7 +49,7 @@ const Header = ({ changeScreen, products, removeProd, editProd, prodTotal, modal
 
         {isPortrait &&
           <View style={styles.about}>
-            <Buttons onPress={changeScreen}>About</Buttons>
+            <Buttons onPress={() => {navigation.navigate("About")} }>About</Buttons>
           </View>
         }
         <Input style={styles.search}
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-    marginTop: height * 0.05,
+/*     marginTop: height * 0.05, */
   },
   headerLandscape: {
     marginTop: height * 0.02,

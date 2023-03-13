@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Modal, Button } from 'react-native'
-import { useState } from 'react'
+import { StyleSheet, Text, View, Modal } from 'react-native'
+
 import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
 import { ModalShadow } from '../../constants/ModalShadow'

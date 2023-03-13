@@ -3,17 +3,17 @@ import React from 'react'
 
 import Buttons from "../components/Button/Button"
 
-const about = ({ changeScreen }) => {
+const About = ({  }) => {
   return (
     <View style={styles.aboutContainer}>
       <Text style={styles.aboutText}>SUPERLISTA</Text>
       <Text style={styles.aboutText}>Screen de prueba</Text>
-      <Buttons style={styles.AboutButton} onPress={changeScreen}>Volver</Buttons>
+ {/*      <Buttons style={styles.AboutButton} onPress={changeScreen}>Volver</Buttons> */}
     </View>
   )
 }
 
-export default about
+export default About
 
 const styles = StyleSheet.create({
   aboutContainer: {
