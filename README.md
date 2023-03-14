@@ -4,7 +4,7 @@
 
 ## Wireframe SuperLista
 ```bash
-https://github.com/LeoYab/SuperLista/blob/desafio_1/Wireframe%20SuperLista%20Leonel%20Yaborski.png
+https://github.com/LeoYab/SuperLista/blob/c88ac53dd40b280143affaff9e559f8ef589ebee/Wireframe%20SuperLista%20Leonel%20Yaborski.png
 ```
 ## Para ejecutar localmente
 
