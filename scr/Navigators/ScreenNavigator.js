@@ -22,16 +22,18 @@ const ScreenNavigator = () => {
                     }}
                     component={SuperLista}
                 />
-                <Stack.Screen name="About"
-                    options={{
-                        title: "Volver",
-                        statusBarColor: "#4B8A08",
+                <Stack.Screen 
+                name="About"
+                component={About}
+                    options={({route}) => ({
+                        title: route.params.categoryName, 
+                      statusBarColor: "#4B8A08",
                         headerStyle: {
                             backgroundColor: "#4B8A08",
                         },
-                        headerTintColor: '#fff',
-                    }}
-                    headerStyle component={About} />
+                        headerTintColor: '#fff', 
+                    })}
+                      />
             </Stack.Navigator>
 
         </NavigationContainer>

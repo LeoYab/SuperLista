@@ -5,6 +5,8 @@ import Product from '../Product/Product';
 
 const ProductList = ({ products, removeProd, editProd, prodTotal }) => {
 
+
+
     const renderProduct = ({ item, index }) => {
 
         return <Product
