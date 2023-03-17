@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SuperLista from '../screens/SuperLista'
-import About from '../screens/About'
+import CategoryList from '../screens/CategoryList'
 
 const Stack = createNativeStackNavigator();
 
@@ -23,8 +23,8 @@ const ScreenNavigator = () => {
                     component={SuperLista}
                 />
                 <Stack.Screen 
-                name="About"
-                component={About}
+                name="Category"
+                component={CategoryList}
                     options={({route}) => ({
                         title: route.params.categoryName, 
                       statusBarColor: "#4B8A08",

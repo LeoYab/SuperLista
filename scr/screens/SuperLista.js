@@ -31,16 +31,17 @@ const SuperLista = ({navigation}) => {
       const [productSelectToDel, setProductSelectToDel] = useState({});
       const [modalDelVisible, setModalDelVisible] = useState(false);
       const [modalEditVisible, setModalEditVisible] = useState(false);
-      const [aboutView, setAboutView] = useState(false);
+/*       const [aboutView, setAboutView] = useState(false); */
     
     
       const onAddProd = (value) => {
-        setProducts(value)
+        console.log(value)
+        setProducts(() => [...products, value])
       };
     
-      const changeScreen = () => {
+  /*     const changeScreen = () => {
         setAboutView(!aboutView)
-      };
+      }; */
       const onEditProd = (value) => {
         setProducts(value)
         setModalEditVisible(false)
@@ -95,7 +96,7 @@ const SuperLista = ({navigation}) => {
 
             <>
               <Header
-                changeScreen={changeScreen}
+               /*  changeScreen={changeScreen} */
                 products={products}
                 removeProd={removeProd}
                 editProd={editProd}

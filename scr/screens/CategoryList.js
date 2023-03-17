@@ -4,7 +4,7 @@ import Colors from '../constants/Colors'
 import Buttons  from '../components/Button/Button'
 
 
-const About = ({ route, navigation }) => {
+const CategoryList = ({ route, navigation }) => {
 
 const { categoryProducts, categoryId  } = route.params
 
@@ -53,7 +53,7 @@ console.log(categoryProducts)
   ) 
 }
 
-export default About
+export default CategoryList
 
 const { width } = Dimensions.get("window");
 

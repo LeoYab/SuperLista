@@ -22,13 +22,13 @@ const ProdAdd = ({ onAddProd, products }) => {
     }, [inputProducts])
 
 
-    console.log(inputProducts)
+/*     console.log(inputProducts) */
 
 
 
     const handleAddProduct = () => {
 
-        setImputProducts(() => [...products, {
+        setImputProducts(() => [{
             id: Date.now(),
             nameProd: inputNameProd,
             price: parseFloat(inputPrice),
@@ -97,7 +97,7 @@ const ProdAdd = ({ onAddProd, products }) => {
                     placeholder={"Cantidad"}
                     onChangeText={numberInputQuantityHandler}
                     keyboardType="numeric" />
-{/* 
+
                 <Dropdown
                     style={styles.dropdown}
                     placeholderStyle={styles.placeholderStyle}
@@ -115,7 +115,7 @@ const ProdAdd = ({ onAddProd, products }) => {
                     onChange={item => {
                         setValue(item.id);
                     }}
-                /> */}
+                />
                 <Buttons onPress={checkEmptyInput}>+</Buttons>
             </>
 

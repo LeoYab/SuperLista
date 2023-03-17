@@ -7,7 +7,7 @@ import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
 import { Dropdown } from 'react-native-element-dropdown';
 import { CATEGORIES } from '../../categories/categories'
-import About from '../../screens/About';
+
 
 
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
@@ -55,7 +55,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
   const handleSelectedCategory = (item) => {
 
-    navigation.navigate('About', {
+    navigation.navigate('Category', {
         categoryId: item.id,
         categoryName: item.title,
         categoryProducts: products, 
@@ -76,11 +76,11 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
         <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text>
 
-        {isPortrait &&
-          <View style={styles.about}>
-            <Buttons onPress={handleSelectedCategory}>About</Buttons>
+      {/*   {isPortrait &&
+          <View style={styles.Category}>
+            <Buttons onPress={handleSelectedCategory}>Category</Buttons>
           </View>
-        }
+        } */}
         <View style={styles.searchContainer}>
           <Input style={styles.search}
             value={searchProduct}
@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
   headerLandscape: {
     marginTop: height * 0.02,
   },
-  about: {
+/*   Category: {
     alignSelf: "flex-start",
-  },
+  }, */
   logo: {
     color: "#fff",
     textAlign: 'center',
