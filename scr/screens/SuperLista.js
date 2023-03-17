@@ -35,7 +35,7 @@ const SuperLista = ({navigation}) => {
     
     
       const onAddProd = (value) => {
-        setProducts(value)
+        setProducts(() => [...products, value])
       };
     
       const changeScreen = () => {

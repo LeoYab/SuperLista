@@ -6,7 +6,7 @@ import Buttons from "../Button/Button"
 import ModalEmptyImput from "../Modals/ModalEmptyImput"
 
 
-const ProdAdd = ({ onAddProd, products }) => {
+const ProdAdd = ({ onAddProd }) => {
 
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
@@ -15,23 +15,26 @@ const ProdAdd = ({ onAddProd, products }) => {
     const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
 
     useEffect(() => {
+
         onAddProd(inputProducts);
+      
     }, [inputProducts])
 
-
+   
+    console.log(inputProducts)
     const handleAddProduct = () => {
 
-        setImputProducts(() => [...products, {
+        setImputProducts({
             id: Date.now(),
             nameProd: inputNameProd,
             price: parseFloat(inputPrice),
             quantity: parseInt(inputQnty)
-        }]);
+        });
 
         setInputNameProd('');
         setInputPrice('');
         setInputQnty('');
-
+     
 
     };
 
