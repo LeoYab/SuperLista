@@ -1,6 +1,7 @@
 import { StyleSheet, View, Dimensions, SafeAreaView } from 'react-native';
 import { useState, useCallback } from 'react';
 
+
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -31,17 +32,13 @@ const SuperLista = ({navigation}) => {
       const [productSelectToDel, setProductSelectToDel] = useState({});
       const [modalDelVisible, setModalDelVisible] = useState(false);
       const [modalEditVisible, setModalEditVisible] = useState(false);
-/*       const [aboutView, setAboutView] = useState(false); */
+  
+
+      function onAddProd(value) {
+    console.log(value);
+    setProducts(() => [...products, value]);
+  }
     
-    
-      const onAddProd = (value) => {
-        console.log(value)
-        setProducts(() => [...products, value])
-      };
-    
-  /*     const changeScreen = () => {
-        setAboutView(!aboutView)
-      }; */
       const onEditProd = (value) => {
         setProducts(value)
         setModalEditVisible(false)
@@ -75,11 +72,6 @@ const SuperLista = ({navigation}) => {
       };
     
     
-      const prodTotal = (item) => {
-    
-        return item.price * item.quantity;
-    
-      };
     
       const renderInputs = () => {
     
@@ -96,11 +88,9 @@ const SuperLista = ({navigation}) => {
 
             <>
               <Header
-               /*  changeScreen={changeScreen} */
                 products={products}
                 removeProd={removeProd}
                 editProd={editProd}
-                prodTotal={prodTotal}
                 modalEditVisible={modalEditVisible}
                 modalDelVisible={modalDelVisible}
                 navigation={navigation}

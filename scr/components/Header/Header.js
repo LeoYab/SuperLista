@@ -25,6 +25,9 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   }, [searchProduct, editProd, removeProd])
 
 
+ 
+  
+
   const [isPortrait, setIsPortrait] = useState(true);
   const onPortrait = () => {
 
@@ -58,8 +61,9 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
     navigation.navigate('Category', {
         categoryId: item.id,
         categoryName: item.title,
-        categoryProducts: products, 
-        prodTotal: prodTotal,  
+       allCategoryProducts: products,
+       filter: true,
+
     })
 
     

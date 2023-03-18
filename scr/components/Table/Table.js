@@ -4,7 +4,7 @@ import TotalGral from '../TotalGral/TotalGral';
 
 const Separator = () => <View style={styles.separator} />;
 
-const Table = ({ products }) => {
+const Table = ({ products, filter }) => {
 
 
   const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
@@ -16,15 +16,18 @@ const Table = ({ products }) => {
         <Text style={styles.productPrice}>{item[1]}</Text>
         <Text style={styles.productQuantity}>{item[2]}</Text>
         <Text style={styles.productTotal}>{item[3]}</Text>
-        <View style={styles.editDelProd}>
-        </View>
+        {!filter && <View style={styles.editDelProd} /> }
+
       </View>
     );
   };
 
 
   return (
+   
     <View style={styles.statusBarContainer}>
+       {!filter && 
+       <>
       <View style={styles.statusBar}>
         <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
         <TotalGral style={styles.totalGral} products={products} />
@@ -32,7 +35,8 @@ const Table = ({ products }) => {
       <View style={styles.qntyTotal}>
         <Text style={styles.qntyTotalTExt}>Cantidad: {products.length} </Text>
       </View>
-
+      </>
+    }
       <View>
         <FlatList
           data={[DATA]}

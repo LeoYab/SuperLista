@@ -28,13 +28,13 @@ const ProdAdd = ({ onAddProd, products }) => {
 
     const handleAddProduct = () => {
 
-        setImputProducts(() => [{
+        setImputProducts({
             id: Date.now(),
             nameProd: inputNameProd,
             price: parseFloat(inputPrice),
             quantity: parseInt(inputQnty),
             category: value,
-        }]);
+        });
 
         setInputNameProd('');
         setInputPrice('');
