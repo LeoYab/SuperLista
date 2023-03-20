@@ -38,17 +38,6 @@ const SuperLista = ({navigation}) => {
     setProducts(() => [...products, value]);
   }
     
-<<<<<<< HEAD
-    
-      const onAddProd = (value) => {
-        setProducts(() => [...products, value])
-      };
-    
-      const changeScreen = () => {
-        setAboutView(!aboutView)
-      };
-=======
->>>>>>> pruebas
       const onEditProd = (value) => {
         setProducts(value)
         setModalEditVisible(false)

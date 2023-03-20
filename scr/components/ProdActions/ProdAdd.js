@@ -23,37 +23,21 @@ const ProdAdd = ({ onAddProd }) => {
       
     }, [inputProducts])
 
-<<<<<<< HEAD
-   
-    console.log(inputProducts)
-=======
-
-
-
->>>>>>> pruebas
     const handleAddProduct = () => {
 
         setImputProducts({
             id: Date.now(),
             nameProd: inputNameProd,
             price: parseFloat(inputPrice),
-<<<<<<< HEAD
-            quantity: parseInt(inputQnty)
-=======
             quantity: parseInt(inputQnty),
             category: value.id,
             icon: value.icon,
->>>>>>> pruebas
         });
 
         setInputNameProd('');
         setInputPrice('');
         setInputQnty('');
-<<<<<<< HEAD
-     
-=======
         setValue("Otros");
->>>>>>> pruebas
 
     };
 
