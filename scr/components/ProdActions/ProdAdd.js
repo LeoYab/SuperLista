@@ -37,7 +37,7 @@ const ProdAdd = ({ onAddProd }) => {
         setInputNameProd('');
         setInputPrice('');
         setInputQnty('');
-        setValue("Otros");
+        setValue("");
 
     };
 
