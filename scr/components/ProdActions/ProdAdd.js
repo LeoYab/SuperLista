@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View, Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 
 import Input from '../Input/Input'
@@ -8,7 +8,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { CATEGORIES } from '../../categories/categories'
 
 
-const ProdAdd = ({ onAddProd, products }) => {
+const ProdAdd = ({ onAddProd }) => {
 
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
@@ -22,8 +22,6 @@ const ProdAdd = ({ onAddProd, products }) => {
     }, [inputProducts])
 
 
-/*     console.log(inputProducts) */
-
 
 
     const handleAddProduct = () => {
@@ -33,19 +31,20 @@ const ProdAdd = ({ onAddProd, products }) => {
             nameProd: inputNameProd,
             price: parseFloat(inputPrice),
             quantity: parseInt(inputQnty),
-            category: value,
+            category: value.id,
+            icon: value.icon,
         });
 
         setInputNameProd('');
         setInputPrice('');
         setInputQnty('');
-
+        setValue("Otros");
 
     };
 
     const checkEmptyInput = () => {
 
-        !inputNameProd.trim() || !inputPrice.trim() || !inputQnty.trim()
+        !inputNameProd.trim() || !inputPrice.trim() || !inputQnty.trim() || !value
             ?
             modalEmptyView()
             :
@@ -81,8 +80,8 @@ const ProdAdd = ({ onAddProd, products }) => {
     }
 
     return (
-        <>
-            <>
+        <View style={styles.imputContainer}>
+            <View style={styles.imputAdd}>
                 <Input
                     value={inputNameProd}
                     placeholder={"Producto"}
@@ -98,8 +97,9 @@ const ProdAdd = ({ onAddProd, products }) => {
                     onChangeText={numberInputQuantityHandler}
                     keyboardType="numeric" />
 
+
                 <Dropdown
-                    style={styles.dropdown}
+                    style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
@@ -109,52 +109,80 @@ const ProdAdd = ({ onAddProd, products }) => {
                     maxHeight={300}
                     labelField="title"
                     valueField="id"
-                    placeholder="Select item"
-                    searchPlaceholder="Search..."
+                    placeholder="Categoría"
+                    searchPlaceholder="Buscar..."
                     value={value}
                     onChange={item => {
-                        setValue(item.id);
+                        setValue(item);
                     }}
                 />
+            </View>
+            <View>
                 <Buttons onPress={checkEmptyInput}>+</Buttons>
-            </>
 
+            </View>
             <ModalEmptyImput
                 modalEmptyVisible={modalEmptyVisible}
                 onCancelModalCheck={onCancelModalCheck}
             />
 
 
-        </>
+        </View>
     )
 
 }
 
 export default ProdAdd
 
+const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
+    imputContainer: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    imputAdd: {
+        flex: 1,
+        flexDirection: "row",
+    },
     dropdown: {
         width: 100,
-        margin: 16,
-        height: 50,
-        borderBottomColor: 'gray',
-        borderBottomWidth: 0.5,
+        borderWidth: 2,
+        borderColor: 'green',
+        paddingHorizontal: width * 0.02,
+        marginVertical: 2,
+        borderRadius: 5,
+        backgroundColor: "white",
+        fontFamily: "OpenSansRegular",
+        maxWidth: width * 0.245,
+        height: 32,
+        fontSize: 10,
+    },
+    dropdowngrey: {
+        borderColor: 'grey',
+
     },
     icon: {
         marginRight: 5,
     },
     placeholderStyle: {
-        fontSize: 16,
-    },
-    selectedTextStyle: {
-        fontSize: 16,
+        fontSize: 13,
+        color: "grey",
+        marginLeft: 1,
+
     },
     iconStyle: {
         width: 20,
-        height: 20,
+        height: 10,
     },
     inputSearchStyle: {
         height: 40,
-        fontSize: 16,
+        fontSize: 14,
+    },
+    selectedTextStyle: {
+        fontSize: 12,
+
     },
 })

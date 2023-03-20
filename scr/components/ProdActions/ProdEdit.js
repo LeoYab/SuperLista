@@ -7,13 +7,15 @@ import ModalEmptyImput from "../Modals/ModalEmptyImput"
 
 const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd }) => {
 
-
   const [editNameProd, setEditNameProd] = useState("")
   const [editPrice, setEditPrice] = useState("")
   const [editQnty, setEditInputQnty] = useState("")
+  const [editCatry, setEditCatry] = useState("")
+  const [editCatryIcon, setEditCatryIcon] = useState("")
   const [productsEdited, setProductsEdited] = useState([])
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
   const [modalEditView, setModalEditView] = useState(false);
+
 
   useEffect(() => {
 
@@ -21,6 +23,8 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
       setEditNameProd(productSelectToEdit.nameProd)
       setEditPrice(productSelectToEdit.price ? productSelectToEdit.price.toString() : "")
       setEditInputQnty(productSelectToEdit.quantity ? productSelectToEdit.quantity.toString() : "")
+      setEditCatry(productSelectToEdit.category) 
+      setEditCatryIcon(productSelectToEdit.icon)
       setModalEditView(modalEditVisible)
     }
   }, [productSelectToEdit])
@@ -54,7 +58,9 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
       id: productSelectToEdit.id,
       nameProd: editNameProd,
       price: parseFloat(editPrice),
-      quantity: parseInt(editQnty)
+      quantity: parseInt(editQnty),
+      category: editCatry,
+      icon: editCatryIcon,
     }].sort((a, b) => a.id - b.id));
 
     setModalEditView(false);
@@ -89,6 +95,9 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
         setNameProd={setEditNameProd}
         numberInputPriceHandler={numberInputPriceHandler}
         numberInputQuantityHandler={numberInputQuantityHandler}
+        category={editCatry}
+        setEditCatry = {setEditCatry}
+        setEditCatryIcon={setEditCatryIcon}
         modalEditVisible={modalEditView}
         checkEmptyInput={checkEmptyInput}
       />

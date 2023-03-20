@@ -7,10 +7,10 @@ import Table from '../components/Table/Table'
 const CategoryList = ({ route }) => {
 
 
-    const { allCategoryProducts, categoryId, filter } = route.params
+    const { products, categoryId, filter } = route.params;
 
 
-    const prodByCategory = allCategoryProducts.filter(prod => prod.category === categoryId)
+    const prodByCategory = products.filter(prod => prod.category === categoryId)
 
 
 
@@ -27,7 +27,7 @@ const CategoryList = ({ route }) => {
 
     return (
         <>
-        <Table products= {allCategoryProducts} filter={filter}/>
+        <Table products= {products} filter={filter}/>
         <FlatList
             data={prodByCategory}
             keyExtractor={(item) => item.id}

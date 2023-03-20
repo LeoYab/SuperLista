@@ -5,7 +5,6 @@ import Colors from '../../constants/Colors'
 
 const Product = ({ style, item, editProd, removeProd, filter }) => {
 
-
     const prodTotal = (item) => {
 
         return item.price * item.quantity;
@@ -16,7 +15,7 @@ const Product = ({ style, item, editProd, removeProd, filter }) => {
     return (
         <>
             <View style={[styles.productTable, style]}>
-                <Text style={styles.productName}>{item.nameProd}</Text>
+                <Text style={styles.productName}>{item.icon +" "+ item.nameProd}</Text>
                 <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
                 <Text style={styles.productQuantity}>{item.quantity}</Text>
                 <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
-const TabItemsByCat = ({ item, onSelect }) => {
+const TabItemsByCat = ({ item }) => {
 
 
   return (

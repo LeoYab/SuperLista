@@ -9,7 +9,6 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { CATEGORIES } from '../../categories/categories'
 
 
-
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
 
   const [searchProduct, setSearchProduct] = useState("");
@@ -25,8 +24,8 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   }, [searchProduct, editProd, removeProd])
 
 
- 
-  
+
+
 
   const [isPortrait, setIsPortrait] = useState(true);
   const onPortrait = () => {
@@ -49,9 +48,6 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
 
 
-  useEffect(() => {
-
-  }, [value])
 
 
 
@@ -59,18 +55,18 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   const handleSelectedCategory = (item) => {
 
     navigation.navigate('Category', {
-        categoryId: item.id,
-        categoryName: item.title,
-       allCategoryProducts: products,
-       filter: true,
+      categoryId: item.id,
+      categoryName: item.title,
+      products: products,
+      filter: true,
 
     })
 
-    
-}
+
+  }
 
 
- 
+
 
 
   return (
@@ -80,7 +76,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
         <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text>
 
-      {/*   {isPortrait &&
+        {/*   {isPortrait &&
           <View style={styles.Category}>
             <Buttons onPress={handleSelectedCategory}>Category</Buttons>
           </View>
@@ -143,9 +139,9 @@ const styles = StyleSheet.create({
   headerLandscape: {
     marginTop: height * 0.02,
   },
-/*   Category: {
-    alignSelf: "flex-start",
-  }, */
+  /*   Category: {
+      alignSelf: "flex-start",
+    }, */
   logo: {
     color: "#fff",
     textAlign: 'center',

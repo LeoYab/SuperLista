@@ -1,11 +1,20 @@
-import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback } from 'react-native'
-
+import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback, Dimensions } from 'react-native'
+import { useState, useEffect } from 'react'
 import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
+import { CATEGORIES } from '../../categories/categories'
+import { Dropdown } from 'react-native-element-dropdown';
+const ModalEdit = ({ category, setEditCatry, setEditCatryIcon, nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
 
-const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
+  const [value, setValue] = useState({});
+
+useEffect(() => {
+  setEditCatry(value.id)
+  setEditCatryIcon(value.icon)
+}, [value])
+
 
   return (
     <Modal animationType="fade" transparent={true} visible={modalEditVisible}>
@@ -28,9 +37,27 @@ const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHan
               placeholder={"Cantidad"}
               onChangeText={numberInputQuantityHandler}
               keyboardType="numeric" />
+            <Dropdown
+              style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={CATEGORIES}
+              search
+              maxHeight={300}
+              labelField="title"
+              valueField="id"
+              placeholder="Categoría"
+              searchPlaceholder="Buscar..."
+              value={category}
+              onChange={item => {
+                setValue(item);
+              }}
+            />
 
-            <Buttons onPress={checkEmptyInput}>Editar</Buttons>
           </View>
+          <Buttons onPress={checkEmptyInput}>Editar</Buttons>
         </View>
       </TouchableWithoutFeedback>
     </Modal>
@@ -38,6 +65,8 @@ const ModalEdit = ({ nameProd, price, quantity, setNameProd, numberInputPriceHan
 }
 
 export default ModalEdit
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -56,6 +85,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...ModalShadow,
   },
+  dropdown: {
+    width: 100,
+    borderWidth: 2,
+    borderColor: 'green',
+    paddingHorizontal: width * 0.02,
+    marginVertical: 2,
+    borderRadius: 5,
+    backgroundColor: "white",
+    fontFamily: "OpenSansRegular",
+    maxWidth: width * 0.245,
+    height: 32,
+    fontSize: 10,
+},
+dropdowngrey: {
+    borderColor: 'grey',
+
+},
   titleModalEdit: {
     fontWeight: "bold",
     color: "white",
