@@ -5,11 +5,15 @@ import Table from "../Table/Table";
 import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
+import { Dropdown } from 'react-native-element-dropdown';
+import { CATEGORIES } from '../../categories/categories'
+
 
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
+  const [value, setValue] = useState(null);
 
   useEffect(() => {
 
@@ -18,6 +22,9 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
     modalEditVisible || modalDelVisible ? setSearchProduct("") : searchProduct
 
   }, [searchProduct, editProd, removeProd])
+
+
+
 
 
   const [isPortrait, setIsPortrait] = useState(true);
@@ -40,6 +47,28 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   })
 
 
+
+
+
+
+
+  const handleSelectedCategory = (item) => {
+
+    navigation.navigate('Category', {
+      categoryId: item.id,
+      categoryName: item.title,
+      products: products,
+      filter: true,
+
+    })
+
+
+  }
+
+
+
+
+
   return (
     <>
 
@@ -47,16 +76,38 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
         <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text>
 
-        {isPortrait &&
-          <View style={styles.about}>
-            <Buttons onPress={() => {navigation.navigate("About")} }>About</Buttons>
+        {/*   {isPortrait &&
+          <View style={styles.Category}>
+            <Buttons onPress={handleSelectedCategory}>Category</Buttons>
           </View>
-        }
-        <Input style={styles.search}
-          value={searchProduct}
-          onChangeText={setSearchProduct}
-          placeholder={"Búsqueda"}
-        />
+        } */}
+        <View style={styles.searchContainer}>
+          <Input style={styles.search}
+            value={searchProduct}
+            onChangeText={setSearchProduct}
+            placeholder={"Búsqueda"}
+          />
+
+          <Dropdown
+            style={styles.dropdown}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={CATEGORIES}
+            search
+            maxHeight={300}
+            labelField="title"
+            valueField="id"
+            placeholder="Por categoría"
+            searchPlaceholder="Buscar..."
+            value={value}
+            onChange={item => {
+              setValue(item);
+              handleSelectedCategory(item)
+            }}
+          />
+        </View>
       </View>
 
       <Table products={products} isPortrait={isPortrait} />
@@ -83,14 +134,14 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-/*     marginTop: height * 0.05, */
+    /*     marginTop: height * 0.05, */
   },
   headerLandscape: {
     marginTop: height * 0.02,
   },
-  about: {
-    alignSelf: "flex-start",
-  },
+  /*   Category: {
+      alignSelf: "flex-start",
+    }, */
   logo: {
     color: "#fff",
     textAlign: 'center',
@@ -103,16 +154,47 @@ const styles = StyleSheet.create({
     fontFamily: "QicksandBold",
     fontSize: 30,
   },
+  searchContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+    alignItems: "center",
+  },
   search: {
     backgroundColor: "#fff",
-    width: width * 0.95,
+    width: width * 0.60,
     height: height * 0.04,
-    alignSelf: "center",
-    borderRadius: 4,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
     marginVertical: 15,
     paddingLeft: 4,
   },
+  dropdown: {
+    width: width * 0.30,
 
+    height: height * 0.04,
+    borderTopRightRadius: 4,
+    borderBottomRightRadius: 4,
+
+    borderBottomWidth: 1,
+    borderBottomColor: "#fff",
+    backgroundColor: "#6ca115ef",
+
+  },
+
+  placeholderStyle: {
+    fontSize: 16,
+    color: "#fff",
+    marginLeft: 2,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    color: "#fff"
+  },
+
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
 });
 
 export default Header;

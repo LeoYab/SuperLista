@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 1,
   },
   input: {
-    width: width,
+    width: 85,
     borderWidth: 2,
     borderColor: 'green',
     paddingHorizontal: width * 0.02,

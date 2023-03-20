@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   footer: {
 
     backgroundColor: "#fff",
-    height: 50,
+    height:80,
 
 
   },
