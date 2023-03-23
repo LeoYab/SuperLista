@@ -11,7 +11,8 @@ const CategoryList = ({ route }) => {
 
      const products = useSelector(state => state.products.products) 
 
-      console.log(products) 
+     console.log(products) 
+
   /* REVISAR LOS PRODUCTOS ENVIADOS POR USESELECTOR YA QUE NO APARECEN EN EL FILTRO */
 /* 
     const dispatch = useDispatch() */

@@ -8,7 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index';
 import { useDispatch } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
-import { addProduct } from '../store/actions/products.action';
+import { addProduct, editProduct } from '../store/actions/products.action';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -51,6 +51,7 @@ const SuperLista = ({ navigation, props }) => {
   const onEditProd = (value) => {
     setProducts(value)
     setModalEditVisible(false)
+    dispatch(editProduct(value))
 
   };
 
