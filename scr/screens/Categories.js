@@ -1,26 +1,30 @@
 import { StyleSheet, FlatList } from 'react-native'
 import React from 'react'
-import { CATEGORIES } from '../categories/categories'
+/* import { CATEGORIES } from '../categories/categories' */
 import GridItem from '../components/GridItem/GridItem'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCategory } from '../store/actions/category.action'
 
 const Categories = ({ navigation }) => {
 
-   /*  const onSelectGridItem = (item) => {
+const categories = useSelector(state => state.categories.categories)
+const products = useSelector(state => state.products.products) 
+ const dispatch = useDispatch() 
+
+    const onSelectGridItem = (item) => {
+        dispatch(selectCategory(item.id))
         navigation.navigate('Category', {
-            categoryId: item.id,
             categoryName: item.title,
-            products: item,
-            filter: true,
+            products: products,
         })
-    } */
+    } 
 
     const renderGridItem = ({ item }) => <GridItem item={item} onSelect={onSelectGridItem} />
 
 
     return (
         <FlatList
-            data={CATEGORIES}
+            data={categories}
             keyExtractor={(item) => item.id}
             renderItem={renderGridItem}
             numColumns={2}

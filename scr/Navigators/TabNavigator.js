@@ -32,7 +32,7 @@ const TabNavigator = () => {
         }}
       />
 
-{/* <BottomTabs.Screen
+<BottomTabs.Screen
         name="Categories"
         component={Categories}
         options={{
@@ -45,7 +45,7 @@ const TabNavigator = () => {
         }}
       />
 
- */}
+
 
 
     </BottomTabs.Navigator>

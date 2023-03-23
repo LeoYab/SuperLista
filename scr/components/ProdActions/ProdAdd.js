@@ -5,10 +5,15 @@ import Input from '../Input/Input'
 import Buttons from "../Button/Button"
 import ModalEmptyImput from "../Modals/ModalEmptyImput"
 import { Dropdown } from 'react-native-element-dropdown';
-import { CATEGORIES } from '../../categories/categories'
-
+/* import { CATEGORIES } from '../../categories/categories' */
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCategory } from '../../store/actions/category.action'
 
 const ProdAdd = ({ onAddProd }) => {
+
+const categories = useSelector(state => state.categories.categories)
+/* 
+const dispatch = useDispatch() */
 
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
@@ -103,7 +108,7 @@ const ProdAdd = ({ onAddProd }) => {
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={CATEGORIES}
+                    data={categories}
                     search
                     maxHeight={300}
                     labelField="title"

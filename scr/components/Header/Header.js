@@ -6,10 +6,14 @@ import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
 import { Dropdown } from 'react-native-element-dropdown';
-import { CATEGORIES } from '../../categories/categories'
-
+/* import { CATEGORIES } from '../../categories/categories' */
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCategory } from '../../store/actions/category.action';
 
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
+
+  const categories = useSelector(state => state.categories.categories)
+  const dispatch = useDispatch() 
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
@@ -53,12 +57,11 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
 
   const handleSelectedCategory = (item) => {
-
+    dispatch(selectCategory(item.id))
     navigation.navigate('Category', {
-      categoryId: item.id,
+/*       categoryId: item.id, */
       categoryName: item.title,
       products: products,
-      filter: true,
 
     })
 
@@ -94,7 +97,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
             selectedTextStyle={styles.selectedTextStyle}
             inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
-            data={CATEGORIES}
+            data={categories}
             search
             maxHeight={300}
             labelField="title"

@@ -57,7 +57,9 @@ useEffect(() => {
             />
 
           </View>
+          <View  style={styles.buttonEdit}>
           <Buttons onPress={checkEmptyInput}>Editar</Buttons>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     </Modal>
@@ -84,6 +86,9 @@ const styles = StyleSheet.create({
     borderColor: "#fff",
     alignItems: 'center',
     ...ModalShadow,
+  },
+  buttonEdit:{
+   marginBottom:56,
   },
   dropdown: {
     width: 100,
