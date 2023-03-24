@@ -8,7 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index';
 import { useDispatch } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
-import { addProduct, editProduct } from '../store/actions/products.action';
+import { addProduct, editProduct, saveProduct } from '../store/actions/products.action';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -54,6 +54,11 @@ const SuperLista = ({ navigation, props }) => {
     dispatch(editProduct(value))
 
   };
+  
+  const saveList = () => {
+    dispatch(saveProduct(products))
+  }
+
 
   const onDeleteProd = (productId) => {
     const updatedProducts = products.filter((product) => product.id !== productId);
@@ -114,6 +119,7 @@ const SuperLista = ({ navigation, props }) => {
               <ProdAdd
                 products={products}
                 onAddProd={onAddProd}
+                saveList={saveList}
               />
 
               <ProdEdit

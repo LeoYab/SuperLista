@@ -9,7 +9,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../../store/actions/category.action'
 
-const ProdAdd = ({ onAddProd }) => {
+const ProdAdd = ({ onAddProd, saveList }) => {
 
 const categories = useSelector(state => state.categories.categories)
 /* 
@@ -121,9 +121,13 @@ const dispatch = useDispatch() */
                     }}
                 />
             </View>
-            <View>
-                <Buttons onPress={checkEmptyInput}>+</Buttons>
+            <View style={styles.buttonsContainer}>
+            <Buttons  disabled={true} style={styles.buttonAddDisable} />
 
+                <Buttons style={styles.buttonAdd} onPress={checkEmptyInput}>+</Buttons>
+                
+                <Buttons style={styles.buttonSave} onPress={saveList}>Guardar</Buttons>
+                
             </View>
             <ModalEmptyImput
                 modalEmptyVisible={modalEmptyVisible}
@@ -187,6 +191,20 @@ const styles = StyleSheet.create({
     },
     selectedTextStyle: {
         fontSize: 12,
+
+    },
+    buttonsContainer: {
+        flex: 1,
+        width:"100%",
+        flexDirection:"row",
+        justifyContent:"space-around",
+
+    },
+    buttonAddDisable:{
+        backgroundColor: "#fff",
+opacity:0,
+    },
+    buttonSave:{
 
     },
 })
