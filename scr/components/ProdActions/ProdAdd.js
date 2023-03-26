@@ -8,12 +8,13 @@ import { Dropdown } from 'react-native-element-dropdown';
 /* import { CATEGORIES } from '../../categories/categories' */
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../../store/actions/category.action'
+import ModalSaveList from '../Modals/ModalSaveList'
 
-const ProdAdd = ({ onAddProd, saveList }) => {
+const ProdAdd = ({ onAddProd, saveListName }) => {
 
-const categories = useSelector(state => state.categories.categories)
-/* 
-const dispatch = useDispatch() */
+    const categories = useSelector(state => state.categories.categories)
+    /* 
+    const dispatch = useDispatch() */
 
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
@@ -21,11 +22,14 @@ const dispatch = useDispatch() */
     const [inputProducts, setImputProducts] = useState([])
     const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
     const [value, setValue] = useState(null);
+    const [saveList, setSaveList] = useState("");
+    const [modalNameVisible, setModalNameVisible] = useState(false);
+    
 
     useEffect(() => {
 
         onAddProd(inputProducts);
-      
+
     }, [inputProducts])
 
     const handleAddProduct = () => {
@@ -66,6 +70,17 @@ const dispatch = useDispatch() */
         setModalEmptyVisible(false);
     };
 
+    const checkVisible = () => {
+
+        setModalNameVisible(true);
+    }
+
+    const checkVisibled = () => {
+
+        setModalNameVisible(false);
+    }
+
+
     const numberInputPriceHandler = (inputText) => {
 
 
@@ -82,6 +97,12 @@ const dispatch = useDispatch() */
         setInputQnty(inputText.replace(/[^0-9]/g, ''))
 
     }
+
+    const createListName = () => {
+        saveListName(saveList)
+        setModalNameVisible(false);
+    }
+
 
     return (
         <View style={styles.imputContainer}>
@@ -122,18 +143,24 @@ const dispatch = useDispatch() */
                 />
             </View>
             <View style={styles.buttonsContainer}>
-            <Buttons  disabled={true} style={styles.buttonAddDisable} />
+                <Buttons disabled={true} style={styles.buttonAddDisable} />
 
                 <Buttons style={styles.buttonAdd} onPress={checkEmptyInput}>+</Buttons>
-                
-                <Buttons style={styles.buttonSave} onPress={saveList}>Guardar</Buttons>
-                
+
+                <Buttons style={styles.buttonSave} onPress={checkVisible}>Guardar</Buttons>
+
             </View>
             <ModalEmptyImput
                 modalEmptyVisible={modalEmptyVisible}
                 onCancelModalCheck={onCancelModalCheck}
             />
-
+            <ModalSaveList
+                saveList={saveList}
+                setSaveList={setSaveList}
+                modalNameVisible={modalNameVisible}
+                checkVisibled={checkVisibled}
+                createListName={createListName}
+            />
 
         </View>
     )
@@ -195,16 +222,16 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         flex: 1,
-        width:"100%",
-        flexDirection:"row",
-        justifyContent:"space-around",
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-around",
 
     },
-    buttonAddDisable:{
+    buttonAddDisable: {
         backgroundColor: "#fff",
-opacity:0,
+        opacity: 0,
     },
-    buttonSave:{
+    buttonSave: {
 
     },
 })

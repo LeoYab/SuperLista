@@ -9,7 +9,8 @@ export const addProduct = (product) => ({
   product,
 });
 
-export const saveProduct = (product) => {
+export const saveProduct = (product, nameList) => {
+  
   return async dispatch => {
     try{
       const response = await fetch (URL_API + "Products.json", {
@@ -19,6 +20,7 @@ export const saveProduct = (product) => {
         },
         body: JSON.stringify({
           date: Date.now(),
+          nameList,
           items: product
         }),
       });
@@ -28,7 +30,7 @@ export const saveProduct = (product) => {
 
       dispatch({
         type: ADD_PRODUCT,
-        confirm: true,
+        product,
       });
     } catch (error) {
       console.log(error.message)

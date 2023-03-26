@@ -55,8 +55,8 @@ const SuperLista = ({ navigation, props }) => {
 
   };
   
-  const saveList = () => {
-    dispatch(saveProduct(products))
+  const saveListName = (nameList) => {
+    dispatch(saveProduct(products, nameList))
   }
 
 
@@ -119,7 +119,7 @@ const SuperLista = ({ navigation, props }) => {
               <ProdAdd
                 products={products}
                 onAddProd={onAddProd}
-                saveList={saveList}
+                saveListName={saveListName}
               />
 
               <ProdEdit
