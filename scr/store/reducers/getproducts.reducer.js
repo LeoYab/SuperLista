@@ -1,7 +1,7 @@
 import { GET_PRODUCTS } from "../actions/getproducts.action";
 
 const initialState = {
-  products: [],
+  productsGet: [],
 };
 
 const GetProductsReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const GetProductsReducer = (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.products,
+        productsGet: action.productsGet,
       };
     default:
       return state;

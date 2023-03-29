@@ -1,16 +1,19 @@
-import { ADD_PRODUCT, EDIT_PRODUCT } from "../actions/products.action"
+import { ADD_PRODUCT, EDIT_PRODUCT, LIST_PRODUCTS, SAVE_PRODUCTS } from "../actions/products.action"
 
 const initialState = {
-  products: [],
+  productToAdd: [],
+  productsList: [],
+  productsSaved:[],
 }
 
 const ProductsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case ADD_PRODUCT:
+
       return {
-        /* ...state, */
-        products: [...state.products, action.product],
+         ...state, 
+         productToAdd: action.productToAdd,
       }
       case EDIT_PRODUCT:
       /*   const updatedProducts = [...state.products];
@@ -21,11 +24,22 @@ const ProductsReducer = (state = initialState, action) => {
           products: replaceProds,
         } */
         return {
-          /* ...state, */
+          ...state, 
           products: action.product,
         }
-      
+        case LIST_PRODUCTS:
+          return {
+            ...state, 
+            productsList: action.productsList,
+          }
+      case SAVE_PRODUCTS:
+        return {
+          ...state, 
+          productsSaved: action.product,
+        }
+
     default:
+      
       return state
   }
 }

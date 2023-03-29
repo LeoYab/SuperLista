@@ -3,13 +3,16 @@ import { URL_API } from "../../constants/Database";
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const DEL_PRODUCT = "DEL_PRODUCT"
+export const LIST_PRODUCTS = "LIST_PRODUCTS"
+export const SAVE_PRODUCTS = "SAVE_PRODUCTS"
 
-export const addProduct = (product) => ({
+
+export const addProduct = (productToAdd) => ({
   type: ADD_PRODUCT,
-  product,
+  productToAdd,
 });
 
-export const saveProduct = (product, nameList) => {
+export const saveProducts = (productsSaved, nameList) => {
   
   return async dispatch => {
     try{
@@ -21,7 +24,7 @@ export const saveProduct = (product, nameList) => {
         body: JSON.stringify({
           date: Date.now(),
           nameList,
-          items: product
+          items: productsSaved
         }),
       });
 
@@ -29,8 +32,8 @@ export const saveProduct = (product, nameList) => {
       console.log(result)
 
       dispatch({
-        type: ADD_PRODUCT,
-        product,
+        type: SAVE_PRODUCTS,
+        productsSaved
       });
     } catch (error) {
       console.log(error.message)
@@ -46,3 +49,9 @@ export const saveProduct = (product, nameList) => {
     type: DEL_PRODUCT,
     productId,
   });
+
+  export const listProducts = (productsList) => ({
+    type: LIST_PRODUCTS,
+    productsList,
+  });
+  

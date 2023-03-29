@@ -3,7 +3,7 @@ import { StyleSheet, FlatList, View, Text, Dimensions } from 'react-native'
 import Product from '../Product/Product';
 
 
-const ProductList = ({ products, removeProd, editProd  }) => {
+const ProductList = ({ products, removeProd, editProd }) => {
 
 
 

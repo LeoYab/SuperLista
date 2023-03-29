@@ -6,9 +6,9 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
-import { addProduct, editProduct, saveProduct } from '../store/actions/products.action';
+import { addProduct, editProduct, saveProducts } from '../store/actions/products.action';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -37,26 +37,27 @@ const SuperLista = ({ navigation, props }) => {
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
 
+
   const dispatch = useDispatch() 
 
-  /* useEffect(() => {
-    dispatch(addProduct(products))
-  }, [products]) */
+useEffect(() => {
+   dispatch(addProduct(products)) 
+  }, [products])  
   
   function onAddProd(value) {
     setProducts(() => [...products, value]);
-    dispatch(addProduct(value))
+  
   }
 
   const onEditProd = (value) => {
     setProducts(value)
     setModalEditVisible(false)
-    dispatch(editProduct(value))
+   /*  dispatch(editProduct(value)) */
 
   };
   
   const saveListName = (nameList) => {
-    dispatch(saveProduct(products, nameList))
+    dispatch(saveProducts(products, nameList))
   }
 
 
@@ -100,7 +101,6 @@ const SuperLista = ({ navigation, props }) => {
 
   return (
     <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
-
       <>
         <Header
           products={products}
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#4B8A08',
+   /*  backgroundColor: '#4B8A08', */
 
   },
   buttonAdd: {

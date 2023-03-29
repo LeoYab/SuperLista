@@ -6,20 +6,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../store/actions/category.action'
 import { getProducts } from '../store/actions/getproducts.action'
 import { useEffect } from 'react'
+
+
 const CategoryList = ({ route }) => {
 
     const categories = useSelector(state => state.categories.selected)
 
-    const products = useSelector(state => state.products.products)
-    const getProductss = useSelector(state => state.getProducts.products)
+    const prods = useSelector(state => state.products.productToAdd)
 
-    const dispatch = useDispatch();
+
+  /*  const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getProducts())
+      
     }, [])
+ */
 
-    console.log(JSON.stringify(getProductss))
 
     /*REVISAR QUE LUEGO DE GUARDAR EN FIREBASE NO FILTRAN LOS PRODUCTOS */
     /* 
@@ -27,10 +30,8 @@ const CategoryList = ({ route }) => {
 
     /*  const { products, categoryId } = route.params;   */
 
-
-    const prodByCategory = products.filter(prod => prod.category === categories.id)
-
-
+    /*Cambiar items por Products para obtener la lista actual*/
+const prodByCategory = prods.filter(prod => prod.category === categories.id)  
 
 
     const renderProdByCat = ({ item, index }) => (
@@ -43,16 +44,16 @@ const CategoryList = ({ route }) => {
 
     )
 
-    return (
+ return (
         <>
-            <Table products={products} filter={true} />
+            <Table products={prods} filter={true} />
             <FlatList
                 data={prodByCategory}
                 keyExtractor={(item) => item.id}
                 renderItem={renderProdByCat}
             />
         </>
-    )
+    )  
 }
 
 export default CategoryList

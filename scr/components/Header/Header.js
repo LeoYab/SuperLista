@@ -59,9 +59,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   const handleSelectedCategory = (item) => {
     dispatch(selectCategory(item.id))
     navigation.navigate('Category', {
-/*       categoryId: item.id, */
       categoryName: item.title,
-      products: products,
 
     })
 
@@ -77,7 +75,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
       <View style={isPortrait ? styles.header : styles.headerLandscape}>
 
-        <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text>
+      {/*   <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text> */}
 
         {/*   {isPortrait &&
           <View style={styles.Category}>
@@ -137,7 +135,9 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-    /*     marginTop: height * 0.05, */
+    borderTopColor:"#bab8b8",
+    borderTopWidth:.8,
+  /*   marginTop: height * 0.05,  */
   },
   headerLandscape: {
     marginTop: height * 0.02,

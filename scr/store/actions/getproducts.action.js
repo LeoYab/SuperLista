@@ -26,7 +26,7 @@ export const getProducts = () => {
 
       dispatch({
         type: GET_PRODUCTS,
-        products,
+        productsGet: products,
       });
     } catch (error) {
       console.log(error.message);
