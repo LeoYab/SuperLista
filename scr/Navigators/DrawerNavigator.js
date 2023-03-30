@@ -12,7 +12,7 @@ export function DrawerNavigator() {
   return (
     <Drawer.Navigator  
     drawerContent = {(props) => <MenuItems {...props} />}>
-     
+
       <Drawer.Screen 
       name="SUPERLISTA" 
       component={TabNavigator}

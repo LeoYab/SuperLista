@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../../store/actions/category.action'
 import ModalSaveList from '../Modals/ModalSaveList'
 
-const ProdAdd = ({ onAddProd, saveListName }) => {
+const ProdAdd = ({ onAddProd, /* saveListName */ }) => {
 
     const categories = useSelector(state => state.categories.categories)
     /* 
@@ -70,7 +70,7 @@ const ProdAdd = ({ onAddProd, saveListName }) => {
         setModalEmptyVisible(false);
     };
 
-    const checkVisible = () => {
+   /*  const checkVisible = () => {
 
         setModalNameVisible(true);
     }
@@ -79,7 +79,7 @@ const ProdAdd = ({ onAddProd, saveListName }) => {
 
         setModalNameVisible(false);
     }
-
+ */
 
     const numberInputPriceHandler = (inputText) => {
 
@@ -98,11 +98,11 @@ const ProdAdd = ({ onAddProd, saveListName }) => {
 
     }
 
-    const createListName = () => {
+/*     const createListName = () => {
         saveListName(saveList)
         setModalNameVisible(false);
     }
-
+ */
 
     return (
         <View style={styles.imputContainer}>
@@ -128,6 +128,7 @@ const ProdAdd = ({ onAddProd, saveListName }) => {
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
+                    itemTextStyle={styles.itemTextStyle}
                     iconStyle={styles.iconStyle}
                     data={categories}
                     search
@@ -143,24 +144,24 @@ const ProdAdd = ({ onAddProd, saveListName }) => {
                 />
             </View>
             <View style={styles.buttonsContainer}>
-                <Buttons disabled={true} style={styles.buttonAddDisable} />
+               {/*  <Buttons disabled={true} style={styles.buttonAddDisable} /> */}
 
                 <Buttons style={styles.buttonAdd} onPress={checkEmptyInput}>+</Buttons>
 
-                <Buttons style={styles.buttonSave} onPress={checkVisible}>Guardar</Buttons>
+               {/*  <Buttons style={styles.buttonSave} onPress={checkVisible}>Guardar</Buttons> */}
 
             </View>
             <ModalEmptyImput
                 modalEmptyVisible={modalEmptyVisible}
                 onCancelModalCheck={onCancelModalCheck}
             />
-            <ModalSaveList
+           {/*  <ModalSaveList
                 saveList={saveList}
                 setSaveList={setSaveList}
                 modalNameVisible={modalNameVisible}
                 checkVisibled={checkVisibled}
                 createListName={createListName}
-            />
+            /> */}
 
         </View>
     )
@@ -199,11 +200,15 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
 
     },
+    itemTextStyle: {
+        fontSize: 14,
+        color: "#393939",
+      },
     icon: {
         marginRight: 5,
     },
     placeholderStyle: {
-        fontSize: 13,
+        fontSize: 11,
         color: "grey",
         marginLeft: 1,
 

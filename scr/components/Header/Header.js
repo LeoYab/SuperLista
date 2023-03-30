@@ -178,10 +178,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 4,
     borderBottomRightRadius: 4,
 
-    borderBottomWidth: 1,
+
     borderBottomColor: "#fff",
     backgroundColor: "#6ca115ef",
 
+  },  
+  iconStyle: {
+    width: 20,
+    height: 10,
+    tintColor: "white",
   },
 
   placeholderStyle: {

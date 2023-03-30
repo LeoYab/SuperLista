@@ -37,7 +37,7 @@ const SuperLista = ({ navigation, props }) => {
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
 
-
+  
   const dispatch = useDispatch() 
 
 useEffect(() => {
@@ -56,10 +56,10 @@ useEffect(() => {
 
   };
   
-  const saveListName = (nameList) => {
+ /*  const saveListName = (nameList) => {
     dispatch(saveProducts(products, nameList))
   }
-
+ */
 
   const onDeleteProd = (productId) => {
     const updatedProducts = products.filter((product) => product.id !== productId);
@@ -119,7 +119,7 @@ useEffect(() => {
               <ProdAdd
                 products={products}
                 onAddProd={onAddProd}
-                saveListName={saveListName}
+                /* saveListName={saveListName} */
               />
 
               <ProdEdit

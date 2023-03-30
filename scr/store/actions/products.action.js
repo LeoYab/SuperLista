@@ -1,4 +1,5 @@
 import { URL_API } from "../../constants/Database";
+import { Alert } from "react-native";
 
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
@@ -13,7 +14,10 @@ export const addProduct = (productToAdd) => ({
 });
 
 export const saveProducts = (productsSaved, nameList) => {
-  
+
+  const date = new Date();
+  const formatDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear().toString()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
   return async dispatch => {
     try{
       const response = await fetch (URL_API + "Products.json", {
@@ -22,7 +26,8 @@ export const saveProducts = (productsSaved, nameList) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          date: Date.now(),
+          id: Date.now(),
+          date: formatDate.toString(),
           nameList,
           items: productsSaved
         }),
@@ -30,10 +35,10 @@ export const saveProducts = (productsSaved, nameList) => {
 
       const result = await response.json();
       console.log(result)
-
+      Alert.alert("Lista guardada", "Se crea lista " + nameList)
       dispatch({
         type: SAVE_PRODUCTS,
-        productsSaved
+        productsSaved,
       });
     } catch (error) {
       console.log(error.message)
