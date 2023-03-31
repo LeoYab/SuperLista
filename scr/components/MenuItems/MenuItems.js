@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
 import { addProduct } from '../../store/actions/products.action';
 import { getProducts } from '../../store/actions/getproducts.action';
-import { listProducts, saveProducts } from '../../store/actions/products.action';
+import { saveProducts } from '../../store/actions/products.action';
 import Buttons from '../Button/Button';
-import { delListProducts } from "../../store/actions/listProducts.action";
+import { listProducts, delListProducts } from "../../store/actions/listProducts.action";
 import ModalSaveList from '../Modals/ModalSaveList';
 import { TextInput } from 'react-native-gesture-handler';
 import Input from '../Input/Input';
@@ -18,7 +18,7 @@ const MenuItems = ({ navigation }) => {
   const [value, setValue] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [saveListName, setSaveListName] = useState("");
-const [deleteList, setDeleteList] = useState("");
+  const [deleteList, setDeleteList] = useState("");
   const slideAnimation = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
@@ -38,11 +38,11 @@ const [deleteList, setDeleteList] = useState("");
 
   }, [saveListName, deleteList])
 
-  const delList = (id) => { 
+  const delList = (id) => {
 
     setDeleteList(id)
     dispatch(delListProducts(id))
-  
+
   }
 
 
@@ -79,9 +79,9 @@ const [deleteList, setDeleteList] = useState("");
 
   return (
     <>
-      <DrawerContentScrollView 
-      keyboardShouldPersistTaps="handled" 
-      style={styles.container} >
+      <DrawerContentScrollView
+        keyboardShouldPersistTaps="handled"
+        style={styles.container} >
 
 
         <Pressable style={{ height: 800 }} onPress={checkShowInput}>
@@ -115,7 +115,7 @@ const [deleteList, setDeleteList] = useState("");
                   <Text style={styles.labelFieldDate}>{item.date}</Text>
                 </View>
                 {/*     <Buttons style={styles.delButtonProd}>Del</Buttons> */}
-                <TouchableOpacity style={styles.delButtonProd} onPress={() => {delList(item)}}>
+                <TouchableOpacity style={styles.delButtonProd} onPress={() => { delList(item) }}>
                   <Entypo name="trash" size={22} color={'grey'} />
                 </TouchableOpacity>
 

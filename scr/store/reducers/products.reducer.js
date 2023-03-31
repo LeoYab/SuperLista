@@ -1,8 +1,7 @@
-import { ADD_PRODUCT, EDIT_PRODUCT, LIST_PRODUCTS, SAVE_PRODUCTS } from "../actions/products.action"
+import { ADD_PRODUCT, EDIT_PRODUCT, SAVE_PRODUCTS } from "../actions/products.action"
 
 const initialState = {
   productToAdd: [],
-  productsList: [],
   productsSaved:[],
 }
 
@@ -27,11 +26,6 @@ const ProductsReducer = (state = initialState, action) => {
           ...state, 
           products: action.product,
         }
-        case LIST_PRODUCTS:
-          return {
-            ...state, 
-            productsList: action.productsList,
-          }
       case SAVE_PRODUCTS:
         return {
           ...state, 

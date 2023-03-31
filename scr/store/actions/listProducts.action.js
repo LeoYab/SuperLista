@@ -1,11 +1,16 @@
 import { URL_API } from "../../constants/Database";
 import { Alert } from "react-native";
 
+export const LIST_PRODUCTS = "LIST_PRODUCTS"
 export const DEL_LIST_PRODUCTS = "DEL_LIST_PRODUCTS"
 
-
+export const listProducts = (productsList) => ({
+    type: LIST_PRODUCTS,
+    productsList,
+  });
+  
 export const delListProducts = (listId) => {
-    console.log(listId.id)
+
     return async dispatch => {
         try {
             await fetch(`${URL_API}/Products/${listId.id}.json`, {
@@ -22,6 +27,7 @@ export const delListProducts = (listId) => {
         } catch (error) {
             console.log(error.message)
         }
-    
-   }
-};
+   }};
+
+  
+  
