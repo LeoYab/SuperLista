@@ -8,7 +8,6 @@ const Drawer = createDrawerNavigator();
 
 export function DrawerNavigator() {
 
-  
   return (
     <Drawer.Navigator  
     drawerContent = {(props) => <MenuItems {...props} />}>

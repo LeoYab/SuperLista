@@ -7,6 +7,7 @@ import { addProduct } from '../../store/actions/products.action';
 import { getProducts } from '../../store/actions/getproducts.action';
 import { listProducts, saveProducts } from '../../store/actions/products.action';
 import Buttons from '../Button/Button';
+import { delListProducts } from "../../store/actions/listProducts.action";
 import ModalSaveList from '../Modals/ModalSaveList';
 import { TextInput } from 'react-native-gesture-handler';
 import Input from '../Input/Input';
@@ -17,7 +18,7 @@ const MenuItems = ({ navigation }) => {
   const [value, setValue] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [saveListName, setSaveListName] = useState("");
-
+const [deleteList, setDeleteList] = useState("");
   const slideAnimation = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
@@ -35,7 +36,15 @@ const MenuItems = ({ navigation }) => {
   useEffect(() => {
     dispatch(getProducts())
 
-  }, [saveListName])
+  }, [saveListName, deleteList])
+
+  const delList = (id) => { 
+
+    setDeleteList(id)
+    dispatch(delListProducts(id))
+  
+  }
+
 
 
   const prods = useSelector(state => state.products.productToAdd)
@@ -66,10 +75,16 @@ const MenuItems = ({ navigation }) => {
     }
     )
   }
+
+
   return (
     <>
-      <DrawerContentScrollView keyboardShouldPersistTaps="handled" style={styles.container} >
-        <Pressable style={{ height: 700 }} onPress={checkShowInput}>
+      <DrawerContentScrollView 
+      keyboardShouldPersistTaps="handled" 
+      style={styles.container} >
+
+
+        <Pressable style={{ height: 800 }} onPress={checkShowInput}>
 
           <Text style={styles.title}>Mis listas</Text>
 
@@ -85,7 +100,7 @@ const MenuItems = ({ navigation }) => {
             maxHeight={300}
             labelField="nameList"
             valueField="id"
-            placeholder="Categorías"
+            placeholder="Listas guardadas"
             searchPlaceholder="Buscar..."
             value={value}
             onChange={item => {
@@ -98,11 +113,9 @@ const MenuItems = ({ navigation }) => {
                   <Text style={styles.labelFieldName}>{item.nameList}</Text>
                   <Text> - </Text>
                   <Text style={styles.labelFieldDate}>{item.date}</Text>
-
                 </View>
                 {/*     <Buttons style={styles.delButtonProd}>Del</Buttons> */}
-                <TouchableOpacity style={styles.delButtonProd}>
-
+                <TouchableOpacity style={styles.delButtonProd} onPress={() => {delList(item)}}>
                   <Entypo name="trash" size={22} color={'grey'} />
                 </TouchableOpacity>
 
@@ -111,9 +124,9 @@ const MenuItems = ({ navigation }) => {
           />
           {!showInput
             ?
-            <Buttons style={styles.buttonContainer} onPress={handlePress}>Guardar</Buttons>
+            <Buttons style={styles.buttonContainer} onPress={handlePress}>Guardar Lista</Buttons>
             :
-            <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar Lista</Buttons>
+            <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar</Buttons>
           }
 
           {showInput && (
@@ -249,11 +262,13 @@ const styles = StyleSheet.create({
   delButtonProd: {
     alignSelf: "center",
     alignItems: "center",
-/*     borderWidth: 1,
-    borderColor: "grey",
-    borderRadius:6, */
+    /*     borderWidth: 1,
+        borderColor: "grey",
+        borderRadius:6, */
     width: width * 0.07,
-    paddingVertical: 6,
-    marginRight:2,
+    paddingVertical: 10,
+    marginRight: 2,
+    borderBottomWidth: .5,
+    borderBottomColor: "grey",
   },
 })

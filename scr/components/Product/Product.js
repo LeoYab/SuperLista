@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
+import { Entypo } from '@expo/vector-icons';
 
 import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
@@ -15,19 +16,28 @@ const Product = ({ style, item, editProd, removeProd, filter }) => {
     return (
         <>
             <View style={[styles.productTable, style]}>
-                <Text style={styles.productName}>{item.icon +" "+ item.nameProd}</Text>
+                <Text style={styles.productName}>{item.icon + " " + item.nameProd}</Text>
                 <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
                 <Text style={styles.productQuantity}>{item.quantity}</Text>
                 <Text style={styles.productTotal}>${prodTotal(item).toFixed(2)}</Text>
 
                 {!filter &&
+
                     <View style={styles.editDelProd}>
-                        <Buttons style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
+
+                        <TouchableOpacity style={styles.editButtonProd} onPress={() => { editProd(item.id) }}> 
+                            <Entypo name="edit" size={22} color={Colors.btnPrimary} />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.delButtonProd}  onPress={() => { removeProd(item) }}>
+                            <Entypo name="trash" size={22} color={'grey'} />
+                        </TouchableOpacity>
+                        {/*  <Buttons style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
                             <Text>Edit</Text>
                         </Buttons>
                         <Buttons style={styles.delButtonProd} onPress={() => { removeProd(item) }}>
                             <Text>Del</Text>
-                        </Buttons>
+                        </Buttons> */}
                     </View>
 
                 }
@@ -76,20 +86,20 @@ const styles = StyleSheet.create({
         marginEnd: width * 0.03,
     },
     editButtonProd: {
-        backgroundColor: Colors.btnPrimary,
-        borderRadius: 5,
-        marginRight: 1,
+        /*      backgroundColor: Colors.btnPrimary,
+             borderRadius: 5,
+             marginRight: 1, */
         alignSelf: "center",
-        width: 30,
-        height: 30,
+        /*      width: 30,
+             height: 30, */
     },
     delButtonProd: {
-        backgroundColor: Colors.btnSecondary,
-        borderRadius: 5,
-        marginLeft: 1,
+        /*    backgroundColor: Colors.btnSecondary, */
+        /*    borderRadius: 5,
+           marginLeft: 1, */
         alignSelf: "center",
-        width: 30,
-        height: 30,
+        /*     width: 30,
+            height: 30, */
     },
 
 })
