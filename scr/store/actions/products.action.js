@@ -13,14 +13,17 @@ export const addProduct = (productToAdd) => ({
   productToAdd,
 });
 
-export const saveProducts = (productsSaved, nameList) => {
+
+export const saveProducts = (productsSaved, nameList, userId) => {
 
   const date = new Date();
   const formatDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear().toString()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
   return async dispatch => {
     try{
-      const response = await fetch (URL_API + "Productos.json", {
+  
+
+      const response = await fetch (URL_API + userId + ".json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

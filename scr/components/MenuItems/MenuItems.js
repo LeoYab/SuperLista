@@ -14,6 +14,9 @@ import Input from '../Input/Input';
 import Colors from "../../constants/Colors";
 import { Entypo } from '@expo/vector-icons';
 
+
+
+
 const MenuItems = ({ navigation }) => {
   const [value, setValue] = useState(null);
   const [showInput, setShowInput] = useState(false);
@@ -22,7 +25,9 @@ const MenuItems = ({ navigation }) => {
   const slideAnimation = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
+  const userId = useSelector(state => state.auth.userId);
 
+  
 
   const handlePress = () => {
     setShowInput(true);
@@ -34,7 +39,7 @@ const MenuItems = ({ navigation }) => {
   };
 
   useEffect(() => {
-    dispatch(getProducts())
+    dispatch(getProducts(userId))
 
   }, [saveListName, deleteList])
 
@@ -51,7 +56,7 @@ const MenuItems = ({ navigation }) => {
 
   const createListName = () => {
 
-    dispatch(saveProducts(prods, saveListName))
+    dispatch(saveProducts(prods, saveListName, userId))
     setShowInput(false);
     setSaveListName("")
   }

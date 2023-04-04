@@ -1,9 +1,16 @@
 import { URL_AUTH_SIGNUP, URL_AUTH_SIGNIN } from "../../constants/Database";
 export const SIGN_UP  = "SIGN_UP";
 export const SIGN_IN  = "SIGN_IN";
+export const USER_LOGIN = "USER_LOGIN";
 
+export const userLogin = (userId) => ({
+    type: USER_LOGIN,
+    userId,
+})
 
 export const signUp = (email, password) => {
+
+   
 
     return async dispatch => {
         try {
@@ -38,7 +45,8 @@ export const signUp = (email, password) => {
 
             const data = await response.json();
 
-            console.log(data)
+            userLogin(data.localId)
+
             dispatch({
                 type: SIGN_UP,
                 token: data.idToken,
@@ -91,7 +99,7 @@ export const signIn = (email, password) => {
             }
             const data = await response.json();
             
-console.log(data)
+
             dispatch({
                 type: SIGN_IN,
                 token: data.idToken,
