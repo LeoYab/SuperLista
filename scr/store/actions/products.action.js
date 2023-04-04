@@ -20,7 +20,7 @@ export const saveProducts = (productsSaved, nameList) => {
 
   return async dispatch => {
     try{
-      const response = await fetch (URL_API + "Products.json", {
+      const response = await fetch (URL_API + "Productos.json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

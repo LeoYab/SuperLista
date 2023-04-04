@@ -1,32 +1,17 @@
 import { StyleSheet, View, Dimensions, SafeAreaView } from 'react-native';
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 
 import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
 import { addProduct, editProduct, saveProducts } from '../store/actions/products.action';
 
-SplashScreen.preventAutoHideAsync();
+
 
 const SuperLista = ({ navigation, props }) => {
 
-  const [fontsLoaded] = useFonts({
-    'OpenSansRegular': require("../../assets/fonts/OpenSansRegular.ttf"),
-    'QicksandBold': require("../../assets/fonts/OpenSansBold.ttf"),
-    'QickSandMedium': require('../../assets/fonts/QuicksandMedium.ttf'),
-    'OpenSansBold': require('../../assets/fonts/OpenSansBold.ttf'),
-
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
 
   const [products, setProducts] = useState([]);
@@ -95,12 +80,9 @@ useEffect(() => {
 
   };
 
-  if (!fontsLoaded) {
-    return null;
-  }
 
   return (
-    <SafeAreaView style={styles.container} onLayout={onLayoutRootView}>
+    <SafeAreaView style={styles.container} >
       <>
         <Header
           products={products}

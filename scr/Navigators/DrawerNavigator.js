@@ -1,6 +1,6 @@
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
+import React from 'react';
 import TabNavigator from './TabNavigator';
 import MenuItems from '../components/MenuItems/MenuItems';
 

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 20,
-        fontFamily: 'OpenSans_700Bold',
+
     },
     productTable: {
       flexDirection: 'row',
