@@ -6,7 +6,8 @@ import Product from '../components/Product/Product'
 
 const ListProducts = () => {
 
-    const listProducts = useSelector(state => state.products.productsList)
+    const listProducts = useSelector(state => state.listAction.productsList)
+ 
     /*  const list = listProducts.map(list => list.items).flat(); 
    */
 
@@ -24,7 +25,7 @@ const ListProducts = () => {
         <>
             <Table /* products={products} */ filter={true} />
             <FlatList
-                data={listProducts.items}
+                data={listProducts}
                 keyExtractor={(item) => item.id}
                 renderItem={renderProdByCat}
             />

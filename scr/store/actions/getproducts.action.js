@@ -6,7 +6,7 @@ export const getProducts = (userId) => {
   return async (dispatch) => {
 
     try {
-      const response = await fetch(URL_API + userId+ ".json", {
+      const response = await fetch(URL_API + userId + ".json", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

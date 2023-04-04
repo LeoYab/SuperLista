@@ -20,10 +20,10 @@ export const saveProducts = (productsSaved, nameList, userId) => {
   const formatDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear().toString()} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 
   return async dispatch => {
-    try{
-  
+    try {
 
-      const response = await fetch (URL_API + userId + ".json", {
+
+      const response = await fetch(URL_API + userId + ".json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -36,8 +36,8 @@ export const saveProducts = (productsSaved, nameList, userId) => {
         }),
       });
 
-      const result = await response.json();
-      console.log(result)
+    /*   const result = await response.json(); */
+
       Alert.alert("Lista guardada", "Se crea lista " + nameList)
       dispatch({
         type: SAVE_PRODUCTS,
@@ -48,13 +48,13 @@ export const saveProducts = (productsSaved, nameList, userId) => {
     }
   }
 };
-  export const editProduct = (product) => ({
-    type: EDIT_PRODUCT,
-    product,
-  });
+export const editProduct = (product) => ({
+  type: EDIT_PRODUCT,
+  product,
+});
 
-  export const delProduct = (productId) => ({
-    type: DEL_PRODUCT,
-    productId,
-  });
+export const delProduct = (productId) => ({
+  type: DEL_PRODUCT,
+  productId,
+});
 

@@ -44,9 +44,8 @@ const MenuItems = ({ navigation }) => {
   }, [saveListName, deleteList])
 
   const delList = (id) => {
-
     setDeleteList(id)
-    dispatch(delListProducts(id))
+    dispatch(delListProducts(userId, id))
 
   }
 
@@ -73,8 +72,7 @@ const MenuItems = ({ navigation }) => {
 
 
   const handleSelectedList = (item) => {
-
-    dispatch(listProducts(item))
+    dispatch(listProducts(userId, item.id))
     navigation.navigate('ListProducts', {
       nameList: item.nameList,
     }

@@ -1,6 +1,6 @@
 import { URL_AUTH_SIGNUP, URL_AUTH_SIGNIN } from "../../constants/Database";
-export const SIGN_UP  = "SIGN_UP";
-export const SIGN_IN  = "SIGN_IN";
+export const SIGN_UP = "SIGN_UP";
+export const SIGN_IN = "SIGN_IN";
 export const USER_LOGIN = "USER_LOGIN";
 
 export const userLogin = (userId) => ({
@@ -10,7 +10,7 @@ export const userLogin = (userId) => ({
 
 export const signUp = (email, password) => {
 
-   
+
 
     return async dispatch => {
         try {
@@ -27,14 +27,14 @@ export const signUp = (email, password) => {
                     password,
                     returnSecureToken: true
                 }),
-               
+
             });
-            
-            if(!response.ok) {
+
+            if (!response.ok) {
                 const errorResData = await response.json();
-              
+
                 const errorId = errorResData.error.message;
-                console.log(errorId);
+
                 let message = 'No se pudo registrar!';
 
                 if (errorId === 'EMAIL_EXISTS') {
@@ -63,7 +63,7 @@ export const signUp = (email, password) => {
 }
 
 export const signIn = (email, password) => {
-  
+
     return async dispatch => {
         try {
             dispatch({
@@ -79,14 +79,13 @@ export const signIn = (email, password) => {
                     password,
                     returnSecureToken: true
                 }),
-               
+
             });
-          
-            if(!response.ok) {
+
+            if (!response.ok) {
                 const errorResData = await response.json();
-               
+
                 const errorId = errorResData.error.message;
-                console.log(errorId);
                 let message = 'No se pudo Ingresar!';
 
                 if (errorId === 'EMAIL_NOT_FOUND') {
@@ -98,7 +97,8 @@ export const signIn = (email, password) => {
                 throw new Error(message);
             }
             const data = await response.json();
-            
+
+            userLogin(data.localId)
 
             dispatch({
                 type: SIGN_IN,
