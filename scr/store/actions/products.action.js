@@ -13,7 +13,6 @@ export const addProduct = (productToAdd) => ({
   productToAdd,
 });
 
-
 export const saveProducts = (productsSaved, nameList, userId) => {
 
   const date = new Date();
@@ -36,7 +35,8 @@ export const saveProducts = (productsSaved, nameList, userId) => {
         }),
       });
 
-    /*   const result = await response.json(); */
+   const result = await response.json(); 
+
 
       Alert.alert("Lista guardada", "Se crea lista " + nameList)
       dispatch({
