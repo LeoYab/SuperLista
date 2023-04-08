@@ -1,6 +1,5 @@
 import { URL_AUTH_SIGNUP, URL_AUTH_SIGNIN } from "../../constants/Database";
-export const SIGN_UP = "SIGN_UP";
-export const SIGN_IN = "SIGN_IN";
+export const SIGN_UP_IN = "SIGN_UP";
 export const USER_LOGIN = "USER_LOGIN";
 
 export const userLogin = (userId) => ({
@@ -8,16 +7,16 @@ export const userLogin = (userId) => ({
     userId,
 })
 
-export const signUp = (email, password) => {
+export const signUpIn = (loginView, email, password) => {
 
-
+    const CHECK_SIGN = loginView ? URL_AUTH_SIGNIN : URL_AUTH_SIGNUP;
 
     return async dispatch => {
         try {
             dispatch({
-                type: "SIGN_UP_START"
+                type: "SIGN_UP_IN_START"
             })
-            const response = await fetch(URL_AUTH_SIGNUP, {
+            const response = await fetch(CHECK_SIGN, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -29,7 +28,7 @@ export const signUp = (email, password) => {
                 }),
 
             });
-
+           if (!loginView) {
             if (!response.ok) {
                 const errorResData = await response.json();
 
@@ -42,46 +41,7 @@ export const signUp = (email, password) => {
                 }
                 throw new Error(message);
             }
-
-            const data = await response.json();
-
-            userLogin(data.localId)
-
-            dispatch({
-                type: SIGN_UP,
-                token: data.idToken,
-                userId: data.localId
-            })
-        } catch (error) {
-            dispatch({
-                type: "SIGN_UP_FAIL"
-            })
-            alert(error);
-        }
-    }
-
-}
-
-export const signIn = (email, password) => {
-
-    return async dispatch => {
-        try {
-            dispatch({
-                type: "SIGN_IN_START"
-            })
-            const response = await fetch(URL_AUTH_SIGNIN, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                    returnSecureToken: true
-                }),
-
-            });
-
+           }else{
             if (!response.ok) {
                 const errorResData = await response.json();
 
@@ -96,18 +56,21 @@ export const signIn = (email, password) => {
 
                 throw new Error(message);
             }
+           }
+            
+
             const data = await response.json();
 
             userLogin(data.localId)
 
             dispatch({
-                type: SIGN_IN,
+                type: SIGN_UP_IN,
                 token: data.idToken,
                 userId: data.localId
             })
         } catch (error) {
             dispatch({
-                type: "SIGN_IN_FAIL"
+                type: "SIGN_UP_IN_FAIL"
             })
             alert(error);
         }

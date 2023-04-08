@@ -13,7 +13,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import Input from '../Input/Input';
 import Colors from "../../constants/Colors";
 import { Entypo } from '@expo/vector-icons';
-
+import ModalDel from "../Modals/ModalDel";
 
 
 
@@ -21,13 +21,15 @@ const MenuItems = ({ navigation }) => {
   const [value, setValue] = useState(null);
   const [showInput, setShowInput] = useState(false);
   const [saveListName, setSaveListName] = useState("");
-  const [deleteList, setDeleteList] = useState("");
+  const [deleteList, setDeleteList] = useState(false);
+  const [showModalDel, setShowModalDel] = useState(false);
+  const [confirmItemDel, setConfirmItemDel] = useState(null);
   const slideAnimation = useRef(new Animated.Value(0)).current;
   const dispatch = useDispatch();
 
   const userId = useSelector(state => state.auth.userId);
 
-  
+
 
   const handlePress = () => {
     setShowInput(true);
@@ -39,17 +41,29 @@ const MenuItems = ({ navigation }) => {
   };
 
   useEffect(() => {
+
     dispatch(getProducts(userId))
 
   }, [saveListName, deleteList])
 
   const delList = (id) => {
-    setDeleteList(id)
-    dispatch(delListProducts(userId, id))
+
+    setShowModalDel(true)
+    setConfirmItemDel(id)
 
   }
 
+  const confirmDelList = (id) => {
+console.log(id)
+    setDeleteList(!deleteList)
+    dispatch(delListProducts(userId, id, list))
+    setShowModalDel(false)
 
+  }
+
+  const onCancelModal = () => {
+    setShowModalDel(false);
+  }
 
   const prods = useSelector(state => state.products.productToAdd)
 
@@ -117,7 +131,6 @@ const MenuItems = ({ navigation }) => {
                   <Text> - </Text>
                   <Text style={styles.labelFieldDate}>{item.date}</Text>
                 </View>
-                {/*     <Buttons style={styles.delButtonProd}>Del</Buttons> */}
                 <TouchableOpacity style={styles.delButtonProd} onPress={() => { delList(item) }}>
                   <Entypo name="trash" size={22} color={'grey'} />
                 </TouchableOpacity>
@@ -149,21 +162,20 @@ const MenuItems = ({ navigation }) => {
             </Animated.View>
           )}
 
-
-
-
+          {/* 
           <Buttons style={styles.buttonContainer}>Boton 2</Buttons>
-          <Buttons style={styles.buttonContainer}>Boton 3</Buttons>
+          <Buttons style={styles.buttonContainer}>Boton 3</Buttons> */}
         </Pressable>
       </DrawerContentScrollView>
+      {showModalDel &&
 
-      {/* <ModalSaveList
-saveList={saveList}
-setSaveList={setSaveList}
-modalNameVisible={modalNameVisible}
-checkVisibled={checkVisibled}
-createListName={createListName}
-/> */}
+        <ModalDel
+          modalDelVisible={showModalDel}
+          listToDel={confirmItemDel}
+          itemToDel={null}
+          onCancelModal={onCancelModal}
+          onDeleteItem={confirmDelList}
+        />}
     </>
   )
 }

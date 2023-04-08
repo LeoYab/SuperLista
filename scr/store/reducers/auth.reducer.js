@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN, USER_LOGIN } from "../actions/auth.action"
+import { SIGN_UP_IN, USER_LOGIN } from "../actions/auth.action"
 
 
 const initalState = {
@@ -11,13 +11,13 @@ const initalState = {
 
 const authReducer = (state = initalState, action) => {
     switch (action.type) {
-        case "SIGN_UP_START":
+        case "SIGN_UP_IN_START":
 
             return {
                 ...state,
                 isLoading: true
             }
-        case SIGN_UP:
+        case SIGN_UP_IN:
             return {
                 ...state,
                 token: action.token,
@@ -25,12 +25,12 @@ const authReducer = (state = initalState, action) => {
                 isLoading: false
             }
 
-        case "SIGN_UP_FAIL":
+        case "SIGN_UP_IN_FAIL":
             return {
                 ...state,
                 isLoading: false
             }
-        case "SIGN_IN_START":
+       /*  case "SIGN_IN_START":
 
             return {
                 ...state,
@@ -54,7 +54,7 @@ const authReducer = (state = initalState, action) => {
             return {
                 ...state,
                 userId: action.userId,
-            }
+            } */
         default:
             return state;
     }

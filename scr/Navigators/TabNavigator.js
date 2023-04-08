@@ -1,12 +1,11 @@
 import { StyleSheet, View, Text } from 'react-native'
 import React from 'react'
-import { Ionicons } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Categories from '../screens/Categories';
 import ScreenNavigator from './ScreenNavigator'
-import CategoryList from '../screens/CategoryList';
+import PlaceNavigator from './PlaceNavigator';
+import Colors from '../constants/Colors';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -16,7 +15,7 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: styles.tabBar
+        tabBarStyle: styles.tabBar,
       }}>
 
       <BottomTabs.Screen
@@ -25,12 +24,26 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
-              <Entypo name="home" size={24} color={focused ? '#6ca115ef' : 'green'} />
-              <Text style={{ color: focused ? '#6ca115ef' : '#green' }}>Inicio</Text>
+              <Entypo name="home" size={24} color={focused ? "white" : Colors.btntertiary} />
+              <Text style={{ color: focused ? "white" : Colors.btntertiary}}>Inicio</Text>
             </View>
           )
         }}
       />
+
+<BottomTabs.Screen
+        name="PlaceNavigator"
+        component={PlaceNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.tabBarIcon}>
+              <Entypo name="location" size={24} color={focused ? "white" : Colors.btntertiary} />
+              <Text style={{ color: focused ? "white" : Colors.btntertiary}}>Ubicación</Text>
+            </View>
+          )
+        }}
+      />
+
 
 <BottomTabs.Screen
         name="Categories"
@@ -38,8 +51,8 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
-              <Entypo name="list" size={24} color={focused ? '#6ca115ef' : 'green'} />
-              <Text style={{ color: focused ? '#6ca115ef' : '#green' }}>Categorías</Text>
+              <Entypo name="list" size={24} color={focused ? "white" : Colors.btntertiary} />
+              <Text style={{ color: focused ? "white" : Colors.btntertiary }}>Categorías</Text>
             </View>
           )
         }}
@@ -55,6 +68,9 @@ const TabNavigator = () => {
 export default TabNavigator
 
 const styles = StyleSheet.create({
+  tabBar:{
+    backgroundColor:"#4B8A08",
+  },
   tabBarIcon: {
     flex: 1,
     justifyContent: 'center',

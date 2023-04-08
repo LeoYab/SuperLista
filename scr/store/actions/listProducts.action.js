@@ -1,6 +1,10 @@
 import { URL_API } from "../../constants/Database";
 import { Alert } from "react-native";
 
+
+import ModalDel from "../../components/Modals/ModalDel";
+
+
 export const LIST_PRODUCTS = "LIST_PRODUCTS"
 export const DEL_LIST_PRODUCTS = "DEL_LIST_PRODUCTS"
 
@@ -9,7 +13,7 @@ export const listProducts = (userId, listProd) => {
         return async (dispatch) => {
       
           try {
-            const response = await fetch(`${URL_API}${userId}/${listProd}.json`, {
+            const response = await fetch(`${URL_API}${userId}/List_Products/${listProd}.json`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -34,20 +38,23 @@ export const listProducts = (userId, listProd) => {
         }
   };
   
-export const delListProducts = (userId, listId) => {
+export const delListProducts = (userId, listId, list) => {
 
     return async dispatch => {
         try {
-            await fetch(`${URL_API}/${userId}/${listId.id}.json`, {
+            await fetch(`${URL_API}/${userId}/List_Products/${listId}.json`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
             });
-            Alert.alert("Lista " + listId.nameList + " eliminada")
+
+           const listUpdate = list.filter(item => item.id !== listId)
+/*             Alert.alert("Lista " + listId.nameList + " eliminada") */
+
             dispatch({
                 type: DEL_LIST_PRODUCTS, 
-                listToDel: listId 
+                listToDel: listUpdate,
             });
         } catch (error) {
             console.log(error.message)

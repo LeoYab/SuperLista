@@ -112,9 +112,9 @@ useEffect(() => {
               />
 
               <ProdDel
-                productSelectToDel={productSelectToDel}
+                itemToDel={productSelectToDel}
                 modalDelVisible={modalDelVisible}
-                onDeleteProd={onDeleteProd}
+                onDeleteItem={onDeleteProd}
                 onCancelModal={onCancelModal}
               />
             </>

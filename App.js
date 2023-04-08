@@ -20,16 +20,6 @@ const [fontsLoaded] = useFonts({
 
   });
 
- /* const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]); 
- 
- if (!fontsLoaded) {
-    return null;
-  }
-  */
 
   useEffect(() =>{
     if(fontsLoaded){

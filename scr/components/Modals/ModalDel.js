@@ -4,7 +4,10 @@ import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors';
 import ModalShadow from '../../constants/ModalShadow'
 
-const ModalDel = ({ onDeleteProd, onCancelModal, productSelectToDel, modalDelVisible }) => {
+const ModalDel = ({ onDeleteItem, onCancelModal, itemToDel, listToDel, modalDelVisible }) => {
+
+  const item = itemToDel ? itemToDel.nameProd : listToDel.nameList;
+const itemListDel = itemToDel ? itemToDel.id : listToDel.id
 
   return (
 
@@ -12,9 +15,9 @@ const ModalDel = ({ onDeleteProd, onCancelModal, productSelectToDel, modalDelVis
 
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Desea eliminar el producto {productSelectToDel.nameProd}?</Text>
+          <Text style={styles.modalText}>¿Desea eliminar el producto {item}?</Text>
           <View style={styles.buttonContainer}>
-            <Buttons style={styles.deleteButton} onPress={() => { onDeleteProd(productSelectToDel.id) }}>
+            <Buttons style={styles.deleteButton} onPress={() => { onDeleteItem(itemListDel) }}>
               <Text style={styles.buttonText}>Sí</Text>
             </Buttons>
             <Buttons style={styles.cancelButton} onPress={() => { onCancelModal() }}>

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity, TextInp
 import React from 'react'
 import Colors from '../constants/Colors'
 import { useDispatch, useSelector } from 'react-redux'
-import { signUp, signIn } from '../store/actions/auth.action'
+import { signUpIn } from '../store/actions/auth.action'
 import InputRegister from '../components/Input/InputRegister'
 import { useReducer, useCallback } from 'react'
 import { useState } from 'react'
@@ -56,7 +56,7 @@ const [loginView, setLoginView] = useState(false);
 
     const onHandleRegister = () => {
         if (formState.formIsValid) {
-            dispatch(signUp(formState.inputValues.email, formState.inputValues.password))
+            dispatch(signUpIn(loginView, formState.inputValues.email, formState.inputValues.password))
         } else {
             alert('Por favor, ingrese un email y una contraseña válidos')
         }
@@ -81,7 +81,7 @@ const loginEnable = () => {
 
 const onHandleLogin= () => {
 if (formState.formIsValid) { 
-        dispatch(signIn(formState.inputValues.email, formState.inputValues.password))
+        dispatch(signUpIn(loginView ,formState.inputValues.email, formState.inputValues.password))
   } else {
         console.log('Por favor, ingrese un email y una contraseña válidos')
     } 

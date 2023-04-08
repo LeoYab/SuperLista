@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native'
 import React from 'react'
 import ModalDel from "../Modals/ModalDel"
 
-const ProdDel = ({ onDeleteProd, productSelectToDel, modalDelVisible, onCancelModal }) => {
+const ProdDel = ({ onDeleteItem, onCancelModal, itemToDel, modalDelVisible }) => {
 
   return (
     <ModalDel
       modalDelVisible={modalDelVisible}
-      productSelectToDel={productSelectToDel}
-      onDeleteProd={onDeleteProd}
+      itemToDel={itemToDel}
+      onDeleteItem={onDeleteItem}
       onCancelModal={onCancelModal}
     />
   )

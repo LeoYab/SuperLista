@@ -22,7 +22,7 @@ export const saveProducts = (productsSaved, nameList, userId) => {
     try {
 
 
-      const response = await fetch(URL_API + userId + ".json", {
+      const response = await fetch(URL_API + userId + "/List_Products.json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export const saveProducts = (productsSaved, nameList, userId) => {
    const result = await response.json(); 
 
 
-      Alert.alert("Lista guardada", "Se crea lista " + nameList)
+   /*    Alert.alert("Lista guardada", "Se crea lista " + nameList) */
       dispatch({
         type: SAVE_PRODUCTS,
         productsSaved,

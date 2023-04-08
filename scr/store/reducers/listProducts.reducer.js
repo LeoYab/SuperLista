@@ -16,10 +16,10 @@ const ListReducer = (state = initialState, action) => {
             }
 
         case DEL_LIST_PRODUCTS:
-
+          
             return {
                 ...state,
-                listToDel: list.filter(item => item.id !== action.listId)
+                listToDel: action.listToDel,
             };
         default:
             return state;
