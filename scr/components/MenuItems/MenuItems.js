@@ -54,7 +54,6 @@ const MenuItems = ({ navigation }) => {
   }
 
   const confirmDelList = (id) => {
-console.log(id)
     setDeleteList(!deleteList)
     dispatch(delListProducts(userId, id, list))
     setShowModalDel(false)

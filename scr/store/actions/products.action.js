@@ -22,7 +22,7 @@ export const saveProducts = (productsSaved, nameList, userId) => {
     try {
 
 
-      const response = await fetch(URL_API + userId + "/List_Products.json", {
+      const response = await fetch(URL_API + "Users/" + userId + "/List_Products.json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

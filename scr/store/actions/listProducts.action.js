@@ -13,7 +13,7 @@ export const listProducts = (userId, listProd) => {
         return async (dispatch) => {
       
           try {
-            const response = await fetch(`${URL_API}${userId}/List_Products/${listProd}.json`, {
+            const response = await fetch(`${URL_API}Users/${userId}/List_Products/${listProd}.json`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const delListProducts = (userId, listId, list) => {
 
     return async dispatch => {
         try {
-            await fetch(`${URL_API}/${userId}/List_Products/${listId}.json`, {
+            await fetch(`${URL_API}Users/${userId}/List_Products/${listId}.json`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

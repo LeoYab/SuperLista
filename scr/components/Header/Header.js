@@ -8,16 +8,22 @@ import Footer from '../Footer/Footer';
 import { Dropdown } from 'react-native-element-dropdown';
 /* import { CATEGORIES } from '../../categories/categories' */
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCategory } from '../../store/actions/category.action';
+import { selectCategory, category } from '../../store/actions/category.action';
 
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
 
   const categories = useSelector(state => state.categories.categories)
+
   const dispatch = useDispatch() 
 
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
   const [value, setValue] = useState(null);
+
+useEffect(() => {
+  dispatch(category())
+}, [value])
+
 
   useEffect(() => {
 
@@ -57,7 +63,9 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
 
   const handleSelectedCategory = (item) => {
+ 
     dispatch(selectCategory(item.id))
+   
     navigation.navigate('Category', {
       categoryName: item.title,
 

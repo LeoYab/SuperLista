@@ -4,10 +4,12 @@ import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
-import { CATEGORIES } from '../../categories/categories'
+/* import { CATEGORIES } from '../../categories/categories' */
 import { Dropdown } from 'react-native-element-dropdown';
-const ModalEdit = ({ category, setEditCatry, setEditCatryIcon, nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
+import { useSelector } from 'react-redux'
 
+const ModalEdit = ({ category, setEditCatry, setEditCatryIcon, nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
+  const categories = useSelector(state => state.categories.categories)
   const [value, setValue] = useState({});
 
 useEffect(() => {
@@ -43,7 +45,7 @@ useEffect(() => {
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
               iconStyle={styles.iconStyle}
-              data={CATEGORIES}
+              data={categories}
               search
               maxHeight={300}
               labelField="title"

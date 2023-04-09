@@ -35,7 +35,7 @@ export const addPlace = (title, image, location, userId) => {
         dispatch({ type: ADD_PLACE, payload: { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng } })
         const newPlace = { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng };
         try {
-            const response = await fetch(URL_API + userId + ".json", {
+            const response = await fetch(URL_API + "Users/" + userId + ".json", {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"
@@ -46,7 +46,7 @@ export const addPlace = (title, image, location, userId) => {
             });
 
             const result = await response.json();
-            console.log(result) 
+         /*    console.log(result)  */
         } catch (error) {
             console.log(error.message)
         }
@@ -58,14 +58,14 @@ export const getPlaces = (userId) => {
 
     return async dispatch => {
         try {
-            const response = await fetch(URL_API + userId + "/places.json");
+            const response = await fetch(URL_API + "Users/" + userId + "/places.json");
 
             if (!response.ok) {
                 throw new Error('No se ha podido obtener la información de los lugares');
             }
 
             const result = await response.json();
-
+            if (result) {
             const places = Object.keys(result).map(key => {
                 return {
                     ...result[key],
@@ -74,7 +74,15 @@ export const getPlaces = (userId) => {
             });
         
 
-            dispatch({ type: GET_PLACES, payload: places });
+            dispatch({ 
+                type: GET_PLACES, 
+                payload: places });
+
+        }else{
+            dispatch({ 
+                type: GET_PLACES, 
+                payload: [] });
+        }
         } catch (error) {
             console.log(error.message);
         }
