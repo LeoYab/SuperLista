@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Button, Animated, Pressable, TouchableWithoutFeedback } from "react-native"
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Button, Animated, Pressable, TouchableWithoutFeedback, Image } from "react-native"
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,8 +14,8 @@ import Input from '../Input/Input';
 import Colors from "../../constants/Colors";
 import { Entypo } from '@expo/vector-icons';
 import ModalDel from "../Modals/ModalDel";
-
-
+import { Feather } from '@expo/vector-icons';
+import { logout } from "../../store/actions/auth.action";
 
 const MenuItems = ({ navigation }) => {
   const [value, setValue] = useState(null);
@@ -95,6 +95,13 @@ const MenuItems = ({ navigation }) => {
 
   return (
     <>
+
+      <View style={styles.containerHeader}>
+        <Feather style={styles.logout} name="log-out" size={24} color="white"  onPress={() => dispatch(logout())}/>
+        <Image style={styles.profileImage} />
+        <Text>  </Text>
+
+      </View>
       <DrawerContentScrollView
         keyboardShouldPersistTaps="handled"
         style={styles.container} >
@@ -181,14 +188,30 @@ const MenuItems = ({ navigation }) => {
 
 export default MenuItems
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
+  containerHeader: {
+    height: height * 0.2,
+    backgroundColor: Colors.LIGTH_PINK,
+
+  },
+  logout: {
+    marginTop: 6,
+    marginRight:6,
+    alignSelf: "flex-end",
+  },
   container: {
     flex: 1,
     padding: 15,
   },
-
+  profileImage: {
+    backgroundColor: "white",
+    marginLeft: 10,
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",

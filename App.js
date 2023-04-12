@@ -1,18 +1,20 @@
 
-import * as SplashScreen from 'expo-splash-screen'; 
+import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
-import store from './scr/store';
+/* import store from './scr/store'; */
 import MainNavigator from './scr/Navigators/MainNavigator';
 import { MyDrawer } from './scr/Navigators/DrawerNavigator';
+import { PersistGate } from 'redux-persist/integration/react';
 
+import { store, storePersisted } from "./scr/store"
 import { useEffect } from 'react';
- 
-SplashScreen.preventAutoHideAsync();  
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
-const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     'OpenSansRegular': require("./assets/fonts/OpenSansRegular.ttf"),
     'QicksandBold': require("./assets/fonts/OpenSansBold.ttf"),
     'QickSandMedium': require('./assets/fonts/QuicksandMedium.ttf'),
@@ -21,19 +23,21 @@ const [fontsLoaded] = useFonts({
   });
 
 
-  useEffect(() =>{
-    if(fontsLoaded){
+  useEffect(() => {
+    if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded])
 
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return null;
   }
 
   return (
     <Provider store={store} >
-      <MainNavigator />
+      <PersistGate loading={null} persistor={storePersisted} >
+        <MainNavigator />
+      </PersistGate>
     </Provider>
   )
 };

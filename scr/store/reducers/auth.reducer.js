@@ -1,11 +1,10 @@
-import { SIGN_UP_IN, USER_LOGIN } from "../actions/auth.action"
+import { SIGN_UP_IN, USER_LOGOUT } from "../actions/auth.action"
 
 
 const initalState = {
     token: null,
     userId: null,
     isLoading: false,
-    userId: null,
 }
 
 
@@ -30,6 +29,13 @@ const authReducer = (state = initalState, action) => {
                 ...state,
                 isLoading: false
             }
+
+        case USER_LOGOUT:
+
+        return{
+            ...state,
+            userId: null,
+        }
        /*  case "SIGN_IN_START":
 
             return {

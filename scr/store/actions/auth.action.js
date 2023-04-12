@@ -1,6 +1,7 @@
 import { URL_AUTH_SIGNUP, URL_AUTH_SIGNIN } from "../../constants/Database";
 export const SIGN_UP_IN = "SIGN_UP";
 export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";
 
 export const userLogin = (userId) => ({
     type: USER_LOGIN,
@@ -77,3 +78,9 @@ export const signUpIn = (loginView, email, password) => {
     }
 
 }
+export const logout = (userId) => async (dispatch) => {
+    dispatch({
+        type: USER_LOGOUT,
+        userId
+    })
+  };
