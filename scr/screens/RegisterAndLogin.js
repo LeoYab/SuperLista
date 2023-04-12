@@ -88,7 +88,7 @@ if (formState.formIsValid) {
 }
 
     return (
-        <KeyboardAvoidingView style={styles.screen} behavior="padding">
+        <KeyboardAvoidingView style={styles.screen}>
             <View style={styles.container}>
                 <Text style={styles.title}>{!loginView ? "REGISTRO" : "INGRESAR"}</Text>
                 <View style={styles.form}>

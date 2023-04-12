@@ -28,14 +28,7 @@ export const category = () => {
         type: CATEGORY,
         categories: result,
       });
-      /*  
-            const products = Object.keys(result).map((key) => ({
-              ...result[key],
-              id: key,
-            }));
-    
-          
-     */
+
 
     } catch (error) {
       console.log(error.message);
