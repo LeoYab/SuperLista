@@ -6,7 +6,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
-import { addProduct, editProduct, saveProducts } from '../store/actions/products.action';
+import { addProduct, editProduct, saveProducts, productsInTable, agregarProductoUsuario } from '../store/actions/products.action';
 
 
 
@@ -14,25 +14,33 @@ const SuperLista = ({ navigation, props }) => {
 
 
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(useSelector(state => state.products.productos.idProducto));
   const [buttonViewAdd, setButtonViewAdd] = useState(true);
   const [productSelectToEdit, setProductSelectToEdit] = useState({});
   const [productSelectToDel, setProductSelectToDel] = useState({});
   const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
+const user =useSelector(state => state.auth.userId); 
+const prod = useSelector(state => state.products.productos)
 
-  
+
+/* const prodsUserLog = prod.filter((prod) => prod.idUsuario === user)  */
+
   const dispatch = useDispatch() 
+/* console.log(prod) */
 
 useEffect(() => {
-   dispatch(addProduct(products)) 
+    dispatch(addProduct(products))
+    dispatch(agregarProductoUsuario(user, products))
+    console.log(prod)
   }, [products])  
   
   function onAddProd(value) {
-    setProducts(() => [...products, value]);
-  
-  }
+setProducts(() => [...products, value]);  
+
+/* console.log({idusr: user, products: [...products, value]}) */
+}
 
   const onEditProd = (value) => {
     setProducts(value)

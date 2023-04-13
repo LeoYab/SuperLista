@@ -12,7 +12,7 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
   const [editQnty, setEditInputQnty] = useState("")
   const [editCatry, setEditCatry] = useState("")
   const [editCatryIcon, setEditCatryIcon] = useState("")
-  const [productsEdited, setProductsEdited] = useState([])
+  const [productsEdited, setProductsEdited] = useState(null)
   const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
   const [modalEditView, setModalEditView] = useState(false);
 
@@ -30,7 +30,9 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
   }, [productSelectToEdit])
 
   useEffect(() => {
-    onEditProd(productsEdited);
+    if(productsEdited !== null){
+      onEditProd(productsEdited);
+    }
   }, [productsEdited])
 
 

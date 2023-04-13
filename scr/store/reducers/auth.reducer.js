@@ -4,11 +4,13 @@ import { SIGN_UP_IN, USER_LOGOUT } from "../actions/auth.action"
 const initalState = {
     token: null,
     userId: null,
+    email: null,
     isLoading: false,
 }
 
 
 const authReducer = (state = initalState, action) => {
+    
     switch (action.type) {
         case "SIGN_UP_IN_START":
 
@@ -21,6 +23,7 @@ const authReducer = (state = initalState, action) => {
                 ...state,
                 token: action.token,
                 userId: action.userId,
+                email: action.email,
                 isLoading: false
             }
 

@@ -3,10 +3,11 @@ export const SIGN_UP_IN = "SIGN_UP";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 
-export const userLogin = (userId) => ({
+/* export const userLogin = (data) => ({
     type: USER_LOGIN,
-    userId,
-})
+    userId: data.userId,
+    email: data.email
+}) */
 
 export const signUpIn = (loginView, email, password) => {
 
@@ -62,12 +63,13 @@ export const signUpIn = (loginView, email, password) => {
 
             const data = await response.json();
 
-            userLogin(data.localId)
+         /*    userLogin(data) */
 
             dispatch({
                 type: SIGN_UP_IN,
                 token: data.idToken,
-                userId: data.localId
+                userId: data.localId,
+                email: data.email,
             })
         } catch (error) {
             dispatch({

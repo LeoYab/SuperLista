@@ -21,6 +21,7 @@ const ListReducer = (state = initialState, action) => {
                 ...state,
                 listToDel: action.listToDel,
             };
+         
         default:
             return state;
     }

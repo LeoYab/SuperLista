@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../../store/actions/category.action'
 import ModalSaveList from '../Modals/ModalSaveList'
 
-const ProdAdd = ({ onAddProd, /* saveListName */ }) => {
+const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
 
     const categories = useSelector(state => state.categories.categories)
     /* 
@@ -19,7 +19,7 @@ const ProdAdd = ({ onAddProd, /* saveListName */ }) => {
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
     const [inputQnty, setInputQnty] = useState("")
-    const [inputProducts, setImputProducts] = useState([])
+    const [inputProducts, setImputProducts] = useState(null)
     const [modalEmptyVisible, setModalEmptyVisible] = useState(false);
     const [value, setValue] = useState(null);
     const [saveList, setSaveList] = useState("");
@@ -28,7 +28,9 @@ const ProdAdd = ({ onAddProd, /* saveListName */ }) => {
 
     useEffect(() => {
 
-        onAddProd(inputProducts);
+        if(inputProducts !== null){
+            onAddProd(inputProducts);
+        }
 
     }, [inputProducts])
 

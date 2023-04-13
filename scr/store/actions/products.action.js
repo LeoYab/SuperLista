@@ -4,9 +4,9 @@ import { Alert } from "react-native";
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const DEL_PRODUCT = "DEL_PRODUCT"
-
+export const PRODUCTS_IN_TABLE = "PRODUCTS_IN_TABLE"
 export const SAVE_PRODUCTS = "SAVE_PRODUCTS"
-
+export const ADD_PRODUCTOS_USUARIO = "ADD_PRODUCTOS_USUARIO"
 
 export const addProduct = (productToAdd) => ({
   type: ADD_PRODUCT,
@@ -35,10 +35,10 @@ export const saveProducts = (productsSaved, nameList, userId) => {
         }),
       });
 
-   const result = await response.json(); 
+      const result = await response.json();
 
 
-   /*    Alert.alert("Lista guardada", "Se crea lista " + nameList) */
+      /*    Alert.alert("Lista guardada", "Se crea lista " + nameList) */
       dispatch({
         type: SAVE_PRODUCTS,
         productsSaved,
@@ -58,3 +58,11 @@ export const delProduct = (productId) => ({
   productId,
 });
 
+export const agregarProductoUsuario = (user, products) => ({
+
+  type: "ADD_PRODUCTOS_USUARIO",
+  payload: {
+    idUsuario: user,
+    idProducto: products,
+  }
+});

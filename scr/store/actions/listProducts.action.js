@@ -8,6 +8,8 @@ import ModalDel from "../../components/Modals/ModalDel";
 export const LIST_PRODUCTS = "LIST_PRODUCTS"
 export const DEL_LIST_PRODUCTS = "DEL_LIST_PRODUCTS"
 
+
+
 export const listProducts = (userId, listProd) => {
 
         return async (dispatch) => {
@@ -62,4 +64,4 @@ export const delListProducts = (userId, listId, list) => {
    }};
 
   
-  
+ 

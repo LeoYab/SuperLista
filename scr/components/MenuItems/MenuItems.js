@@ -28,6 +28,9 @@ const MenuItems = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const userId = useSelector(state => state.auth.userId);
+  const email = useSelector(state => state.auth.email);
+
+
 
 
 
@@ -97,9 +100,13 @@ const MenuItems = ({ navigation }) => {
     <>
 
       <View style={styles.containerHeader}>
-        <Feather style={styles.logout} name="log-out" size={24} color="white"  onPress={() => dispatch(logout())}/>
-        <Image style={styles.profileImage} />
-        <Text>  </Text>
+        <Feather style={styles.logout} name="log-out" size={24} color="white" onPress={() => dispatch(logout())} />
+        <View style={styles.profileImage}>
+          <View style={styles.profileBackground}>
+            <Text style={styles.profileInitial}>{email.charAt(0).toUpperCase()}</Text>
+          </View>
+        </View>
+        <Text style={styles.profileEmail}>{email}</Text>
 
       </View>
       <DrawerContentScrollView
@@ -198,7 +205,7 @@ const styles = StyleSheet.create({
   },
   logout: {
     marginTop: 6,
-    marginRight:6,
+    marginRight: 6,
     alignSelf: "flex-end",
   },
   container: {
@@ -211,6 +218,29 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 50,
+  },
+
+  profileInitial: {
+    alignSelf:"center",
+    fontSize: 50,
+    fontWeight: "600",
+    color: Colors.LIGTH_PINK,
+    bottom:7,
+  },
+  profileBackground: {
+    alignSelf: "center",
+    borderColor: Colors.LIGTH_PINK,
+    borderWidth: 8,
+    borderRadius: 50,
+    width: 70,
+    height: 70,
+    marginTop: 5,
+  },
+  profileEmail: {
+    color: "white",
+    marginHorizontal: 15,
+    marginTop:6,
+    fontWeight: "600",
   },
   title: {
     fontSize: 20,
