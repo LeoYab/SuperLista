@@ -1,5 +1,5 @@
 import { URL_API } from "../../constants/Database"
-
+import { CATEGORIES } from "../../categories/categories"
 
 export const SELECT_CATEGORY = "SELECT_CATEGORY"
 export const CATEGORY = "CATEGORY"
@@ -15,19 +15,26 @@ export const category = () => {
           "Content-Type": "application/json",
         },
       });
-
+    
       if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
-      const result = await response.json();
+       console.log("Network response was not ok. Loading local categories...");
 
+        dispatch({
+          type: CATEGORY,
+          categories: CATEGORIES,
+        });
+      }else{
 
+        const result = await response.json();
 
-      dispatch({
-        type: CATEGORY,
-        categories: result,
+        dispatch({
+          type: CATEGORY,
+          categories: result,
       });
+    }
+
+     
 
 
     } catch (error) {
