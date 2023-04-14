@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, storePersisted } from "./scr/store"
 import { useEffect } from 'react';
+import { init } from "./db"
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,6 +23,17 @@ export default function App() {
 
   });
 
+
+
+
+  init().then(
+    () => {
+      console.log('Database initialized');
+    }
+  ).catch(error => {
+    console.log('Database fail connect.');
+    console.log(error);
+  });
 
   useEffect(() => {
     if (fontsLoaded) {

@@ -1,8 +1,11 @@
 import * as FileSystem from 'expo-file-system'
 import { URL_API, GOOGLE_MAPS_API } from '../../constants/Database'
+import { insertAddress, fetchAddress } from '../../../db'
+
 
 export const ADD_PLACE = "ADD_PLACE"
 export const GET_PLACES = "GET_PLACES"
+export const LOAD_PLACES = "LOAD_PLACES"
 
 export const addPlace = (title, image, location, userId) => {
 
@@ -32,7 +35,17 @@ export const addPlace = (title, image, location, userId) => {
             console.log(error.message)
             throw error
         }
-        dispatch({ type: ADD_PLACE, payload: { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng } })
+
+
+        const dbResult = await insertAddress(title, Path, address, location.lat, location.lng)
+
+        dispatch({
+            type: ADD_PLACE, 
+            payload: {id:dbResult.insertId, title, image: Path, address, lat: location.lat, lng: location.lng}})
+
+
+
+       /*  dispatch({ type: ADD_PLACE, payload: { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng } })
         const newPlace = { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng };
         try {
             const response = await fetch(URL_API + "Users/" + userId + ".json", {
@@ -46,10 +59,10 @@ export const addPlace = (title, image, location, userId) => {
             });
 
             const result = await response.json();
-         /*    console.log(result)  */
+     
         } catch (error) {
             console.log(error.message)
-        }
+        } */
     }
 
 }
@@ -88,3 +101,19 @@ export const getPlaces = (userId) => {
         }
     }
 };
+
+
+export const loadPlaces = () => {
+    return async dispatch => {
+        try {
+            const dbResult = await fetchAddress()
+            dispatch({
+                type: LOAD_PLACES,
+                payload: {
+                    places: dbResult.rows._array
+                }})
+        } catch (error) {
+            throw error
+        }
+    }
+}

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useLayoutEffect} from 'react'
 import { FlatList} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import PlaceItem from '../components/PlaceItem/PlaceItem'
-import { getPlaces } from '../store/actions/places.actions'
+import { getPlaces, loadPlaces } from '../store/actions/places.actions'
 
 const PlaceList = ({ navigation }) => {
     
@@ -13,8 +13,10 @@ const PlaceList = ({ navigation }) => {
 
     useEffect(() => {
 
-        dispatch(getPlaces(userId))
-    
+      /*   dispatch(getPlaces(userId)) */
+
+      
+    dispatch(loadPlaces())
       }, [])
 
 

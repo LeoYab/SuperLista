@@ -16,7 +16,6 @@ const CategoryReducer = (state = initialState, action) => {
             }
         case SELECT_CATEGORY:
 
-         /*    console.log("categoryId", action.categoryId) */
             if (action.categoryId.id === -1) return state
 
             return { ...state, selected: action.categories[action.categoryId.id] }
