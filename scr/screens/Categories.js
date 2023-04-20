@@ -1,37 +1,29 @@
-import { StyleSheet, FlatList } from 'react-native'
 import React from 'react'
-/* import { CATEGORIES } from '../categories/categories' */
-import GridItem from '../components/GridItem/GridItem'
-import { useSelector, useDispatch } from 'react-redux'
-import { selectCategory } from '../store/actions/category.action'
-
-const Categories = ({ navigation }) => {
-
-const categories = useSelector(state => state.categories.categories)
-const products = useSelector(state => state.products.products) 
- const dispatch = useDispatch() 
-
-    const onSelectGridItem = (item) => {
-        dispatch(selectCategory(item.id))
-        navigation.navigate('Category', {
-            categoryName: item.title,
-            products: products,
-        })
-    } 
-
-    const renderGridItem = ({ item }) => <GridItem item={item} onSelect={onSelectGridItem} />
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 
-    return (
-        <FlatList
-            data={categories}
-            keyExtractor={(item) => item.id}
-            renderItem={renderGridItem}
-            numColumns={2}
+// screens
+import CategoryItem from '../CategoryItem/CategoryItem'
+
+
+const PlaceStack = createNativeStackNavigator()
+
+const Categories = () => (
+    <PlaceStack.Navigator
+        initialRoute='Direcciones'
+        screenOptions={{
+          headerShown:false,
+            statusBarColor: "#4B8A08",
+          
+        }}
+    >
+        <PlaceStack.Screen
+            name="CategoryItem"
+            component={CategoryItem}
         />
-    )
-}
+      
+    </PlaceStack.Navigator>
+)
+
 
 export default Categories
-
-const styles = StyleSheet.create({})

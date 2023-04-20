@@ -1,11 +1,10 @@
 import { StyleSheet, View, Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
-
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 import Input from '../Input/Input'
 import Buttons from "../Button/Button"
 import ModalEmptyImput from "../Modals/ModalEmptyImput"
 import { Dropdown } from 'react-native-element-dropdown';
-/* import { CATEGORIES } from '../../categories/categories' */
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../../store/actions/category.action'
 import ModalSaveList from '../Modals/ModalSaveList'

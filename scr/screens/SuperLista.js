@@ -12,47 +12,51 @@ import { addProduct, editProduct, saveProducts, productsInTable, agregarProducto
 
 const SuperLista = ({ navigation, props }) => {
 
+  const user = useSelector(state => state.auth.userId);
+  const prod = useSelector(state => state.products.users[user]?.products || [])
 
 
-  const [products, setProducts] = useState(useSelector(state => state.products.productos.idProducto));
+  const [products, setProducts] = useState(prod);
   const [buttonViewAdd, setButtonViewAdd] = useState(true);
   const [productSelectToEdit, setProductSelectToEdit] = useState({});
   const [productSelectToDel, setProductSelectToDel] = useState({});
   const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
-const user =useSelector(state => state.auth.userId); 
-const prod = useSelector(state => state.products.productos)
 
 
-/* const prodsUserLog = prod.filter((prod) => prod.idUsuario === user)  */
+  const dispatch = useDispatch()
 
-  const dispatch = useDispatch() 
-/* console.log(prod) */
-
-useEffect(() => {
-    dispatch(addProduct(products))
-    dispatch(agregarProductoUsuario(user, products))
-    console.log(prod)
-  }, [products])  
+  useEffect(() => {
   
-  function onAddProd(value) {
-setProducts(() => [...products, value]);  
+    dispatch(agregarProductoUsuario(user));
 
-/* console.log({idusr: user, products: [...products, value]}) */
-}
+  }, [])
+
+
+  useEffect(() => {
+    /*  dispatch(addProduct(products)) */
+    dispatch(agregarProductoUsuario(user, products))
+
+    /* console.log("Superlista", prod, "Productos", products) */
+  }, [products])
+
+  function onAddProd(value) {
+    setProducts(() => [...products, value]);
+    /* console.log({idusr: user, products: [...products, value]}) */
+  }
 
   const onEditProd = (value) => {
     setProducts(value)
     setModalEditVisible(false)
-   /*  dispatch(editProduct(value)) */
+    /*  dispatch(editProduct(value)) */
 
   };
-  
- /*  const saveListName = (nameList) => {
-    dispatch(saveProducts(products, nameList))
-  }
- */
+
+  /*  const saveListName = (nameList) => {
+     dispatch(saveProducts(products, nameList))
+   }
+  */
 
   const onDeleteProd = (productId) => {
     const updatedProducts = products.filter((product) => product.id !== productId);
@@ -69,6 +73,7 @@ setProducts(() => [...products, value]);
   const removeProd = (productSelect) => {
     setProductSelectToDel(productSelect);
     setModalDelVisible(true);
+    setButtonViewAdd(false);
 
   };
 
@@ -77,6 +82,7 @@ setProducts(() => [...products, value]);
     const updatedProducts = products.find((product) => product.id === productId);
     setProductSelectToEdit(updatedProducts);
     setModalEditVisible(true);
+    setButtonViewAdd(false);
 
   };
 
@@ -109,7 +115,7 @@ setProducts(() => [...products, value]);
               <ProdAdd
                 products={products}
                 onAddProd={onAddProd}
-                /* saveListName={saveListName} */
+              /* saveListName={saveListName} */
               />
 
               <ProdEdit
@@ -150,7 +156,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-   /*  backgroundColor: '#4B8A08', */
+    /*  backgroundColor: '#4B8A08', */
 
   },
   buttonAdd: {

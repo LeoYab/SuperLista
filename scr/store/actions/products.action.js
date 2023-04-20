@@ -58,11 +58,10 @@ export const delProduct = (productId) => ({
   productId,
 });
 
-export const agregarProductoUsuario = (user, products) => ({
-
+export const agregarProductoUsuario = (user, product) => ({
   type: "ADD_PRODUCTOS_USUARIO",
   payload: {
-    idUsuario: user,
-    idProducto: products,
+    user,
+    product,
   }
 });

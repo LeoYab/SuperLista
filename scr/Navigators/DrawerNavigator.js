@@ -18,7 +18,6 @@ export function DrawerNavigator() {
       options={{
         headerTintColor:"#fff",
         headerTitleAlign:"center",
-        
         headerTitle: () => (
            <Text style={{ color: "#fff", fontSize: 18 }}>SUPERLISTA</Text>
         ),

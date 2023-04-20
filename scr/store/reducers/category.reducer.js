@@ -2,7 +2,7 @@ import { CATEGORIES } from "../../categories/categories"
 import { CATEGORY, SELECT_CATEGORY } from "../actions/category.action"
 
 const initialState = {
-    categories: [],
+    categories: CATEGORIES,
     selected: null,
 }
 

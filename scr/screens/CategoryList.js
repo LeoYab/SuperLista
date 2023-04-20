@@ -13,8 +13,8 @@ const CategoryList = () => {
     let prodByCategory = []
 
     const categories = useSelector(state => state.categories.selected)
-
-    const prods = useSelector(state => state.products.productToAdd)
+    const user = useSelector(state => state.auth.userId);
+    const prods = useSelector(state => state.products.users[user].products)
 
 
  if (prods && categories) {

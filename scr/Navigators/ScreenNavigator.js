@@ -14,12 +14,16 @@ const ScreenNavigator = () => {
 
     return (
 
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions={{
+            statusBarColor: "#4B8A08",
+        }}
+        >
 
-            <Stack.Screen name="SuperLista"
+            <Stack.Screen
+                name="SuperLista"
                 component={SuperLista}
                 options={{
-                    statusBarColor: "#4B8A08",
                     headerShown: false,
                 }}
 
@@ -30,7 +34,7 @@ const ScreenNavigator = () => {
                 component={CategoryList}
                 options={({ route }) => ({
                     title: route.params.categoryName,
-                    statusBarColor: "#4B8A08",
+                    /*       statusBarColor: "#4B8A08", */
                     headerStyle: {
                         backgroundColor: "#4B8A08",
                     },
@@ -42,8 +46,8 @@ const ScreenNavigator = () => {
                 name="ListProducts"
                 component={ListProducts}
                 options={({ route }) => ({
-                               title: route.params.nameList, 
-                    statusBarColor: "#4B8A08",
+                    title: route.params.nameList,
+                    /*     statusBarColor: "#4B8A08", */
                     headerStyle: {
                         backgroundColor: "#4B8A08",
                     },

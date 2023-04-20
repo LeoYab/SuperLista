@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-const Buttons = ({ children = "Boton", style, onPress }) => {
+const Buttons = ({ children = "Botón", style, onPress }) => {
 
     return (
 
@@ -12,9 +12,9 @@ const Buttons = ({ children = "Boton", style, onPress }) => {
 const styles = StyleSheet.create({
 
     defaultButton: {
-        width: 80,
+        width: 90,
         height: 30,
-        borderRadius: 5,
+        borderRadius: 2,
         backgroundColor: "#6ca115ef",
         alignSelf: "center",
         alignItems: 'center',

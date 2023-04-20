@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import MainNavigator from './scr/Navigators/MainNavigator';
 import { MyDrawer } from './scr/Navigators/DrawerNavigator';
 import { PersistGate } from 'redux-persist/integration/react';
-
 import { store, storePersisted } from "./scr/store"
 import { useEffect } from 'react';
 

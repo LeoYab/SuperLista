@@ -1,11 +1,11 @@
-import { ADD_PLACE, GET_PLACES } from "../actions/places.actions"
+import { ADD_PLACE, GET_PLACES, DEL_PLACES } from "../actions/places.actions"
 import Place from "../../models/Place"
 
 const initialState = {
     places: []
 }
 
- const placesReducer = (state = initialState, action) => {
+const placesReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_PLACE:
@@ -16,15 +16,21 @@ const initialState = {
                 action.payload.address,
                 action.payload.lat,
                 action.payload.lng,
-                );
+            );
             return {
                 ...state,
                 places: state.places.concat(newPlace)
             }
-            case GET_PLACES:
-                return {
-                    places: action.payload
-                  };
+        case GET_PLACES:
+            return {
+                places: action.payload
+            };
+        case DEL_PLACES:
+
+            return {
+                places: action.payload
+            }
+
         default:
             return state
     }

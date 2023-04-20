@@ -3,7 +3,7 @@ import { URL_API, GOOGLE_MAPS_API } from '../../constants/Database'
 
 export const ADD_PLACE = "ADD_PLACE"
 export const GET_PLACES = "GET_PLACES"
-
+export const DEL_PLACES = "DEL_PLACES"
 export const addPlace = (title, image, location, userId) => {
 
     return async dispatch => {
@@ -20,20 +20,34 @@ export const addPlace = (title, image, location, userId) => {
 
 
 
-        const fileName = image.split('/').pop()
-        const Path = FileSystem.documentDirectory + fileName
+     const fileName = image.split('/').pop()
+         const Path = FileSystem.documentDirectory + fileName
+ 
+         try {
+             FileSystem.moveAsync({
+                 from: image,
+                 to: Path
+             })
+         } catch (error) {
+             console.log(error.message)
+             throw error
+         }
+console.log("IMAGE", image)
+console.log("PATH", Path)
+        const newPlace = {
+            id: Date.now(),
+            title,
+            image: Path,
+            address,
+            lat: location.lat,
+            lng: location.lng
+        };
 
-        try {
-            FileSystem.moveAsync({
-                from: image,
-                to: Path
-            })
-        } catch (error) {
-            console.log(error.message)
-            throw error
-        }
-        dispatch({ type: ADD_PLACE, payload: { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng } })
-        const newPlace = { id: Date.now(), title, image: Path, address, lat: location.lat, lng: location.lng };
+        dispatch({
+            type: ADD_PLACE,
+            payload: newPlace
+        })
+
         try {
             const response = await fetch(URL_API + "Users/" + userId + ".json", {
                 method: "PATCH",
@@ -46,7 +60,7 @@ export const addPlace = (title, image, location, userId) => {
             });
 
             const result = await response.json();
-         /*    console.log(result)  */
+            /*    console.log(result)  */
         } catch (error) {
             console.log(error.message)
         }
@@ -66,25 +80,57 @@ export const getPlaces = (userId) => {
 
             const result = await response.json();
             if (result) {
-            const places = Object.keys(result).map(key => {
-                return {
-                    ...result[key],
-                    id: key,
-                };
-            });
-        
+                const places = Object.keys(result).map(key => {
+                    return {
+                        ...result[key],
+                        id: key,
+                    };
+                });
 
-            dispatch({ 
-                type: GET_PLACES, 
-                payload: places });
 
-        }else{
-            dispatch({ 
-                type: GET_PLACES, 
-                payload: [] });
-        }
+                dispatch({
+                    type: GET_PLACES,
+                    payload: places
+                });
+
+            } else {
+                dispatch({
+                    type: GET_PLACES,
+                    payload: []
+                });
+            }
         } catch (error) {
             console.log(error.message);
         }
     }
 };
+
+export const delPlace = (userId, placeId, places) => {
+
+    return async dispatch => {
+        try {
+            await fetch(URL_API + "Users/" + userId + ".json", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ["places/" + placeId]: {}
+                }),
+            });
+
+            const listUpdate = places.filter(place => place.id !== placeId)
+           
+            dispatch({
+                type: DEL_PLACES,
+                payload: listUpdate
+            });
+
+        } catch (error) {
+            console.log(error.message)
+        }
+
+    }
+};
+
+

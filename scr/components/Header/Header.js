@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+
 import { useState, useEffect } from 'react';
 import Buttons from '../Button/Button';
 import Table from "../Table/Table";
@@ -21,9 +22,9 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   const [value, setValue] = useState(null);
 
 useEffect(() => {
-  dispatch(category())
-}, [value])
-
+  setValue(null)
+}, [value]) 
+ 
 
   useEffect(() => {
 
@@ -65,12 +66,10 @@ useEffect(() => {
   const handleSelectedCategory = (item) => {
  
     dispatch(selectCategory(item.id))
-   
     navigation.navigate('Category', {
       categoryName: item.title,
 
     })
-
 
   }
 
@@ -113,15 +112,17 @@ useEffect(() => {
             value={value}
             onChange={item => {
               setValue(item);
-              handleSelectedCategory(item)
+              handleSelectedCategory(item);
             }}
           />
+
         </View>
       </View>
 
       <Table products={products} isPortrait={isPortrait} />
 
-      <ProductList products={!searchProduct
+      <ProductList 
+      products={!searchProduct
         ?
         products
         :
@@ -180,6 +181,7 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
   },
   dropdown: {
+ 
     width: width * 0.30,
 
     height: height * 0.04,
@@ -204,7 +206,8 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 16,
-    color: "#fff"
+    color: "#fff",
+    marginLeft: 2,
   },
 
   inputSearchStyle: {

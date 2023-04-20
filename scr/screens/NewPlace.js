@@ -12,9 +12,9 @@ const NewPlace = ({ navigation }) => {
     const userId = useSelector(state => state.auth.userId);
 
     const dispatch = useDispatch()
-    const [titleValue, setTitleValue] = useState('')
-    const [imageValue, setImageValue] = useState('')
-    const [locationValue, setLocationValue] = useState()
+    const [titleValue, setTitleValue] = useState("")
+    const [imageValue, setImageValue] = useState(null)
+    const [locationValue, setLocationValue] = useState("")
 
     const titleChangeHandler = text => {
         setTitleValue(text)

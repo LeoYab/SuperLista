@@ -25,36 +25,44 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
               <Entypo name="home" size={24} color={focused ? "white" : Colors.btntertiary} />
-              <Text style={{ color: focused ? "white" : Colors.btntertiary}}>Inicio</Text>
+              <Text style={{ color: focused ? "white" : Colors.btntertiary }}>Inicio</Text>
             </View>
           )
         }}
       />
 
-<BottomTabs.Screen
+      <BottomTabs.Screen
         name="PlaceNavigator"
         component={PlaceNavigator}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
               <Entypo name="location" size={24} color={focused ? "white" : Colors.btntertiary} />
-              <Text style={{ color: focused ? "white" : Colors.btntertiary}}>Ubicación</Text>
+              <Text style={{ color: focused ? "white" : Colors.btntertiary }}>Ubicación</Text>
             </View>
           )
         }}
       />
 
-
-<BottomTabs.Screen
+      <BottomTabs.Screen
         name="Categories"
         component={Categories}
         options={{
+          headerStyle: {
+            backgroundColor: Colors.DARK_SIENNA,
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          title: 'Categorías',
+          headerShown: true,
           tabBarIcon: ({ focused }) => (
             <View style={styles.tabBarIcon}>
               <Entypo name="list" size={24} color={focused ? "white" : Colors.btntertiary} />
               <Text style={{ color: focused ? "white" : Colors.btntertiary }}>Categorías</Text>
             </View>
-          )
+          ),
         }}
       />
 
@@ -68,8 +76,8 @@ const TabNavigator = () => {
 export default TabNavigator
 
 const styles = StyleSheet.create({
-  tabBar:{
-    backgroundColor:"#4B8A08",
+  tabBar: {
+    backgroundColor: "#4B8A08",
   },
   tabBarIcon: {
     flex: 1,

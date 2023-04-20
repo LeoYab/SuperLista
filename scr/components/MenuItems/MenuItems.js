@@ -12,7 +12,7 @@ import ModalSaveList from '../Modals/ModalSaveList';
 import { TextInput } from 'react-native-gesture-handler';
 import Input from '../Input/Input';
 import Colors from "../../constants/Colors";
-import { Entypo } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
 import ModalDel from "../Modals/ModalDel";
 import { Feather } from '@expo/vector-icons';
 import { logout } from "../../store/actions/auth.action";
@@ -100,7 +100,7 @@ const MenuItems = ({ navigation }) => {
     <>
 
       <View style={styles.containerHeader}>
-        <Feather style={styles.logout} name="log-out" size={24} color="white" onPress={() => dispatch(logout())} />
+        <Feather style={styles.logout} name="log-out" size={24} color="white" onPress={() => dispatch(logout(null))} />
         <View style={styles.profileImage}>
           <View style={styles.profileBackground}>
             <Text style={styles.profileInitial}>{email.charAt(0).toUpperCase()}</Text>
@@ -110,7 +110,7 @@ const MenuItems = ({ navigation }) => {
 
       </View>
       <DrawerContentScrollView
-        keyboardShouldPersistTaps="handled"
+       /* keyboardShouldPersistTaps="handled" */
         style={styles.container} >
 
 
@@ -145,7 +145,7 @@ const MenuItems = ({ navigation }) => {
                   <Text style={styles.labelFieldDate}>{item.date}</Text>
                 </View>
                 <TouchableOpacity style={styles.delButtonProd} onPress={() => { delList(item) }}>
-                  <Entypo name="trash" size={22} color={'grey'} />
+                <Octicons name="trash" size={22} color={'grey'} />
                 </TouchableOpacity>
 
               </View>

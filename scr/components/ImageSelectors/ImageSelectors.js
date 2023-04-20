@@ -1,46 +1,44 @@
 import { StyleSheet, Text, View, Image, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
-
+import * as FileSystem from 'expo-file-system';
 
 import * as ImagePicker from "expo-image-picker"
 import Colors from '../../constants/Colors'
 
-const ImageSelectors = ({onImage}) => {
-    const [pickedUri, setPickedUri] = useState()
+const ImageSelectors = ({ onImage }) => {
+
+    const [pickedUri, setPickedUri] = useState(null)
 
     const VerifyPermissions = async () => {
-        const { status } = await ImagePicker.requestCameraPermissionsAsync();
-
+        const { status } = await ImagePicker.requestCameraPermissionsAsync()
+        
         if(status !== 'granted') {
             Alert.alert('Permisos insuficientes')
-         
-            return false;
+            return false
         }
-      
-        return true;
+        return true
+
      }
 
     const handlerTakeImage = async () => {
-        
-        const isCameraOk = await VerifyPermissions();
-      
-        if (!isCameraOk) return;
-        
-        const image = await ImagePicker.launchCameraAsync({
-            allowsEditing: true, 
-            aspect: [16,9],
+        const isCameraOk = await VerifyPermissions()
+        if (!isCameraOk) return
+
+        const image = await /* ImagePicker.launchCameraAsync */  ImagePicker.launchImageLibraryAsync ({
+            allowsEditing: true,
+            aspect: [16, 9],
             quality: 0.8,
         })
-   
+
         setPickedUri(image.assets[0].uri)
         onImage(image.assets[0].uri)
-     }
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.preview}>
                 {!pickedUri
-                    ? <Text>No hay imagen seleccionada...</Text>
+                    ? <Text style={styles.previewText}>No hay imagen seleccionada...</Text>
                     : <Image style={styles.image} source={{ uri: pickedUri }} />
                 }
             </View>
@@ -66,7 +64,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: Colors.BLUSH,
-        borderWith: 1
+        borderWith: 1,
+    },
+    previewText: {
+        color: "grey",
     },
     image: {
         width: '100%',

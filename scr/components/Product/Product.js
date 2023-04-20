@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
-import { Entypo } from '@expo/vector-icons';
+import { Octicons, Feather } from '@expo/vector-icons'
 
 import Buttons from '../Button/Button'
 import Colors from '../../constants/Colors'
@@ -14,7 +14,7 @@ const Product = ({ style, item, editProd, removeProd, filter }) => {
 
 
     return (
-        <>
+     
             <View style={[styles.productTable, style]}>
                 <Text style={styles.productName}>{item.icon + " " + item.nameProd}</Text>
                 <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
@@ -26,11 +26,12 @@ const Product = ({ style, item, editProd, removeProd, filter }) => {
                     <View style={styles.editDelProd}>
 
                         <TouchableOpacity style={styles.editButtonProd} onPress={() => { editProd(item.id) }}> 
-                            <Entypo name="edit" size={22} color={Colors.btnPrimary} />
+                        <Feather name="edit" size={22} color={Colors.btnPrimary} />
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.delButtonProd}  onPress={() => { removeProd(item) }}>
-                            <Entypo name="trash" size={22} color={'grey'} />
+                        <Octicons name="trash" size={22} color={'grey'} />
+       
                         </TouchableOpacity>
                         {/*  <Buttons style={styles.editButtonProd} onPress={() => { editProd(item.id) }}>
                             <Text>Edit</Text>
@@ -43,7 +44,7 @@ const Product = ({ style, item, editProd, removeProd, filter }) => {
                 }
 
             </View>
-        </>
+        
     )
 }
 const { width } = Dimensions.get("window");
