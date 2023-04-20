@@ -1,8 +1,8 @@
 export const CATEGORIES = [
     {
-        id: 1,
-        title:"Almacén",
-        icon:"🍱",
+        id: 9,
+        title:"Otros",
+        icon:"🔤",
     },
     {
         id: 2,
@@ -40,8 +40,8 @@ export const CATEGORIES = [
         icon:"🥦",
     },
     {
-        id: 9,
-        title:"Otros",
-        icon:"🔤",
+        id: 1,
+        title:"Almacén",
+        icon:"🍱", 
     },
 ]
