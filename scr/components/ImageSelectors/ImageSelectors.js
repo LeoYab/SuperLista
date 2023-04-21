@@ -24,7 +24,7 @@ const ImageSelectors = ({ onImage }) => {
         const isCameraOk = await VerifyPermissions()
         if (!isCameraOk) return
 
-        const image = await /* ImagePicker.launchCameraAsync */  ImagePicker.launchImageLibraryAsync ({
+        const image = await ImagePicker.launchCameraAsync  /* ImagePicker.launchImageLibraryAsync*/  ({
             allowsEditing: true,
             aspect: [16, 9],
             quality: 0.8,

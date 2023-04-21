@@ -5,7 +5,7 @@ export const SELECT_CATEGORY = "SELECT_CATEGORY"
 export const CATEGORY = "CATEGORY"
 
 export const category = () => {
-
+  
   return async (dispatch) => {
 
     try {
@@ -27,7 +27,7 @@ export const category = () => {
        }else{
  
          const result = await response.json();
- console.log(result)
+
          dispatch({
            type: CATEGORY,
            categories: result,

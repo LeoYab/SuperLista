@@ -7,7 +7,7 @@ import { Header, ProdAdd, ProdEdit, Buttons, ProdDel } from '../components/Index
 import { useDispatch, useSelector } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
 import { addProduct, editProduct, saveProducts, productsInTable, agregarProductoUsuario } from '../store/actions/products.action';
-
+import { category } from '../store/actions/category.action';
 
 
 const SuperLista = ({ navigation, props }) => {
@@ -23,13 +23,14 @@ const SuperLista = ({ navigation, props }) => {
   const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
-
+console.log(products)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
   
     dispatch(agregarProductoUsuario(user));
+    dispatch(category())
 
   }, [])
 

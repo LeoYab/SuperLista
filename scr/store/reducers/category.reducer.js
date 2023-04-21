@@ -1,8 +1,7 @@
-import { CATEGORIES } from "../../categories/categories"
 import { CATEGORY, SELECT_CATEGORY } from "../actions/category.action"
 
 const initialState = {
-    categories: CATEGORIES,
+    categories: [],
     selected: null,
 }
 
@@ -19,7 +18,9 @@ const CategoryReducer = (state = initialState, action) => {
          /*    console.log("categoryId", action.categoryId) */
             if (action.categoryId.id === -1) return state
 
-            return { ...state, selected: action.categories[action.categoryId.id] }
+            return { 
+                ...state, 
+                selected: action.categories[action.categoryId.id] }
 
         default:
             return state

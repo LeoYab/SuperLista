@@ -7,7 +7,7 @@ import Input from "../Input/Input"
 import ProductList from "../ProductList/ProductList"
 import Footer from '../Footer/Footer';
 import { Dropdown } from 'react-native-element-dropdown';
- import { CATEGORIES } from '../../categories/categories' 
+/*  import { CATEGORIES } from '../../categories/categories'  */
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCategory, category } from '../../store/actions/category.action';
 
@@ -102,7 +102,7 @@ useEffect(() => {
             selectedTextStyle={styles.selectedTextStyle}
             inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
-            data={CATEGORIES}
+            data={categories}
             search
             maxHeight={300}
             labelField="title"
@@ -181,7 +181,6 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
   },
   dropdown: {
- 
     width: width * 0.30,
 
     height: height * 0.04,

@@ -9,7 +9,7 @@ const CategoryItem = ({ navigation }) => {
 
 
     const categories = useSelector(state => state.categories.categories)
-console.log(categories)
+
     const dispatch = useDispatch()
 
 

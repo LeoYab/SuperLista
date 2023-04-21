@@ -29,7 +29,7 @@ const MenuItems = ({ navigation }) => {
 
   const userId = useSelector(state => state.auth.userId);
   const email = useSelector(state => state.auth.email);
-
+  const prods = useSelector(state => state.products.users[userId]?.products || [])
 
 
 
@@ -67,10 +67,9 @@ const MenuItems = ({ navigation }) => {
     setShowModalDel(false);
   }
 
-  const prods = useSelector(state => state.products.productToAdd)
+  
 
   const createListName = () => {
-
     dispatch(saveProducts(prods, saveListName, userId))
     setShowInput(false);
     setSaveListName("")
@@ -110,14 +109,14 @@ const MenuItems = ({ navigation }) => {
 
       </View>
       <DrawerContentScrollView
-       /* keyboardShouldPersistTaps="handled" */
+        keyboardShouldPersistTaps="handled"
         style={styles.container} >
 
 
         <Pressable style={{ height: 800 }} onPress={checkShowInput}>
 
           <Text style={styles.title}>Mis listas</Text>
-
+       
           <Dropdown
             style={styles.dropdown}
             placeholderStyle={styles.placeholderStyle}
@@ -145,7 +144,7 @@ const MenuItems = ({ navigation }) => {
                   <Text style={styles.labelFieldDate}>{item.date}</Text>
                 </View>
                 <TouchableOpacity style={styles.delButtonProd} onPress={() => { delList(item) }}>
-                <Octicons name="trash" size={22} color={'grey'} />
+                  <Octicons name="trash" size={22} color={'grey'} />
                 </TouchableOpacity>
 
               </View>
@@ -221,11 +220,11 @@ const styles = StyleSheet.create({
   },
 
   profileInitial: {
-    alignSelf:"center",
+    alignSelf: "center",
     fontSize: 50,
     fontWeight: "600",
     color: Colors.LIGTH_PINK,
-    bottom:7,
+    bottom: 7,
   },
   profileBackground: {
     alignSelf: "center",
@@ -239,7 +238,7 @@ const styles = StyleSheet.create({
   profileEmail: {
     color: "white",
     marginHorizontal: 15,
-    marginTop:6,
+    marginTop: 6,
     fontWeight: "600",
   },
   title: {

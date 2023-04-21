@@ -32,8 +32,7 @@ export const addPlace = (title, image, location, userId) => {
              console.log(error.message)
              throw error
          }
-console.log("IMAGE", image)
-console.log("PATH", Path)
+
         const newPlace = {
             id: Date.now(),
             title,
