@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     paddingHorizontal: width * 0.02,
     marginVertical: 2,
-    borderRadius: 5,
+    borderRadius: 2,
     backgroundColor: "white",
     fontFamily: "OpenSansRegular",
     maxWidth: width * 0.245,

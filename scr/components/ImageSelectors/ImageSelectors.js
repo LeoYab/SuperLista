@@ -11,20 +11,20 @@ const ImageSelectors = ({ onImage }) => {
 
     const VerifyPermissions = async () => {
         const { status } = await ImagePicker.requestCameraPermissionsAsync()
-        
-        if(status !== 'granted') {
+
+        if (status !== 'granted') {
             Alert.alert('Permisos insuficientes')
             return false
         }
         return true
 
-     }
+    }
 
     const handlerTakeImage = async () => {
         const isCameraOk = await VerifyPermissions()
         if (!isCameraOk) return
 
-        const image = await ImagePicker.launchCameraAsync  /* ImagePicker.launchImageLibraryAsync*/  ({
+        const image = await ImagePicker.launchCameraAsync ({
             allowsEditing: true,
             aspect: [16, 9],
             quality: 0.8,
@@ -34,6 +34,22 @@ const ImageSelectors = ({ onImage }) => {
         onImage(image.assets[0].uri)
     }
 
+    const handlerImageFromLibrary = async () => {
+        const isCameraOk = await VerifyPermissions()
+        if (!isCameraOk) return
+
+        const image = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+            aspect: [16, 9],
+            quality: 0.8,
+        })
+
+        setPickedUri(image.assets[0].uri)
+        onImage(image.assets[0].uri)
+    }
+
+
+
     return (
         <View style={styles.container}>
             <View style={styles.preview}>
@@ -42,11 +58,18 @@ const ImageSelectors = ({ onImage }) => {
                     : <Image style={styles.image} source={{ uri: pickedUri }} />
                 }
             </View>
-            <Button
-                title="Tomar foto"
-                color={Colors.LIGTH_PINK}
-                onPress={handlerTakeImage}
-            />
+            <View style={styles.buttonContainer}>
+                <Button
+                    title="Tomar foto"
+                    color={Colors.LIGTH_PINK}
+                    onPress={handlerTakeImage}
+                />
+                <Button
+                    title="Elegir de galería"
+                    color={Colors.LIGTH_PINK}
+                    onPress={handlerImageFromLibrary}
+                />
+            </View>
         </View>
     )
 }
@@ -72,5 +95,10 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%'
+    },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent:"space-around"
     }
 })

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 8,
         elevation: 5,
-        borderRadius: 10,
+        borderRadius: 4,
     },
     addressContainer:{
         padding:20,

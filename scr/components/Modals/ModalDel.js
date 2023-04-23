@@ -7,7 +7,8 @@ import ModalShadow from '../../constants/ModalShadow'
 const ModalDel = ({ onDeleteItem, onCancelModal, itemToDel, listToDel, modalDelVisible }) => {
 
   const item = itemToDel ? itemToDel.nameProd : listToDel.nameList;
-const itemListDel = itemToDel ? itemToDel.id : listToDel.id
+  const prodOrList = itemToDel ? "el producto" : "la lista";
+  const itemListDel = itemToDel ? itemToDel.id : listToDel.id;
 
   return (
 
@@ -15,7 +16,7 @@ const itemListDel = itemToDel ? itemToDel.id : listToDel.id
 
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalText}>¿Desea eliminar el producto {item}?</Text>
+          <Text style={styles.modalText}>¿Desea eliminar {prodOrList} {item}?</Text>
           <View style={styles.buttonContainer}>
             <Buttons style={styles.deleteButton} onPress={() => { onDeleteItem(itemListDel) }}>
               <Text style={styles.buttonText}>Sí</Text>
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: '#fff',
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 4,
     alignItems: 'center',
     ...ModalShadow,
   },
@@ -62,14 +63,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.btnPrimary,
     paddingHorizontal: 20,
     paddingVertical: 5,
-    borderRadius: 5,
+    borderRadius: 2,
     marginRight: 10,
   },
   cancelButton: {
     backgroundColor: Colors.btnSecondary,
     paddingHorizontal: 20,
     paddingVertical: 5,
-    borderRadius: 5,
+    borderRadius: 2,
   },
   buttonText: {
     color: 'white',

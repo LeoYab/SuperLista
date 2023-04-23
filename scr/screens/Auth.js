@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         margin: 12,
         borderColor: "#ccc",
         borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: 4,
         backgroundColor: "white",
     },
     prompt: {

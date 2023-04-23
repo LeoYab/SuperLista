@@ -108,23 +108,7 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
     return (
         <View style={styles.imputContainer}>
             <View style={styles.imputAdd}>
-                <Input
-                    value={inputNameProd}
-                    placeholder={"Producto"}
-                    onChangeText={setInputNameProd} />
-                <Input
-                    value={inputPrice}
-                    placeholder={"Precio"}
-                    onChangeText={numberInputPriceHandler}
-                    keyboardType="numeric" />
-                <Input
-                    value={inputQnty}
-                    placeholder={"Cantidad"}
-                    onChangeText={numberInputQuantityHandler}
-                    keyboardType="numeric" />
-
-
-                <Dropdown
+            <Dropdown
                     style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
@@ -143,6 +127,24 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
                         setValue(item);
                     }}
                 />
+                
+                <Input
+                    value={inputNameProd}
+                    placeholder={"Producto"}
+                    onChangeText={setInputNameProd} />
+                <Input
+                    value={inputPrice}
+                    placeholder={"Precio"}
+                    onChangeText={numberInputPriceHandler}
+                    keyboardType="numeric" />
+                <Input
+                    value={inputQnty}
+                    placeholder={"Cantidad"}
+                    onChangeText={numberInputQuantityHandler}
+                    keyboardType="numeric" />
+
+
+                
             </View>
             <View style={styles.buttonsContainer}>
                {/*  <Buttons disabled={true} style={styles.buttonAddDisable} /> */}
@@ -190,19 +192,20 @@ const styles = StyleSheet.create({
         borderColor: 'green',
         paddingHorizontal: width * 0.02,
         marginVertical: 2,
-        borderRadius: 5,
+        borderRadius: 2,
         backgroundColor: "white",
         fontFamily: "OpenSansRegular",
         maxWidth: width * 0.245,
         height: 32,
         fontSize: 10,
+        marginRight:1,
     },
     dropdowngrey: {
         borderColor: 'grey',
 
     },
     itemTextStyle: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#393939",
       },
     icon: {

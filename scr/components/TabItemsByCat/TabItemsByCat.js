@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   editButtonProd: {
       backgroundColor: Colors.btnPrimary,
-      borderRadius: 5,
+      borderRadius: 2,
       marginRight: 1,
       alignSelf: "center",
       width: 30,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   delButtonProd: {
       backgroundColor: Colors.btnSecondary,
-      borderRadius: 5,
+      borderRadius: 2,
       marginLeft: 1,
       alignSelf: "center",
       width: 30,

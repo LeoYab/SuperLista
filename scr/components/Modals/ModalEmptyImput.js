@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: '#fff',
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 4,
     alignItems: 'center',
     alignItems: 'center',
     ...ModalShadow,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.btnPrimary,
     paddingHorizontal: 20,
     paddingVertical: 5,
-    borderRadius: 5,
+    borderRadius: 2,
     marginRight: 10,
   },
   buttonText: {

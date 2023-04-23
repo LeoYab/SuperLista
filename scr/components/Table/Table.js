@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     height: height * 0.041,
     marginTop: 6,
     marginHorizontal: 6,
-    borderRadius: 10,
+    borderRadius: 4,
 
   },
   statusBarText: {
@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     width: width * 0.25,
     marginLeft: width * 0.05,
     marginBottom: 6,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 4,
+    borderBottomLeftRadius: 4,
     paddingBottom: 2,
   },
   qntyTotalTExt: {

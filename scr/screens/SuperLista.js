@@ -23,8 +23,6 @@ const SuperLista = ({ navigation, props }) => {
   const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
 
-console.log(products)
-
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -98,7 +96,7 @@ console.log(products)
 
   return (
     <SafeAreaView style={styles.container} >
-      <>
+      
         <Header
           products={products}
           removeProd={removeProd}
@@ -144,7 +142,7 @@ console.log(products)
 
         </View>
 
-      </>
+    
     </SafeAreaView >
   )
 }

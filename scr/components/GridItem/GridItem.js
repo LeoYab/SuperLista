@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     gridItem: {
         flex: 1,
         margin: 15,
-        borderRadius: 10,
+        borderRadius: 2,
         backgroundColor: "white",
         shadowColor: '#000',
         shadowOffset: { width: 1, height: 1 },
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         fontSize: 50,
         backgroundColor: Colors.btntertiary,
         padding: 10,
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
+        borderTopLeftRadius: 2,
+        borderBottomLeftRadius: 2,
 
     },
 })
