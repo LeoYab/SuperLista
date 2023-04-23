@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "superlista",
+    "name": "SuperLista",
     "slug": "superlista",
     "version": "1.0.0",
-    "orientation": "sensor",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
