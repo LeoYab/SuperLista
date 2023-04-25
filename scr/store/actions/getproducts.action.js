@@ -20,7 +20,7 @@ export const getProducts = (userId) => {
       }
 
       const result = await response.json();
- 
+
       if (result) {
         const products = Object.keys(result).map((key) => ({
           ...result[key],

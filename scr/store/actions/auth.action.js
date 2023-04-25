@@ -3,11 +3,6 @@ export const SIGN_UP_IN = "SIGN_UP";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 
-/* export const userLogin = (data) => ({
-    type: USER_LOGIN,
-    userId: data.userId,
-    email: data.email
-}) */
 
 export const signUpIn = (loginView, email, password) => {
 
@@ -30,40 +25,38 @@ export const signUpIn = (loginView, email, password) => {
                 }),
 
             });
-           if (!loginView) {
-            if (!response.ok) {
-                const errorResData = await response.json();
+            if (!loginView) {
+                if (!response.ok) {
+                    const errorResData = await response.json();
 
-                const errorId = errorResData.error.message;
+                    const errorId = errorResData.error.message;
 
-                let message = 'No se pudo registrar!';
+                    let message = 'No se pudo registrar!';
 
-                if (errorId === 'EMAIL_EXISTS') {
-                    message = 'Este email ya existe!';
+                    if (errorId === 'EMAIL_EXISTS') {
+                        message = 'Este email ya existe!';
+                    }
+                    throw new Error(message);
                 }
-                throw new Error(message);
-            }
-           }else{
-            if (!response.ok) {
-                const errorResData = await response.json();
+            } else {
+                if (!response.ok) {
+                    const errorResData = await response.json();
 
-                const errorId = errorResData.error.message;
-                let message = 'No se pudo Ingresar!';
+                    const errorId = errorResData.error.message;
+                    let message = 'No se pudo Ingresar!';
 
-                if (errorId === 'EMAIL_NOT_FOUND') {
-                    message = 'Este email no existe!';
-                } else if (errorId === 'INVALID_PASSWORD') {
-                    message = 'Contraseña incorrecta!';
+                    if (errorId === 'EMAIL_NOT_FOUND') {
+                        message = 'Este email no existe!';
+                    } else if (errorId === 'INVALID_PASSWORD') {
+                        message = 'Contraseña incorrecta!';
+                    }
+
+                    throw new Error(message);
                 }
-
-                throw new Error(message);
             }
-           }
-            
+
 
             const data = await response.json();
-
-         /*    userLogin(data) */
 
             dispatch({
                 type: SIGN_UP_IN,
@@ -85,4 +78,4 @@ export const logout = (userId) => async (dispatch) => {
         type: USER_LOGOUT,
         userId
     })
-  };
+};

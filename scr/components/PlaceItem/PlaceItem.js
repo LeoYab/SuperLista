@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
     placeItem: {
         flex: 1,
-       
+
         paddingVertical: 16,
         paddingHorizontal: 30,
         flexDirection: 'row',
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     },
     delPlaceItem: {
         alignSelf: "center",
-        padding:20,
-        borderRadius:50,
+        padding: 20,
+        borderRadius: 50,
     },
     imageContainer: {
         width: 70,

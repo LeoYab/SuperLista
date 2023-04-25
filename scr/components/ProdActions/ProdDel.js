@@ -1,6 +1,5 @@
-import { StyleSheet } from 'react-native'
-
 import React from 'react'
+
 import ModalDel from "../Modals/ModalDel"
 
 const ProdDel = ({ onDeleteItem, onCancelModal, itemToDel, modalDelVisible }) => {
@@ -17,4 +16,3 @@ const ProdDel = ({ onDeleteItem, onCancelModal, itemToDel, modalDelVisible }) =>
 
 export default ProdDel
 
-const styles = StyleSheet.create({})

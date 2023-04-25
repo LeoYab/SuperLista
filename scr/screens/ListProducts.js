@@ -1,17 +1,14 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
+
 import Table from '../components/Table/Table'
 import Product from '../components/Product/Product'
 
 const ListProducts = () => {
 
     const listProducts = useSelector(state => state.listAction.productsList)
- 
-    /*  const list = listProducts.map(list => list.items).flat(); 
-   */
 
-  
     const renderProdByCat = ({ item, index }) => (
 
         <Product
@@ -23,7 +20,7 @@ const ListProducts = () => {
     )
     return (
         <>
-            <Table /* products={products} */ filter={true} />
+            <Table filter={true} />
             <FlatList
                 data={listProducts}
                 keyExtractor={(item) => item.id}
@@ -35,5 +32,3 @@ const ListProducts = () => {
 
 
 export default ListProducts
-
-const styles = StyleSheet.create({})

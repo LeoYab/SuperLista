@@ -1,21 +1,34 @@
 import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback, Dimensions } from 'react-native'
 import { useState, useEffect } from 'react'
+import { Dropdown } from 'react-native-element-dropdown';
+import { useSelector } from 'react-redux'
+
 import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
-/* import { CATEGORIES } from '../../categories/categories' */
-import { Dropdown } from 'react-native-element-dropdown';
-import { useSelector } from 'react-redux'
 
-const ModalEdit = ({ category, setEditCatry, setEditCatryIcon, nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
+
+const ModalEdit = ({
+  category,
+  setEditCatry,
+  setEditCatryIcon,
+  nameProd,
+  price,
+  quantity,
+  setNameProd,
+  numberInputPriceHandler,
+  numberInputQuantityHandler,
+  checkEmptyInput,
+  modalEditVisible = false }) => {
+
   const categories = useSelector(state => state.categories.categories)
   const [value, setValue] = useState({});
 
-useEffect(() => {
-  setEditCatry(value.id)
-  setEditCatryIcon(value.icon)
-}, [value])
+  useEffect(() => {
+    setEditCatry(value.id)
+    setEditCatryIcon(value.icon)
+  }, [value])
 
 
   return (
@@ -25,6 +38,25 @@ useEffect(() => {
           <Text style={styles.titleModalEdit}>EDITAR PRODUCTO</Text>
           <View style={styles.modalContent}>
 
+          <Dropdown
+              style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              itemTextStyle={styles.itemTextStyle}
+              iconStyle={styles.iconStyle}
+              data={categories}
+              search
+              maxHeight={300}
+              labelField="title"
+              valueField="id"
+              placeholder="Categoría"
+              searchPlaceholder="Buscar..."
+              value={category}
+              onChange={item => {
+                setValue(item);
+              }}
+            />
             <Input
               value={nameProd}
               placeholder={"Producto"}
@@ -39,28 +71,9 @@ useEffect(() => {
               placeholder={"Cantidad"}
               onChangeText={numberInputQuantityHandler}
               keyboardType="numeric" />
-            <Dropdown
-              style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
-              placeholderStyle={styles.placeholderStyle}
-              selectedTextStyle={styles.selectedTextStyle}
-              inputSearchStyle={styles.inputSearchStyle}
-              iconStyle={styles.iconStyle}
-              data={categories}
-              search
-              maxHeight={300}
-              labelField="title"
-              valueField="id"
-              placeholder="Categoría"
-              searchPlaceholder="Buscar..."
-              value={category}
-              onChange={item => {
-                setValue(item);
-              }}
-            />
-
           </View>
-          <View  style={styles.buttonEdit}>
-          <Buttons onPress={checkEmptyInput}>Editar</Buttons>
+          <View style={styles.buttonEdit}>
+            <Buttons onPress={checkEmptyInput}>Editar</Buttons>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -89,8 +102,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...ModalShadow,
   },
-  buttonEdit:{
-   marginBottom:56,
+  buttonEdit: {
+    marginBottom: 56,
   },
   dropdown: {
     width: 100,
@@ -104,10 +117,22 @@ const styles = StyleSheet.create({
     maxWidth: width * 0.245,
     height: 32,
     fontSize: 10,
-},
-dropdowngrey: {
+  },
+  dropdowngrey: {
     borderColor: 'grey',
-
+  },
+  itemTextStyle: {
+    fontSize: 12,
+    color: "#393939",
+},
+inputSearchStyle: {
+  height: 40,
+  fontSize: 14,
+},
+placeholderStyle: {
+  fontSize: 11,
+  color: "grey",
+  marginLeft: 1,
 },
   titleModalEdit: {
     fontWeight: "bold",

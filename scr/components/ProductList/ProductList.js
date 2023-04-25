@@ -5,8 +5,6 @@ import Product from '../Product/Product';
 
 const ProductList = ({ products, removeProd, editProd }) => {
 
-
-
     const renderProduct = ({ item, index }) => {
 
         return <Product
@@ -18,20 +16,18 @@ const ProductList = ({ products, removeProd, editProd }) => {
     }
 
     return (
-        
+
         <View style={styles.tableList}>
 
             {!products.length ? <Text style={styles.textTable}>LISTO PARA CARGAR PRODUCTOS</Text> : null}
-                <FlatList
-                    data={products}
-                    renderItem={renderProduct}
-                    keyExtractor={(item) => item.id.toString()}
-                />
-          
+            <FlatList
+                data={products}
+                renderItem={renderProduct}
+                keyExtractor={(item) => item.id.toString()}
+            />
+
         </View>
-                 
-                 
-            
+
     )
 }
 
@@ -45,7 +41,7 @@ const styles = StyleSheet.create({
 
     },
     textTable: {
-        color:"grey",
+        color: "grey",
         top: height * 0.3,
         alignSelf: "center",
     },

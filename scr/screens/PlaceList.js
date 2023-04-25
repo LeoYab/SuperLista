@@ -15,7 +15,6 @@ const onDel = (placeId) => {
 dispatch(delPlace(userId, placeId, places))
 }
     
-
     useEffect(() => {
 
         dispatch(getPlaces(userId))
@@ -46,7 +45,6 @@ dispatch(delPlace(userId, placeId, places))
         </View>
     )
 }
-
 
 
 export default PlaceList

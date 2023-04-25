@@ -1,9 +1,11 @@
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
+import { Text, View, Image } from 'react-native';
+
 import TabNavigator from './TabNavigator';
 import MenuItems from '../components/MenuItems/MenuItems';
-import { TouchableOpacity, Text, View, Image } from 'react-native';
+
 const Drawer = createDrawerNavigator();
 
 export function DrawerNavigator() {
@@ -19,9 +21,9 @@ export function DrawerNavigator() {
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerTitle: () => (
-            <View style={{ flexDirection: "row", gap:6 }}>
+            <View style={{ flexDirection: "row", gap: 6 }}>
               <Image style={{ width: 32, height: 32 }} source={require("../../assets/header-logo.png")} />
-              <Text style={{ color: "#fff", fontSize: 18, fontWeight:"800", alignSelf:"center" }}>SUPERLISTA</Text>
+              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "800", alignSelf: "center" }}>SUPERLISTA</Text>
             </View>
           ),
           headerStyle: {

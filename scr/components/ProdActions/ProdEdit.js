@@ -1,6 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import ModalEdit from '../Modals/ModalEdit';
 import ModalEmptyImput from "../Modals/ModalEmptyImput"
@@ -23,14 +21,14 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
       setEditNameProd(productSelectToEdit.nameProd)
       setEditPrice(productSelectToEdit.price ? productSelectToEdit.price.toString() : "")
       setEditInputQnty(productSelectToEdit.quantity ? productSelectToEdit.quantity.toString() : "")
-      setEditCatry(productSelectToEdit.category) 
+      setEditCatry(productSelectToEdit.category)
       setEditCatryIcon(productSelectToEdit.icon)
       setModalEditView(modalEditVisible)
     }
   }, [productSelectToEdit])
 
   useEffect(() => {
-    if(productsEdited !== null){
+    if (productsEdited !== null) {
       onEditProd(productsEdited);
     }
   }, [productsEdited])
@@ -98,7 +96,7 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
         numberInputPriceHandler={numberInputPriceHandler}
         numberInputQuantityHandler={numberInputQuantityHandler}
         category={editCatry}
-        setEditCatry = {setEditCatry}
+        setEditCatry={setEditCatry}
         setEditCatryIcon={setEditCatryIcon}
         modalEditVisible={modalEditView}
         checkEmptyInput={checkEmptyInput}
@@ -115,5 +113,3 @@ const ProdEdit = ({ products, productSelectToEdit, modalEditVisible, onEditProd 
 
 }
 export default ProdEdit
-
-const styles = StyleSheet.create({})

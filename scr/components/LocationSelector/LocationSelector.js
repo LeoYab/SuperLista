@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Alert } from 'react-native'
+import { StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import * as Location from "expo-location"
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import Colors from '../../constants/Colors'
 import MapPreview from '../MapPreview/MapPreview'
 import { Buttons } from '../Index'
+
 const LocationSelector = ({ onLocation }) => {
 
     const [pickedLocation, setPickedLocation] = useState(null);
@@ -57,8 +58,6 @@ const LocationSelector = ({ onLocation }) => {
         navigation.navigate("Map");
     }
 
-
-
     const mapLocation = route?.params?.mapLocation;
 
 
@@ -79,13 +78,13 @@ const LocationSelector = ({ onLocation }) => {
             </MapPreview>
 
             <View style={styles.actions}>
-                <Buttons 
-                color={Colors.btnPrimary} 
-                onPress={handleGetLocation}>ACTUALIZAR</Buttons>
+                <Buttons
+                    color={Colors.btnPrimary}
+                    onPress={handleGetLocation}>ACTUALIZAR</Buttons>
 
-                <Buttons 
-                color={Colors.btnPrimary} 
-                onPress={handlePickOnMap}>ELEGIR</Buttons>
+                <Buttons
+                    color={Colors.btnPrimary}
+                    onPress={handlePickOnMap}>ELEGIR</Buttons>
             </View>
 
         </View>

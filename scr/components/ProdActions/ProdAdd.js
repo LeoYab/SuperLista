@@ -1,20 +1,18 @@
 import { StyleSheet, View, Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { useSelector } from 'react-redux'
+import { Dropdown } from 'react-native-element-dropdown';
+
 import Input from '../Input/Input'
 import Buttons from "../Button/Button"
 import ModalEmptyImput from "../Modals/ModalEmptyImput"
-import { Dropdown } from 'react-native-element-dropdown';
-import { useSelector, useDispatch } from 'react-redux'
-import { selectCategory } from '../../store/actions/category.action'
-import ModalSaveList from '../Modals/ModalSaveList'
 
-const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
+
+
+
+const ProdAdd = ({ onAddProd }) => {
 
     const categories = useSelector(state => state.categories.categories)
-    /* 
-    const dispatch = useDispatch() */
-
     const [inputNameProd, setInputNameProd] = useState("")
     const [inputPrice, setInputPrice] = useState("")
     const [inputQnty, setInputQnty] = useState("")
@@ -23,11 +21,11 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
     const [value, setValue] = useState(null);
     const [saveList, setSaveList] = useState("");
     const [modalNameVisible, setModalNameVisible] = useState(false);
-    
+
 
     useEffect(() => {
 
-        if(inputProducts !== null){
+        if (inputProducts !== null) {
             onAddProd(inputProducts);
         }
 
@@ -71,17 +69,6 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
         setModalEmptyVisible(false);
     };
 
-   /*  const checkVisible = () => {
-
-        setModalNameVisible(true);
-    }
-
-    const checkVisibled = () => {
-
-        setModalNameVisible(false);
-    }
- */
-
     const numberInputPriceHandler = (inputText) => {
 
 
@@ -99,16 +86,10 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
 
     }
 
-/*     const createListName = () => {
-        saveListName(saveList)
-        setModalNameVisible(false);
-    }
- */
-
     return (
         <View style={styles.imputContainer}>
             <View style={styles.imputAdd}>
-            <Dropdown
+                <Dropdown
                     style={[styles.dropdown, !value ? styles.dropdowngrey : styles.dropdown]}
                     placeholderStyle={styles.placeholderStyle}
                     selectedTextStyle={styles.selectedTextStyle}
@@ -127,7 +108,7 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
                         setValue(item);
                     }}
                 />
-                
+
                 <Input
                     value={inputNameProd}
                     placeholder={"Producto"}
@@ -144,27 +125,17 @@ const ProdAdd = ({ onAddProd, products, /* saveListName */ }) => {
                     keyboardType="numeric" />
 
 
-                
+
             </View>
             <View style={styles.buttonsContainer}>
-               {/*  <Buttons disabled={true} style={styles.buttonAddDisable} /> */}
 
                 <Buttons style={styles.buttonAdd} onPress={checkEmptyInput}>+</Buttons>
-
-               {/*  <Buttons style={styles.buttonSave} onPress={checkVisible}>Guardar</Buttons> */}
 
             </View>
             <ModalEmptyImput
                 modalEmptyVisible={modalEmptyVisible}
                 onCancelModalCheck={onCancelModalCheck}
             />
-           {/*  <ModalSaveList
-                saveList={saveList}
-                setSaveList={setSaveList}
-                modalNameVisible={modalNameVisible}
-                checkVisibled={checkVisibled}
-                createListName={createListName}
-            /> */}
 
         </View>
     )
@@ -198,16 +169,15 @@ const styles = StyleSheet.create({
         maxWidth: width * 0.245,
         height: 32,
         fontSize: 10,
-        marginRight:1,
+        marginRight: 1,
     },
     dropdowngrey: {
         borderColor: 'grey',
-
     },
     itemTextStyle: {
         fontSize: 12,
         color: "#393939",
-      },
+    },
     icon: {
         marginRight: 5,
     },
@@ -215,7 +185,6 @@ const styles = StyleSheet.create({
         fontSize: 11,
         color: "grey",
         marginLeft: 1,
-
     },
     iconStyle: {
         width: 20,

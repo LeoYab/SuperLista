@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, Image, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
-import * as FileSystem from 'expo-file-system';
-
 import * as ImagePicker from "expo-image-picker"
+
 import Colors from '../../constants/Colors'
 
 const ImageSelectors = ({ onImage }) => {
@@ -17,14 +16,13 @@ const ImageSelectors = ({ onImage }) => {
             return false
         }
         return true
-
     }
 
     const handlerTakeImage = async () => {
         const isCameraOk = await VerifyPermissions()
         if (!isCameraOk) return
 
-        const image = await ImagePicker.launchCameraAsync ({
+        const image = await ImagePicker.launchCameraAsync({
             allowsEditing: true,
             aspect: [16, 9],
             quality: 0.8,
@@ -47,7 +45,6 @@ const ImageSelectors = ({ onImage }) => {
         setPickedUri(image.assets[0].uri)
         onImage(image.assets[0].uri)
     }
-
 
 
     return (
@@ -99,6 +96,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
         flexDirection: "row",
-        justifyContent:"space-around"
+        justifyContent: "space-around"
     }
 })

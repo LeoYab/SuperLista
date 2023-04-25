@@ -27,35 +27,35 @@ const PlaceDetail = ({ route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems:"center",
+        alignItems: "center",
     },
-    image:{
-        height:"30%",
-        minHeight:300,
-        width:"100%",
+    image: {
+        height: "30%",
+        minHeight: 300,
+        width: "100%",
     },
     location: {
-        margin:20,
-        width:"90%",
-        maxWidth:350,
-        backgroundColor:"white",
-        shadowColor:"black",
-        shadowOffset: {width: 0, height: 2},
+        margin: 20,
+        width: "90%",
+        maxWidth: 350,
+        backgroundColor: "white",
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.25,
         shadowRadius: 8,
         elevation: 5,
         borderRadius: 4,
     },
-    addressContainer:{
-        padding:20,
+    addressContainer: {
+        padding: 20,
     },
-address:{
-    color:Colors.BASE,
-    textAlign:"center",
-},
-map:{
-   height:"100%"
-}
+    address: {
+        color: Colors.BASE,
+        textAlign: "center",
+    },
+    map: {
+        height: "100%"
+    }
 
 })
 

@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useState, useEffect, useLayoutEffect } from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import React, { useState, useLayoutEffect } from 'react'
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import { Entypo } from '@expo/vector-icons';
 
@@ -14,21 +14,21 @@ const Map = ({ navigation }) => {
         longitudeDelta: 0.0421,
     }
 
-const handleSaveLocation = () => {
-    if (selectedLocation){
-        navigation.navigate("Nuevo", {mapLocation: selectedLocation})
+    const handleSaveLocation = () => {
+        if (selectedLocation) {
+            navigation.navigate("Nuevo", { mapLocation: selectedLocation })
+        }
     }
-}
 
-useLayoutEffect(() => {
-navigation.setOptions({
-    headerRight: () => (
-<TouchableOpacity onPress={handleSaveLocation}>
-<Entypo name="save" size={24} color="white" />
-</TouchableOpacity>
-   )
-})
-}, [navigation, handleSaveLocation])
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity onPress={handleSaveLocation}>
+                    <Entypo name="save" size={24} color="white" />
+                </TouchableOpacity>
+            )
+        })
+    }, [navigation, handleSaveLocation])
 
 
     const handleSelecLocation = event => {

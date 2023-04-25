@@ -13,25 +13,25 @@ export const addPlace = (title, image, location, userId) => {
         if (!response.ok) throw new Error("No se ha podido comunicar con Google Maps API");
 
         const resData = await response.json();
-        console.log("resData",resData)
+        
         if (!resData.results) throw new Error("No se han encontrado datos para las coordenadas seleccionadas");
 
         const address = resData.results[0].formatted_address;
 
 
 
-     const fileName = image && image.split('/').pop()
-         const Path = image ? FileSystem.documentDirectory + fileName : null
+        const fileName = image && image.split('/').pop()
+        const Path = image ? FileSystem.documentDirectory + fileName : null
 
-         try {
-             FileSystem.moveAsync({
-                 from: image,
-                 to: Path
-             })
-         } catch (error) {
-             console.log(error.message)
-             throw error
-         }
+        try {
+            FileSystem.moveAsync({
+                from: image,
+                to: Path
+            })
+        } catch (error) {
+            console.log(error.message)
+            throw error
+        }
 
         const newPlace = {
             id: Date.now(),
@@ -119,7 +119,7 @@ export const delPlace = (userId, placeId, places) => {
             });
 
             const listUpdate = places.filter(place => place.id !== placeId)
-           
+
             dispatch({
                 type: DEL_PLACES,
                 payload: listUpdate

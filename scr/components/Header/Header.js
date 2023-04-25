@@ -1,25 +1,22 @@
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
-
+import { StyleSheet, View, Dimensions, TouchableOpacity } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
 import { useState, useEffect } from 'react';
-import Buttons from '../Button/Button';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectCategory } from '../../store/actions/category.action';
 import Table from "../Table/Table";
-import Input from "../Input/Input"
-import ProductList from "../ProductList/ProductList"
+import Input from "../Input/Input";
+import ProductList from "../ProductList/ProductList";
 import Footer from '../Footer/Footer';
 
-/*  import { CATEGORIES } from '../../categories/categories'  */
-import { useSelector, useDispatch } from 'react-redux';
-import { selectCategory, category } from '../../store/actions/category.action';
-import { nameListProducts } from '../../store/actions/products.action';
-import { Dropdown } from 'react-native-element-dropdown';
+
 
 const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation, nameList }) => {
 
   const categories = useSelector(state => state.categories.categories)
- 
+
 
   const dispatch = useDispatch()
-  const [open, setOpen] = useState(false);
   const [searchProduct, setSearchProduct] = useState("");
   const [viewSearchProducts, setViewSearchProducts] = useState([]);
   const [value, setValue] = useState(null);
@@ -39,9 +36,8 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
 
 
-
-
   const [isPortrait, setIsPortrait] = useState(true);
+
   const onPortrait = () => {
 
     const dim = Dimensions.get("screen");
@@ -61,23 +57,14 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
   })
 
 
-
-
-
-
-
   const handleSelectedCategory = (item) => {
 
     dispatch(selectCategory(item.id))
     navigation.navigate('Category', {
       categoryName: item.title,
-
     })
 
   }
-
-
-
 
 
   return (
@@ -85,13 +72,6 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
 
       <View style={isPortrait ? styles.header : styles.headerLandscape}>
 
-        {/*   <Text style={isPortrait ? styles.logo : styles.logoLdscp}>SUPERLISTA</Text> */}
-
-        {/*   {isPortrait &&
-          <View style={styles.Category}>
-            <Buttons onPress={handleSelectedCategory}>Category</Buttons>
-          </View>
-        } */}
         <View style={styles.searchContainer}>
 
           <TouchableOpacity>
@@ -154,16 +134,10 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-/*     borderTopColor: "#bab8b8",
-    borderTopWidth: .8, */
-    /*   marginTop: height * 0.05,  */
   },
   headerLandscape: {
     marginTop: height * 0.02,
   },
-  /*   Category: {
-      alignSelf: "flex-start",
-    }, */
   logo: {
     color: "#fff",
     textAlign: 'center',
@@ -180,7 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     alignItems: "center",
-
   },
   search: {
     backgroundColor: "#fff",
@@ -196,11 +169,8 @@ const styles = StyleSheet.create({
     height: height * 0.04,
     borderTopLeftRadius: 2,
     borderBottomLeftRadius: 2,
-
-
     borderBottomColor: "#fff",
     backgroundColor: "#6ca115ef",
-
   },
   itemTextStyle: {
     fontSize: 14,
@@ -210,7 +180,6 @@ const styles = StyleSheet.create({
     height: 10,
     tintColor: "white",
   },
-
   placeholderStyle: {
     fontSize: 14,
     color: "#fff",
@@ -221,7 +190,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginLeft: 2,
   },
-
   inputSearchStyle: {
     height: 40,
     fontSize: 14,

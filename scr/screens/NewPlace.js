@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, TextInput, Button } from 'react-native'
+import { useSelector } from 'react-redux'
+
 import Colors from '../constants/Colors'
 import { useDispatch } from 'react-redux'
 import { addPlace } from '../store/actions/places.actions'
 import ImageSelectors from '../components/ImageSelectors/ImageSelectors'
 import LocationSelector from '../components/LocationSelector/LocationSelector'
-import { useSelector } from 'react-redux'
+
 
 const NewPlace = ({ navigation }) => {
 
@@ -27,17 +29,13 @@ const NewPlace = ({ navigation }) => {
         navigation.navigate('Direcciones')
     }
 
-
-
-
-
     return (
-        <ScrollView keyboardShouldPersistTaps="handled"> 
+        <ScrollView keyboardShouldPersistTaps="handled">
             <View style={styles.container}>
                 <Text style={styles.label}>Titulo</Text>
                 <TextInput style={styles.input} onChangeText={titleChangeHandler} />
                 <ImageSelectors onImage={image => setImageValue(image)} />
-                <LocationSelector  onLocation={(lat, lng)=>setLocationValue({lat, lng})}/>
+                <LocationSelector onLocation={(lat, lng) => setLocationValue({ lat, lng })} />
                 <Button title="Guardar" color={Colors.BASE} onPress={savePlaceHandler} />
             </View>
 

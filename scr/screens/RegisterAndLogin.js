@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity, TextInput } from 'react-native'
-import React from 'react'
-import Colors from '../constants/Colors'
+import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import React, { useState, useReducer, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import Colors from '../constants/Colors'
 import { signUpIn } from '../store/actions/auth.action'
 import InputRegister from '../components/Input/InputRegister'
-import { useReducer, useCallback } from 'react'
-import { useState } from 'react'
-import { Input } from '../components/Index'
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -36,7 +34,7 @@ const formReducer = (state, action) => {
 
 const RegisterAndLogin = () => {
 
-const [loginView, setLoginView] = useState(false);
+    const [loginView, setLoginView] = useState(false);
 
     const dispatch = useDispatch();
     const isAuthLoading = useSelector(state => state.auth.isLoading);
@@ -63,29 +61,29 @@ const [loginView, setLoginView] = useState(false);
     }
 
     const handleChangedText = useCallback((inputIdentifier, inputValue, inputValidity) => {
-        
+
         dispatchFormState({
             type: FORM_INPUT_UPDATE,
             value: inputValue,
             isValid: inputValidity,
             input: inputIdentifier
-        })  
+        })
     }, [dispatchFormState])
 
 
-const loginEnable = () => {
+    const loginEnable = () => {
 
-    setLoginView(!loginView)
-}
+        setLoginView(!loginView)
+    }
 
 
-const onHandleLogin= () => {
-if (formState.formIsValid) { 
-        dispatch(signUpIn(loginView ,formState.inputValues.email, formState.inputValues.password))
-  } else {
-        console.log('Por favor, ingrese un email y una contraseña válidos')
-    } 
-}
+    const onHandleLogin = () => {
+        if (formState.formIsValid) {
+            dispatch(signUpIn(loginView, formState.inputValues.email, formState.inputValues.password))
+        } else {
+            console.log('Por favor, ingrese un email y una contraseña válidos')
+        }
+    }
 
     return (
         <KeyboardAvoidingView style={styles.screen}>
@@ -126,7 +124,7 @@ if (formState.formIsValid) {
                 <View style={styles.prompt}>
                     <Text style={styles.promptMessage}>{!loginView ? "¿Ya tienes una cuenta?" : "¿No tienes una cuenta?"}</Text>
                     <TouchableOpacity onPress={loginEnable}>
-                        <Text style={styles.promptButton}>{ !loginView ? "Iniciar sesión" : "Registrarse"}</Text>
+                        <Text style={styles.promptButton}>{!loginView ? "Iniciar sesión" : "Registrarse"}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

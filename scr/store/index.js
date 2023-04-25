@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from "redux"
+import { createStore, combineReducers, applyMiddleware } from "redux"
 import { persistStore, persistReducer } from "redux-persist"
 
 
@@ -21,17 +21,15 @@ const persistConfig = {
 
 const RootReducer = combineReducers({
 
-categories: CategoryReducer,
-products: ProductsReducer,
-getProducts: GetProductsReducer,
-listAction: ListReducer,
-auth: authReducer,
-places: placesReducer,
+    categories: CategoryReducer,
+    products: ProductsReducer,
+    getProducts: GetProductsReducer,
+    listAction: ListReducer,
+    auth: authReducer,
+    places: placesReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, RootReducer)
 
 export const store = createStore(persistedReducer, applyMiddleware(thunk))
 export const storePersisted = persistStore(store)
-
-/* export default createStore(RootReducer, applyMiddleware(thunk)) */

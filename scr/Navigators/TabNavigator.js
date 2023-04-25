@@ -2,6 +2,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import React from 'react'
 import { Entypo } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
 import Categories from '../screens/Categories';
 import ScreenNavigator from './ScreenNavigator'
 import PlaceNavigator from './PlaceNavigator';
@@ -65,9 +66,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-
-
-
 
     </BottomTabs.Navigator>
   )

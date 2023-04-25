@@ -1,38 +1,32 @@
 import { StyleSheet, View, Modal, Text, TouchableWithoutFeedback, Dimensions } from 'react-native'
-import { useState, useEffect } from 'react'
+
 import Input from "../Input/Input"
 import Buttons from "../Button/Button"
 import { ModalShadow } from '../../constants/ModalShadow'
 import Colors from '../../constants/Colors'
-import { CATEGORIES } from '../../categories/categories'
-import { Dropdown } from 'react-native-element-dropdown';
 
-const  ModalSaveList = ({ modalNameVisible, saveList, setSaveList, createListName, checkVisibled, saveListName, category, setEditCatry, setEditCatryIcon, nameProd, price, quantity, setNameProd, numberInputPriceHandler, numberInputQuantityHandler, checkEmptyInput, modalEditVisible = false }) => {
 
- 
-  
-  
-/*   const [value, setValue] = useState({});
+const ModalSaveList = ({
+  modalNameVisible,
+  saveList,
+  setSaveList,
+  createListName,
+  checkVisibled
+}) => {
 
-useEffect(() => {
-  setEditCatry(value.id)
-  setEditCatryIcon(value.icon)
-}, [value])
-
- */
   return (
     <Modal animationType="fade" transparent={true} visible={modalNameVisible}>
       <TouchableWithoutFeedback onPress={checkVisibled}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Input
-               value={saveList}
-               placeholder={"Ingrese nombre de la Lista"}
-               onChangeText={setSaveList} />
-              
+              value={saveList}
+              placeholder={"Ingrese nombre de la Lista"}
+              onChangeText={setSaveList} />
+
           </View>
-          <View  style={styles.buttonEdit}>
-          <Buttons onPress={createListName}>Aceptar</Buttons>
+          <View style={styles.buttonEdit}>
+            <Buttons onPress={createListName}>Aceptar</Buttons>
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -62,10 +56,10 @@ const styles = StyleSheet.create({
     ...ModalShadow,
 
   },
-  buttonEdit:{
-   marginBottom:56,
+  buttonEdit: {
+    marginBottom: 56,
   },
- 
+
   modalText: {
     fontSize: 18,
     fontWeight: 'bold',

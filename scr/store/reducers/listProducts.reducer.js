@@ -16,12 +16,12 @@ const ListReducer = (state = initialState, action) => {
             }
 
         case DEL_LIST_PRODUCTS:
-          
+
             return {
                 ...state,
                 listToDel: action.listToDel,
             };
-         
+
         default:
             return state;
     }

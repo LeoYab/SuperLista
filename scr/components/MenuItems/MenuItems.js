@@ -1,20 +1,17 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Button, Animated, Pressable, TouchableWithoutFeedback, Image } from "react-native"
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Animated, Pressable } from "react-native"
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
-import { nameListProducts } from '../../store/actions/products.action';
+import { Octicons, Feather } from '@expo/vector-icons';
+
 import { getProducts } from '../../store/actions/getproducts.action';
 import { saveProducts, agregarProductoUsuario } from '../../store/actions/products.action';
 import Buttons from '../Button/Button';
 import { listProducts, delListProducts } from "../../store/actions/listProducts.action";
-import ModalSaveList from '../Modals/ModalSaveList';
-import { TextInput } from 'react-native-gesture-handler';
 import Input from '../Input/Input';
 import Colors from "../../constants/Colors";
-import { Octicons } from '@expo/vector-icons';
 import ModalDel from "../Modals/ModalDel";
-import { Feather } from '@expo/vector-icons';
 import { logout } from "../../store/actions/auth.action";
 
 const MenuItems = ({ navigation }) => {
@@ -24,14 +21,16 @@ const MenuItems = ({ navigation }) => {
   const [deleteList, setDeleteList] = useState(false);
   const [showModalDel, setShowModalDel] = useState(false);
   const [confirmItemDel, setConfirmItemDel] = useState(null);
+  const [listProd, setListProd] = useState(false);
+
   const slideAnimation = useRef(new Animated.Value(0)).current;
+
   const dispatch = useDispatch();
 
   const userId = useSelector(state => state.auth.userId);
   const email = useSelector(state => state.auth.email);
   const prods = useSelector(state => state.products.users[userId]?.products || [])
   const nameListProds = useSelector(state => state.products.users[userId]?.nameList || "Sin_Nombre");
-
 
 
   const handlePress = () => {
@@ -43,11 +42,15 @@ const MenuItems = ({ navigation }) => {
     }).start();
   };
 
+  
+
+
+
   useEffect(() => {
 
     dispatch(getProducts(userId))
 
-  }, [saveListName, deleteList])
+  }, [saveListName, deleteList, listProd])
 
   const delList = (id) => {
 
@@ -68,15 +71,6 @@ const MenuItems = ({ navigation }) => {
   }
 
 
-
-  const createListName = () => {
-    dispatch(saveProducts(prods, nameListProds, userId))
-    dispatch(getProducts(userId))
-  /*   setShowInput(false);
-    setSaveListName("") */
-  }
-
-
   const checkShowInput = () => {
     setShowInput(false);
   }
@@ -94,14 +88,20 @@ const MenuItems = ({ navigation }) => {
     }
     )
   }
-  const addNameToList = () => {
-  dispatch(agregarProductoUsuario(userId, prods, saveListName)) 
-  setSaveListName("")
+
+
+  const createListName = () => {
+    dispatch(saveProducts(prods, nameListProds, userId))
+    setListProd(!listProd)
   }
 
-  const newList = () =>{
-    /* dispatch(nameListProducts(saveListName))  */
-    dispatch(agregarProductoUsuario(userId, [], "")) 
+  const addNameToList = () => {
+    dispatch(agregarProductoUsuario(userId, prods, saveListName))
+    setSaveListName("")
+  }
+
+  const newList = () => {
+    dispatch(agregarProductoUsuario(userId, [], ""))
     navigation.navigate('SuperLista')
   }
 
@@ -160,17 +160,17 @@ const MenuItems = ({ navigation }) => {
               </View>
             )}
           />
-          
+
           {!showInput
             ?
             <Buttons style={styles.buttonContainer} onPress={handlePress}>Nombre de Lista</Buttons>
             :
-            <Buttons style={styles.buttonContainer} onPress={() => {handlePress(), addNameToList()}}>Aceptar</Buttons>  
-       
+            <Buttons style={styles.buttonContainer} onPress={() => { handlePress(), addNameToList() }}>Aceptar</Buttons>
+
           }
 
-   
-          
+
+
           {showInput && (
             <Animated.View style={{
               marginTop: 10, transform: [{
@@ -187,11 +187,8 @@ const MenuItems = ({ navigation }) => {
                 onChangeText={setSaveListName} />
             </Animated.View>
           )}
-           <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar</Buttons>
-           <Buttons style={styles.buttonContainer} onPress={newList}>Nueva Lista</Buttons>
-          {/* 
-          <Buttons style={styles.buttonContainer}>Boton 2</Buttons>
-          <Buttons style={styles.buttonContainer}>Boton 3</Buttons> */}
+          <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar</Buttons>
+          <Buttons style={styles.buttonContainer} onPress={newList}>Nueva Lista</Buttons>
         </Pressable>
       </DrawerContentScrollView>
       {showModalDel &&
@@ -340,9 +337,6 @@ const styles = StyleSheet.create({
   delButtonProd: {
     alignSelf: "center",
     alignItems: "center",
-    /*     borderWidth: 1,
-        borderColor: "grey",
-        borderRadius:6, */
     width: width * 0.07,
     paddingVertical: 10,
     marginRight: 2,

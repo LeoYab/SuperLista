@@ -1,5 +1,4 @@
 import { URL_API } from "../../constants/Database";
-import { Alert } from "react-native";
 
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
@@ -37,8 +36,6 @@ export const saveProducts = (productsSaved, nameList, userId) => {
 
       const result = await response.json();
 
-
-      /*    Alert.alert("Lista guardada", "Se crea lista " + nameList) */
       dispatch({
         type: SAVE_PRODUCTS,
         productsSaved,

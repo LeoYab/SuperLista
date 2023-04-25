@@ -1,10 +1,9 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Ionicons } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 
-// screens
 import PlaceList from '../screens/PlaceList'
 import PlaceDetail from '../screens/PlaceDetail'
 import NewPlace from '../screens/NewPlace'
@@ -18,7 +17,7 @@ const PlaceNavigator = () => (
         initialRoute='Direcciones'
         screenOptions={{
             headerStyle: {
-                backgroundColor: Colors.BASE ,
+                backgroundColor: Colors.BASE,
             },
             statusBarColor: "#4B8A08",
             headerTintColor: 'white',
@@ -34,7 +33,7 @@ const PlaceNavigator = () => (
                 title: 'Direcciones',
                 headerRight: () => (
                     <TouchableOpacity onPress={() => navigation.navigate('Nuevo')}>
-                        <Ionicons name="add-circle-outline" color={"white"} style={styles.addItemButton} size={30} />
+                        <Ionicons name="add-circle-outline" color={"white"} size={30} />
                     </TouchableOpacity>
                 )
             })}
@@ -59,9 +58,3 @@ const PlaceNavigator = () => (
 
 
 export default PlaceNavigator
-
-const styles = StyleSheet.create({
-    addItemButton:{
-
-    }
-  }) 
