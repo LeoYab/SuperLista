@@ -49,7 +49,7 @@ const TabNavigator = () => {
         component={Categories}
         options={{
           headerStyle: {
-            backgroundColor: Colors.DARK_SIENNA,
+            backgroundColor: Colors.BASE,
           },
           headerTintColor: 'white',
           headerTitleStyle: {

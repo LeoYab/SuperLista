@@ -1,17 +1,14 @@
 import { FlatList } from 'react-native'
 import React from 'react'
-/* import { CATEGORIES } from '../categories/categories' */
 import GridItem from '../components/GridItem/GridItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCategory } from '../store/actions/category.action'
 import Colors from '../constants/Colors'
 const CategoryItem = ({ navigation }) => {
 
-
     const categories = useSelector(state => state.categories.categories)
 
     const dispatch = useDispatch()
-
 
     const onSelectGridItem = (item) => {
         dispatch(selectCategory(item.id))

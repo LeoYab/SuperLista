@@ -23,6 +23,7 @@ const NewPlace = ({ navigation }) => {
 
     const savePlaceHandler = () => {
         dispatch(addPlace(titleValue, imageValue, locationValue, userId))
+
         navigation.navigate('Direcciones')
     }
 
@@ -31,13 +32,13 @@ const NewPlace = ({ navigation }) => {
 
 
     return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled"> 
             <View style={styles.container}>
                 <Text style={styles.label}>Titulo</Text>
                 <TextInput style={styles.input} onChangeText={titleChangeHandler} />
                 <ImageSelectors onImage={image => setImageValue(image)} />
                 <LocationSelector  onLocation={(lat, lng)=>setLocationValue({lat, lng})}/>
-                <Button title="Guardar" color={Colors.MAROON} onPress={savePlaceHandler} />
+                <Button title="Guardar" color={Colors.BASE} onPress={savePlaceHandler} />
             </View>
 
         </ScrollView>

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        backgroundColor: Colors.PEACH_PUFF,
+        backgroundColor: Colors.btnPrimary,
         marginRight: 25,
         alignItems: 'center',
         justifyContent: 'center',
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start'
     },
     title: {
-        color: Colors.BLUSH,
+        color: Colors.btnPrimary,
         fontSize: 18,
         marginBottom: 6
     },

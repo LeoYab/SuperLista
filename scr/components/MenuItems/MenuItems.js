@@ -3,9 +3,9 @@ import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { Dropdown } from 'react-native-element-dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
-import { addProduct } from '../../store/actions/products.action';
+import { nameListProducts } from '../../store/actions/products.action';
 import { getProducts } from '../../store/actions/getproducts.action';
-import { saveProducts } from '../../store/actions/products.action';
+import { saveProducts, agregarProductoUsuario } from '../../store/actions/products.action';
 import Buttons from '../Button/Button';
 import { listProducts, delListProducts } from "../../store/actions/listProducts.action";
 import ModalSaveList from '../Modals/ModalSaveList';
@@ -30,12 +30,12 @@ const MenuItems = ({ navigation }) => {
   const userId = useSelector(state => state.auth.userId);
   const email = useSelector(state => state.auth.email);
   const prods = useSelector(state => state.products.users[userId]?.products || [])
-
+  const nameListProds = useSelector(state => state.products.users[userId]?.nameList || "Sin_Nombre");
 
 
 
   const handlePress = () => {
-    setShowInput(true);
+    setShowInput(!showInput);
     Animated.timing(slideAnimation, {
       toValue: 1,
       duration: 300,
@@ -67,12 +67,13 @@ const MenuItems = ({ navigation }) => {
     setShowModalDel(false);
   }
 
-  
+
 
   const createListName = () => {
-    dispatch(saveProducts(prods, saveListName, userId))
-    setShowInput(false);
-    setSaveListName("")
+    dispatch(saveProducts(prods, nameListProds, userId))
+    dispatch(getProducts(userId))
+  /*   setShowInput(false);
+    setSaveListName("") */
   }
 
 
@@ -93,7 +94,16 @@ const MenuItems = ({ navigation }) => {
     }
     )
   }
+  const addNameToList = () => {
+  dispatch(agregarProductoUsuario(userId, prods, saveListName)) 
+  setSaveListName("")
+  }
 
+  const newList = () =>{
+    /* dispatch(nameListProducts(saveListName))  */
+    dispatch(agregarProductoUsuario(userId, [], "")) 
+    navigation.navigate('SuperLista')
+  }
 
   return (
     <>
@@ -116,7 +126,7 @@ const MenuItems = ({ navigation }) => {
         <Pressable style={{ height: 800 }} onPress={checkShowInput}>
 
           <Text style={styles.title}>Mis listas</Text>
-       
+
           <Dropdown
             style={styles.dropdown}
             placeholderStyle={styles.placeholderStyle}
@@ -150,13 +160,17 @@ const MenuItems = ({ navigation }) => {
               </View>
             )}
           />
+          
           {!showInput
             ?
-            <Buttons style={styles.buttonContainer} onPress={handlePress}>Guardar Lista</Buttons>
+            <Buttons style={styles.buttonContainer} onPress={handlePress}>Nombre de Lista</Buttons>
             :
-            <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar</Buttons>
+            <Buttons style={styles.buttonContainer} onPress={() => {handlePress(), addNameToList()}}>Aceptar</Buttons>  
+       
           }
 
+   
+          
           {showInput && (
             <Animated.View style={{
               marginTop: 10, transform: [{
@@ -173,7 +187,8 @@ const MenuItems = ({ navigation }) => {
                 onChangeText={setSaveListName} />
             </Animated.View>
           )}
-
+           <Buttons style={styles.buttonContainer} onPress={createListName}>Guardar</Buttons>
+           <Buttons style={styles.buttonContainer} onPress={newList}>Nueva Lista</Buttons>
           {/* 
           <Buttons style={styles.buttonContainer}>Boton 2</Buttons>
           <Buttons style={styles.buttonContainer}>Boton 3</Buttons> */}
@@ -199,7 +214,7 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   containerHeader: {
     height: height * 0.2,
-    backgroundColor: Colors.LIGTH_PINK,
+    backgroundColor: Colors.btnPrimary,
 
   },
   logout: {
@@ -223,12 +238,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 50,
     fontWeight: "600",
-    color: Colors.LIGTH_PINK,
+    color: Colors.btnPrimary,
     bottom: 7,
   },
   profileBackground: {
     alignSelf: "center",
-    borderColor: Colors.LIGTH_PINK,
+    borderColor: Colors.btnPrimary,
     borderWidth: 8,
     borderRadius: 50,
     width: 70,
@@ -261,8 +276,6 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     width: width * 0.6,
-    borderWidth: 1,
-    borderColor: '6ca115ef',
     paddingHorizontal: width * 0.02,
     marginVertical: 10,
     borderRadius: 2,

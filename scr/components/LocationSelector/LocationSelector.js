@@ -80,11 +80,11 @@ const LocationSelector = ({ onLocation }) => {
 
             <View style={styles.actions}>
                 <Buttons 
-                color={Colors.LIGTH_PINK} 
+                color={Colors.btnPrimary} 
                 onPress={handleGetLocation}>ACTUALIZAR</Buttons>
 
                 <Buttons 
-                color={Colors.LIGTH_PINK} 
+                color={Colors.btnPrimary} 
                 onPress={handlePickOnMap}>ELEGIR</Buttons>
             </View>
 
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         fontWeight: "400",
-        backgroundColor: Colors.DARK_SIENNA,
+        backgroundColor: Colors.BASE,
         color: "#fff"
     },
     textoLocation: {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         justifyContent: "center",
         alignItems: "center",
-        borderColor: Colors.BLUSH,
+        borderColor: Colors.btnPrimary,
         borderWidth: 1,
     },
     image: {

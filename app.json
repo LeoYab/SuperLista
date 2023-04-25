@@ -25,7 +25,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.leoyab.superlista"
+      "package": "com.leoyab.superlista",
+      
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAP8eK6Bw8cMfmr3osWGbEBxueiG5s1tnA"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +40,9 @@
       "eas": {
         "projectId": "5f19cca7-d760-480d-9981-d013d151e0be"
       }
-    }
+    },
+    "plugins": ["expo-image-picker"]
   }
 }
+
+

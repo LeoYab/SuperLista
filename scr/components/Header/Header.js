@@ -10,12 +10,13 @@ import Footer from '../Footer/Footer';
 /*  import { CATEGORIES } from '../../categories/categories'  */
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCategory, category } from '../../store/actions/category.action';
+import { nameListProducts } from '../../store/actions/products.action';
 import { Dropdown } from 'react-native-element-dropdown';
 
-const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation }) => {
+const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, modalDelVisible, navigation, nameList }) => {
 
   const categories = useSelector(state => state.categories.categories)
-
+ 
 
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false);
@@ -100,6 +101,7 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
+              itemTextStyle={styles.itemTextStyle}
               iconStyle={styles.iconStyle}
               data={categories}
               search
@@ -124,7 +126,10 @@ const Header = ({ products, removeProd, editProd, prodTotal, modalEditVisible, m
         </View>
       </View>
 
-      <Table products={products} isPortrait={isPortrait} />
+      <Table
+        products={products}
+        nameList={nameList}
+        isPortrait={isPortrait} />
 
       <ProductList
         products={!searchProduct
@@ -149,8 +154,8 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: '#4B8A08',
-    borderTopColor: "#bab8b8",
-    borderTopWidth: .8,
+/*     borderTopColor: "#bab8b8",
+    borderTopWidth: .8, */
     /*   marginTop: height * 0.05,  */
   },
   headerLandscape: {
@@ -197,6 +202,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#6ca115ef",
 
   },
+  itemTextStyle: {
+    fontSize: 14,
+  },
   iconStyle: {
     width: 20,
     height: 10,
@@ -204,9 +212,9 @@ const styles = StyleSheet.create({
   },
 
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: 14,
     color: "#fff",
-    marginLeft: 2,
+    marginLeft: 4,
   },
   selectedTextStyle: {
     fontSize: 16,
@@ -216,7 +224,7 @@ const styles = StyleSheet.create({
 
   inputSearchStyle: {
     height: 40,
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 

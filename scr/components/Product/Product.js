@@ -83,22 +83,29 @@ const styles = StyleSheet.create({
     editDelProd: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         marginEnd: width * 0.03,
+        gap: 10,
     },
     editButtonProd: {
         /*      backgroundColor: Colors.btnPrimary,
              borderRadius: 5,
              marginRight: 1, */
         alignSelf: "center",
+        padding: 4,
+        borderRadius:5,
+        paddingVertical:3,
         /*      width: 30,
              height: 30, */
     },
     delButtonProd: {
-        /*    backgroundColor: Colors.btnSecondary, */
+
         /*    borderRadius: 5,
            marginLeft: 1, */
         alignSelf: "center",
+        padding: 4,
+        paddingVertical:3,
+        borderRadius:5,
         /*     width: 30,
             height: 30, */
     },

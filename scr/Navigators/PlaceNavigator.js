@@ -18,7 +18,7 @@ const PlaceNavigator = () => (
         initialRoute='Direcciones'
         screenOptions={{
             headerStyle: {
-                backgroundColor: Colors.DARK_SIENNA ,
+                backgroundColor: Colors.BASE ,
             },
             statusBarColor: "#4B8A08",
             headerTintColor: 'white',

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect, useLayoutEffect } from 'react'
-import MapView, { Marker } from "react-native-maps"
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps"
 import { Entypo } from '@expo/vector-icons';
 
 const Map = ({ navigation }) => {
@@ -45,6 +45,7 @@ navigation.setOptions({
             style={styles.container}
             initialRegion={initialRegion}
             onPress={handleSelecLocation}
+            provider={PROVIDER_GOOGLE}
         >
             {selectedLocation && (
                 <Marker

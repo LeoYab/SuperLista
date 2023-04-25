@@ -4,9 +4,9 @@ import { Alert } from "react-native";
 export const ADD_PRODUCT = "ADD_PRODUCT"
 export const EDIT_PRODUCT = "EDIT_PRODUCT"
 export const DEL_PRODUCT = "DEL_PRODUCT"
-export const PRODUCTS_IN_TABLE = "PRODUCTS_IN_TABLE"
 export const SAVE_PRODUCTS = "SAVE_PRODUCTS"
 export const ADD_PRODUCTOS_USUARIO = "ADD_PRODUCTOS_USUARIO"
+export const NAME_LIST_PRODUCTS = "NAME_LIST_PRODUCTS"
 
 export const addProduct = (productToAdd) => ({
   type: ADD_PRODUCT,
@@ -58,10 +58,16 @@ export const delProduct = (productId) => ({
   productId,
 });
 
-export const agregarProductoUsuario = (user, product) => ({
+export const agregarProductoUsuario = (user, product, nameList) => ({
   type: "ADD_PRODUCTOS_USUARIO",
   payload: {
     user,
     product,
+    nameList,
   }
+});
+
+export const nameListProducts = (nameList) => ({
+  type: NAME_LIST_PRODUCTS,
+  nameList,
 });

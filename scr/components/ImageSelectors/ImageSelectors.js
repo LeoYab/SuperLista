@@ -61,12 +61,12 @@ const ImageSelectors = ({ onImage }) => {
             <View style={styles.buttonContainer}>
                 <Button
                     title="Tomar foto"
-                    color={Colors.LIGTH_PINK}
+                    color={Colors.btnPrimary}
                     onPress={handlerTakeImage}
                 />
                 <Button
                     title="Elegir de galería"
-                    color={Colors.LIGTH_PINK}
+                    color={Colors.btnPrimary}
                     onPress={handlerImageFromLibrary}
                 />
             </View>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: Colors.BLUSH,
+        borderColor: Colors.btnPrimary,
         borderWith: 1,
     },
     previewText: {

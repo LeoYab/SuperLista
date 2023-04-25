@@ -4,7 +4,7 @@ import TotalGral from '../TotalGral/TotalGral';
 
 const Separator = () => <View style={styles.separator} />;
 
-const Table = ({ products, filter }) => {
+const Table = ({ products, filter, nameList }) => {
 
 
   const DATA = ['PRODUCTO', 'PRECIO', 'CANTIDAD', 'TOTAL'];
@@ -16,7 +16,7 @@ const Table = ({ products, filter }) => {
         <Text style={styles.productPrice}>{item[1]}</Text>
         <Text style={styles.productQuantity}>{item[2]}</Text>
         <Text style={styles.productTotal}>{item[3]}</Text>
-        {!filter && <View style={styles.editDelProd} /> }
+        {!filter && <View style={styles.editDelProd} />}
 
       </View>
     );
@@ -24,19 +24,24 @@ const Table = ({ products, filter }) => {
 
 
   return (
-   
+
     <View style={styles.statusBarContainer}>
-       {!filter && 
-       <>
-      <View style={styles.statusBar}>
-        <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
-        <TotalGral style={styles.totalGral} products={products} />
-      </View>
-      <View style={styles.qntyTotal}>
-        <Text style={styles.qntyTotalTExt}>Cantidad: {products.length} </Text>
-      </View>
-      </>
-    }
+      {!filter &&
+        <>
+          <View style={styles.statusBar}>
+            <Text style={styles.statusBarText}>PRODUCTOS AGREGADOS</Text>
+            <TotalGral style={styles.totalGral} products={products} />
+          </View>
+          <View style={styles.infoContainer}>
+            <View style={styles.qntyTotal}>
+              <Text style={styles.qntyTotalTExt}>Cantidad: {products.length} </Text>
+            </View>
+            <View style={styles.nameList}>
+              <Text style={styles.qntyTotalTExt}>Lista: {nameList} </Text>
+            </View>
+          </View>
+        </>
+      }
       <View>
         <FlatList
           data={[DATA]}
@@ -85,6 +90,19 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginHorizontal: 2,
     alignSelf: "center",
+  },
+  nameList: {
+    backgroundColor: "#69a30a",
+    minWidth: width * 0.20,
+    marginRight: width * 0.05,
+    marginBottom: 6,
+    borderBottomRightRadius: 4,
+    borderBottomLeftRadius: 4,
+    paddingBottom: 2,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   totalGral: {
     alignSelf: "center",

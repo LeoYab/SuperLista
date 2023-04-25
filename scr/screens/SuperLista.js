@@ -8,26 +8,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductsReducer from '../store/reducers/products.reducer';
 import { addProduct, editProduct, saveProducts, productsInTable, agregarProductoUsuario } from '../store/actions/products.action';
 import { category } from '../store/actions/category.action';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 const SuperLista = ({ navigation, props }) => {
 
   const user = useSelector(state => state.auth.userId);
   const prod = useSelector(state => state.products.users[user]?.products || [])
+  const nameList = useSelector(state => state.products.users[user]?.nameList || "Sin_Nombre")
 
-
+  const usr = useSelector(state => state.products.users[user])
   const [products, setProducts] = useState(prod);
   const [buttonViewAdd, setButtonViewAdd] = useState(true);
   const [productSelectToEdit, setProductSelectToEdit] = useState({});
   const [productSelectToDel, setProductSelectToDel] = useState({});
   const [modalDelVisible, setModalDelVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
-
+  console.log("usr", usr)
   const dispatch = useDispatch()
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setProducts(prod)
+    }, [prod])
+  );
 
   useEffect(() => {
   
-    dispatch(agregarProductoUsuario(user));
+
     dispatch(category())
 
   }, [])
@@ -35,7 +43,7 @@ const SuperLista = ({ navigation, props }) => {
 
   useEffect(() => {
     /*  dispatch(addProduct(products)) */
-    dispatch(agregarProductoUsuario(user, products))
+    dispatch(agregarProductoUsuario(user, products, nameList))
 
     /* console.log("Superlista", prod, "Productos", products) */
   }, [products])
@@ -104,6 +112,7 @@ const SuperLista = ({ navigation, props }) => {
           modalEditVisible={modalEditVisible}
           modalDelVisible={modalDelVisible}
           navigation={navigation}
+          nameList={nameList}
         />
 
         <View style={styles.addItemButton}>

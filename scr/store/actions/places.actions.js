@@ -5,7 +5,7 @@ export const ADD_PLACE = "ADD_PLACE"
 export const GET_PLACES = "GET_PLACES"
 export const DEL_PLACES = "DEL_PLACES"
 export const addPlace = (title, image, location, userId) => {
-
+    console.log(image)
     return async dispatch => {
         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${GOOGLE_MAPS_API}`)
 
@@ -13,16 +13,16 @@ export const addPlace = (title, image, location, userId) => {
         if (!response.ok) throw new Error("No se ha podido comunicar con Google Maps API");
 
         const resData = await response.json();
-
+        console.log("resData",resData)
         if (!resData.results) throw new Error("No se han encontrado datos para las coordenadas seleccionadas");
 
         const address = resData.results[0].formatted_address;
 
 
 
-     const fileName = image.split('/').pop()
-         const Path = FileSystem.documentDirectory + fileName
- 
+     const fileName = image && image.split('/').pop()
+         const Path = image ? FileSystem.documentDirectory + fileName : null
+
          try {
              FileSystem.moveAsync({
                  from: image,

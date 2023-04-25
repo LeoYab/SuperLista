@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { FlatList} from 'react-native'
+import { FlatList, Dimensions, StyleSheet, View, Text} from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import PlaceItem from '../components/PlaceItem/PlaceItem'
 import { getPlaces, delPlace } from '../store/actions/places.actions'
@@ -35,16 +35,34 @@ dispatch(delPlace(userId, placeId, places))
     )
 
     return (
-        
+        <View style={styles.tableList}>
+
+        {!places.length ? <Text style={styles.textTable}>AGREGA DIRECCIONES DESDE EL BOTÓN (+)</Text> : null}
         <FlatList style={{flex:1}}
             data={places}
             renderItem={renderPlaceItem}
             keyExtractor ={item => item.id}
         />
-        
+        </View>
     )
 }
 
 
 
 export default PlaceList
+
+const { height } = Dimensions.get("window");
+
+const styles = StyleSheet.create({
+
+    tableList: {
+        flex: 1,
+        backgroundColor: "#fff",
+
+    },
+    textTable: {
+        color:"grey",
+        top: height * 0.3,
+        alignSelf: "center",
+    },
+})

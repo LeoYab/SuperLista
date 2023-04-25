@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         padding:20,
     },
 address:{
-    color:Colors.MAROON,
+    color:Colors.BASE,
     textAlign:"center",
 },
 map:{
