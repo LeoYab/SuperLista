@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 
-import MainNavigator from './scr/Navigators/MainNavigator';
+import MainNavigator from './scr/navigators/MainNavigator';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, storePersisted } from "./scr/store"
 

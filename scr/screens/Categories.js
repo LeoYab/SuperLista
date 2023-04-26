@@ -1,7 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import CategoryItem from '../CategoryItem/CategoryItem'
+import CategoryItem from '../components/CategoryItem/CategoryItem'
 
 
 const PlaceStack = createNativeStackNavigator()
