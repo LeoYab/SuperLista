@@ -21,6 +21,8 @@ dispatch(delPlace(userId, placeId, places))
     
       }, [])
 
+
+
     const renderPlaceItem = (data) => (
         <PlaceItem  
             title={data.item.title}
@@ -43,6 +45,7 @@ dispatch(delPlace(userId, placeId, places))
         </View>
     )
 }
+
 
 export default PlaceList
 

@@ -1,7 +1,4 @@
-import { StyleSheet } from 'react-native'
 import React from 'react'
-
-
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import SuperLista from '../screens/SuperLista'
@@ -15,9 +12,9 @@ const ScreenNavigator = () => {
     return (
 
         <Stack.Navigator
-        screenOptions={{
-            statusBarColor: "#4B8A08",
-        }}
+            screenOptions={{
+                statusBarColor: "#4B8A08",
+            }}
         >
 
             <Stack.Screen
@@ -61,5 +58,3 @@ const ScreenNavigator = () => {
 }
 
 export default ScreenNavigator
-
-const styles = StyleSheet.create({})
