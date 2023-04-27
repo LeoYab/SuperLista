@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "SuperLista",
+    "slug": "superlista",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6ca115"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.leoyab.superlista",
+      
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAP8eK6Bw8cMfmr3osWGbEBxueiG5s1tnA"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5f19cca7-d760-480d-9981-d013d151e0be"
+      }
+    },
+    "plugins": ["expo-image-picker"]
+  }
+}
+
+
